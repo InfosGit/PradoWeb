@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPLA163" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="be13e145-4d31-4cdd-987e-69b0b0d16621">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="310"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="CIA" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ANIO" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[(
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        NVL(COUNT(*)/2,0) CANTIDAD,
+        --NVL(SUM (A.TOT_DEBENGA),0) CANTIDAD,
+        --NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CANTIDAD,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) CANTIDAD,
+        'TOTAL PERSONNEL' DESCRIPCION
+        --'TOTAL PAYROLL' DESCRIPCION
+        --'HOURS OVERTIME' DESCRIPCION
+        --'TOTAL OUTSOURCING' DESCRIPCION
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA <= C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        --NVL(COUNT(*)/2,0) CANTIDAD,
+        NVL(SUM (A.TOT_DEBENGA),0) CANTIDAD,
+        --NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CANTIDAD,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) CANTIDAD,
+        --'TOTAL PERSONNEL' DESCRIPCION
+        'TOTAL PAYROLL' DESCRIPCION
+        --'HOURS OVERTIME' DESCRIPCION
+        --'TOTAL OUTSOURCING' DESCRIPCION
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA <= C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        --NVL(COUNT(*)/2,0) CANTIDAD,
+        --NVL(SUM (A.TOT_DEBENGA),0) CANTIDAD,
+        NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CANTIDAD,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) CANTIDAD,
+        --'TOTAL PERSONNEL' DESCRIPCION
+        --'TOTAL PAYROLL' DESCRIPCION
+        'HOURS OVERTIME' DESCRIPCION
+        --'TOTAL OUTSOURCING' DESCRIPCION
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA <= C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA, 0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}), 3)) MES,
+        --NVL(COUNT(*)/2,0) CANTIDAD,
+        --NVL(SUM (A.TOT_DEBENGA),0) CANTIDAD,
+        --NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CANTIDAD,
+        NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) CANTIDAD,
+        --'TOTAL PERSONNEL' DESCRIPCION
+        --'TOTAL PAYROLL' DESCRIPCION
+        --'HOURS OVERTIME' DESCRIPCION
+        'TOTAL OUTSOURCING' DESCRIPCION
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA <= C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+)
+UNION ALL
+(
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA, 0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}), 3)) MES,
+        NVL(COUNT(*),0) CANTIDAD,
+        --NVL(SUM (A.TOT_DEBENGA),0) CANTIDAD,
+        --NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CANTIDAD,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) CANTIDAD,
+        'TOTAL PERSONNEL' DESCRIPCION
+        --'TOTAL PAYROLL' DESCRIPCION
+        --'HOURS OVERTIME' DESCRIPCION
+        --'TOTAL OUTSOURCING' DESCRIPCION
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = C.COD_CIA
+        AND     FECHA > C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA, 0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}), 3)) MES,
+        --NVL(COUNT(*),0) CANTIDAD,
+        NVL(SUM (A.TOT_DEBENGA),0) CANTIDAD,
+        --NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CANTIDAD,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) CANTIDAD,
+        --'TOTAL PERSONNEL' DESCRIPCION
+        'TOTAL PAYROLL' DESCRIPCION
+        --'HOURS OVERTIME' DESCRIPCION
+        --'TOTAL OUTSOURCING' DESCRIPCION
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = C.COD_CIA
+        AND     FECHA > C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA, 0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}), 3)) MES,
+        --NVL(COUNT(*),0) CANTIDAD,
+        --NVL(SUM (A.TOT_DEBENGA),0) CANTIDAD,
+        NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CANTIDAD,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) CANTIDAD,
+        --'TOTAL PERSONNEL' DESCRIPCION
+        --'TOTAL PAYROLL' DESCRIPCION
+        'HOURS OVERTIME' DESCRIPCION
+        --'TOTAL OUTSOURCING' DESCRIPCION
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = C.COD_CIA
+        AND     FECHA > C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA, 0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}), 3)) MES,
+        --NVL(COUNT(*),0) CANTIDAD,
+        --NVL(SUM (A.TOT_DEBENGA),0) CANTIDAD,
+        --NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CANTIDAD,
+        NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) CANTIDAD,
+        --'TOTAL PERSONNEL' DESCRIPCION
+        --'TOTAL PAYROLL' DESCRIPCION
+        --'HOURS OVERTIME' DESCRIPCION
+        'TOTAL OUTSOURCING' DESCRIPCION
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = C.COD_CIA
+        AND     FECHA > C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+)]]>
+	</queryString>
+	<field name="COD_CIA" class="java.math.BigDecimal"/>
+	<field name="ANIO" class="java.math.BigDecimal"/>
+	<field name="MES_NUMERO" class="java.math.BigDecimal"/>
+	<field name="MES" class="java.lang.String"/>
+	<field name="CANTIDAD" class="java.math.BigDecimal"/>
+	<field name="DESCRIPCION" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="70d945e2-8c11-47e2-aced-61327441368e" x="0" y="0" width="752" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de total del sueldos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="true">
+				<reportElement uuid="3294e397-c4b9-46e2-a2ab-03cbd241ea23" x="34" y="0" width="149" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="910a8987-9bfb-49a4-9512-5db1172bf4d9" x="0" y="0" width="34" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="914a037c-88a7-43e9-881a-d5af83f56652" x="257" y="0" width="237" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["AÑO " + $F{ANIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d467f2b-ed34-4662-8780-3f4bb7a7e9b2" x="632" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="c817b4f9-b13b-4e4b-9c1f-9b71037507fe" x="712" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="48" splitType="Stretch">
+			<crosstab>
+				<reportElement uuid="84516450-0cc5-4721-b31a-1c0359fef35c" x="0" y="0" width="752" height="48"/>
+				<rowGroup name="DESCRIPCION" width="70">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{DESCRIPCION}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="1a2e7d6a-8515-45bb-92ae-b6fec062b3ae" style="Crosstab Data Text" x="0" y="0" width="70" height="25"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{DESCRIPCION}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="MES" height="30">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{MES}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="f4bd2af4-4d25-4f04-bfe8-9294da68cff8" style="Crosstab Data Text" x="0" y="0" width="50" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{MES}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="CANTIDADMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{CANTIDAD}]]></measureExpression>
+				</measure>
+				<crosstabCell width="50" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+							<reportElement uuid="a66db8e1-86c9-4f92-8ada-753fb9f9e122" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement verticalAlignment="Middle">
+								<font size="6"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{CANTIDADMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="25" rowTotalGroup="DESCRIPCION">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="4d22d092-b4a8-4eda-84b1-2b1763b10bc2" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{CANTIDADMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="MES">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="bd93e5b3-9c8c-4bb9-8ba7-44365aef1274" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{CANTIDADMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="DESCRIPCION" columnTotalGroup="MES">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="a463432e-717e-419a-b1b6-e96d0862ccf2" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{CANTIDADMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

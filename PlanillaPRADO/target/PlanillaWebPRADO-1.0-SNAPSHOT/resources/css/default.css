@@ -1,0 +1,349 @@
+/* Esta regla cambia el color del los items seleccionados en las tablas
+------------------------------------------------------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight
+{
+    border:1px solid #7096AB !important;
+    background:#9dcee8 !important;
+    background:#9dcee8 linear-gradient(top, rgba(133,178,203,0.25), rgba(0,0,0,0)) !important;
+    background:#9dcee8 -webkit-gradient(linear, left top, left bottom, from(rgba(133,178,203,0.25)), to(rgba(0,0,0,0))) !important;
+    background:#9dcee8 -moz-linear-gradient(top, rgba(133,178,203,0.25), rgba(0,0,0,0)) !important;
+    /* filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#33000000, endColorstr=#00000000);
+    -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#33000000, endColorstr=#00000000)"; */
+    color:#ffffff; text-shadow:1px 1px 1px rgba(0,0,0,0.5) !important;
+    cursor: pointer !important;
+}
+/*----------------------------------------------------------------------------*/
+
+#accionesTD
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 250px;
+    vertical-align: top;
+}
+
+#contenidoTD
+{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    vertical-align: top;
+}
+
+/* ===================================================================================================== */
+
+body
+{
+    font-family: Tahoma, Arial, Verdana, serif, sans-serif, fantasy, cursive !important;
+    font-size: 8pt !important;
+    text-shadow: none !important;
+}
+
+.opcionMenu
+{
+    text-decoration: inherit;
+}
+
+.espacioTexto
+{
+    padding-left: 5px;
+}
+
+.textonegrita
+{
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.textonormal
+{
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.candidatoSugerido
+{
+    background-color: #DEDEDE;
+}
+
+.festivos
+{
+    font-weight: bold !important;
+    color: white !important;
+    background-color: yellow !important;
+}
+
+.laborales
+{
+    font-weight:bold !important;
+    color: white !important;
+    background-color: lightskyblue !important;
+}
+
+.vacaciones
+{
+    font-weight:bold !important;
+    color: white !important;
+    background-color: orange !important;
+}
+
+.permisos
+{
+    font-weight:bold !important;
+    color: white !important;
+    background-color: salmon !important;
+}
+
+.capacitaciones
+{
+    font-weight:bold !important;
+    color: white !important;
+    background-color: greenyellow !important;
+}
+
+.solicitudGenerada
+{
+    background: -moz-linear-gradient(bottom, #93BBD1, #fff)!important;
+    background: -webkit-gradient(linear, center bottom, center top, from(#93BBD1), to(#fff))!important;
+    color: black;
+}
+
+.solicitudPreAprobada
+{
+    background: -moz-linear-gradient(bottom, #F07800, #fff)!important;
+    background: -webkit-gradient(linear, center bottom, center top, from(#F07800), to(#fff))!important;
+    color: black;
+}
+
+.solicitudAprobada
+{
+    background: -moz-linear-gradient(bottom, #9CD128, #fff)!important;
+    background: -webkit-gradient(linear, center bottom, center top, from(#9CD128), to(#fff))!important;
+    color: black;
+}
+
+.solicitudRechazada
+{
+    background: -moz-linear-gradient(bottom, #D12525, #fff)!important;
+    background: -webkit-gradient(linear, center bottom, center top, from(#D12525), to(#fff))!important;
+    color: black;
+}
+
+/*.toolbarUsuario
+{
+    border:none; background: -moz-linear-gradient(right, #CDCDCD, #fff ); background: -webkit-gradient(linear, 0 0, 0 100%, from(#65b6cf),  to(#2c2c2c));
+}*/
+
+.requerido
+{
+    color: #DF0000;
+    font-size: 10pt;
+    font-weight: bold;
+    padding: 3px;
+}
+
+.afectadosMaximo
+{
+    color: red;
+    font-weight: bold;
+}
+
+.afectadosMinimo
+{
+    color: black;
+    font-weight: bold;
+}
+
+/*.ui-datatable .ui-column-filter
+{
+    display: inline;
+    margin: auto;
+    width: 100px;
+}*/
+
+.txtTableEditCantidad
+{
+    border-width: 0;
+    margin-left: -5px;
+    margin-right: -5px;
+    width: 40px;
+}
+
+.columnCriteriosEvaluacionLabel
+{
+    width: 20%;
+}
+
+.columnCriteriosEvaluacionSelector
+{
+    width: 80%;
+}
+
+.etiquetaPlanilla
+{
+    font-weight: bold;
+    color: darkblue;
+}
+
+/*.ui-state-default
+{
+    font-size: 11px;
+}*/
+
+.elementoSeleccionado
+{
+    background: -moz-linear-gradient(bottom, #668297, #fff)!important;
+    background: -webkit-gradient(linear, center bottom, center top, from(#668297), to(#fff))!important;
+    color: black;
+}
+
+.accionSeleccionada
+{
+    background: -moz-linear-gradient(bottom, #668297, #fff)!important;
+    background: -webkit-gradient(linear, center bottom, center top, from(#668297), to(#fff))!important;
+    color: black;
+    font-weight: bold;
+}
+
+.borderFieldset
+{
+    border:none;
+    border-top:1px solid #333;
+    border-color: #CFCFCF;
+}
+
+.ui-widget
+{
+    font-family: Tahoma, Arial, Verdana, serif, sans-serif, fantasy, cursive !important;
+    font-size: 8pt !important;
+    text-shadow: none !important;
+}
+
+.ui-inputfield
+{
+    padding: 3px !important;
+}
+
+.ui-state-default
+{
+    text-shadow: none !important;
+}
+
+ui-accordion-content-active
+{
+    overflow: hidden !important;
+}
+
+.wijmo-wijmenu-child
+{
+    width: 235px !important;
+    border: solid 1px !important;
+}
+
+.wijmo-wijmenu-text
+{
+    text-shadow: none !important;
+}
+
+.ui-paginator-rpp-options
+{
+    font-family: Tahoma, Arial, Verdana, serif, sans-serif, fantasy, cursive !important;
+    font-size: 8pt !important;
+    /*padding: 1px !important;*/
+    width: 75px !important;
+    background: transparent !important;
+    border-style: ridge !important;
+    outline: none !important;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.ui-datepicker-trigger
+{
+    font-family: Tahoma, Arial, Verdana, serif, sans-serif, fantasy, cursive !important;
+    font-size: 8pt !important;
+    padding: 0px;
+    width: 22px;
+    height: 22px;
+    background: transparent;
+    border-style: none;
+    outline: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.jquery-ui-themeswitcher-trigger
+{
+    font-family: Tahoma, Arial, Verdana, serif, sans-serif, fantasy, cursive !important;
+    font-size: 8pt !important;
+    background: transparent !important;
+    border-style: none;
+    outline: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+select.ui-datepicker-month
+{
+    font-family: Tahoma, Arial, Verdana, serif, sans-serif, fantasy, cursive !important;
+    font-size: 8pt !important;
+    padding: 1px;
+    width: 60px;
+    background: transparent;
+    border-style: ridge;
+    outline: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+select.ui-datepicker-year
+{
+    font-family: Tahoma, Arial, Verdana, serif, sans-serif, fantasy, cursive !important;
+    font-size: 8pt !important;
+    padding: 1px;
+    width: 60px;
+    background: transparent;
+    border-style: ridge;
+    outline: none;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+.ui-column-filter
+{
+    display: block;
+    background: white !important;
+    border-style: ridge !important;
+    outline: none !important;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+.ui-accordion-content-active
+{
+    overflow: hidden !important;
+}
+
+.ui-wizard-step-title
+{
+    font-family: Tahoma, Arial, Verdana, serif, sans-serif, fantasy, cursive !important;
+    font-size: 8pt !important;
+}
+
+.oculto
+{
+visibility: hidden;
+position: absolute;
+}
+
+.noOculto
+{
+visibility: visible;
+position: absolute;
+}

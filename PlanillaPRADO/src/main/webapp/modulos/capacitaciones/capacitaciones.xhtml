@@ -1,0 +1,543 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:i="http://java.sun.com/jsf/composite/components/presentacion"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/plantillas/defaultTemplate.xhtml">
+    <!-- ============================ -->
+    <ui:define name="dialogos">
+        <p:confirmDialog message="&#191; Esta seguro que desea eliminar la Capacitaci&oacute;n seleccionada?" showEffect="bounce" hideEffect="explode"  modal="true" header="Eliminar Capacitaci&oacute;n" severity="alert" widgetVar="confirmation">
+            <p:commandButton value="Si, estoy seguro" update="principalForm:mensajes,principalForm:tablaConcursos,principalForm:panelContenido,principalForm:panelAcciones" oncomplete="confirmation.hide()" action="#{capacitaciones$capacitaciones.eliminar$crud$action}"/>
+            <p:commandButton value="No" onclick="confirmation.hide();" type="button"/>
+        </p:confirmDialog>  
+
+        <p:dialog id="dialogBuscaEmp" widgetVar="dialogBuscaEmp" header="Buscar Empleado" showEffect="fold" hideEffect="fold" width="700" height="400" resizable="false">
+
+            <p:panel style="border: none;">
+                <h:panelGrid columns="1">
+                    <h:outputLabel value="Seleccione los Empleados que desea agregar a la Capacitaci&oacute;n"/>
+                </h:panelGrid>
+                <p:spacer height="5"/>
+                <p:dataTable id="tablBusEmp"
+                             rows="5" paginator="true"
+                             emptyMessage="No hay Empleados que mostrar" onRowSelectComplete="dialogBuscaEmp.hide();"
+                             var="emp" update="txtEmp, tlEmp, tblDetalleParticipantes, mensajes, txtEmpAsistencia" 
+                             value="#{capacitaciones$capacitaciones.listaEmpleado}" paginatorAlwaysVisible="true"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100">
+                    <p:column headerText="C&oacute;digo" style="width: 8%" filterBy="#{emp.empleadosPK.codEmp}" >
+                        <h:outputText value="#{emp.empleadosPK.codEmp}"/>
+                    </p:column>
+                    <p:column headerText="Nombre" filterBy="#{emp.nombreCompleto}" filterMatchMode="contains" >
+                        <h:outputText value="#{emp.nombreCompleto}"/>
+                    </p:column>
+                    <p:column headerText="Seleccionar" style="width: 8%" >
+                        <p:commandButton  id="cmdSeleccionarEmpleado" update="principalForm:mensajes,principalForm:panelAcciones,principalForm:tblDetalleParticipantes" image="ui-icon-circle-check" title="Agregar Empleado" action="#{capacitaciones$capacitaciones.agregarEmpleado}" >
+                            <f:setPropertyActionListener value="#{emp}" target="#{capacitaciones$capacitaciones.empleadoSeleccionado}" /> 
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </p:dialog>
+
+        <p:confirmDialog message="&#191; Esta seguro que desea eliminar al Participante de esta Capacitación?" showEffect="bounce" hideEffect="explode"  modal="true" header="Eliminar participante" severity="alert" widgetVar="confirmationParticipante">
+            <p:commandButton value="Si, estoy seguro" update="principalForm:mensajes, principalForm:tblDetalleParticipantes" oncomplete="confirmationParticipante.hide()" action="#{capacitaciones$capacitaciones.eliminar$participante$action}"/>
+            <p:commandButton value="No" onclick="confirmationParticipante.hide();" type="button"/>
+        </p:confirmDialog>
+        <p:dialog id="dialogBuscaEmpAsis" widgetVar="dialogBuscaEmpAsis" header="Buscar Empleado" showEffect="fold" hideEffect="fold" width="700" height="400">
+            <h:panelGrid columns="1" >
+                <h:outputLabel value="Seleccione los empleados que necesite para registrar su asistencia." />
+            </h:panelGrid>
+            <p:spacer height="5" />
+            <p:dataTable id="tablBusEmpAsis" rows="3" paginator="true" emptyMessage="No hay Empleados que mostrar" paginatorAlwaysVisible="true" var="det" update="txtEmpAsistencia, tlEmpAsis, tblAsistencia" value="#{capacitaciones$capacitaciones.listaDetalle}" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100">
+                <p:column headerText="C&oacute;digo" filterBy="#{det.empleados.empleadosPK.codEmp}" style="width: 8%" >
+                    <h:outputText value="#{det.empleados.empleadosPK.codEmp}"/>
+                </p:column>
+                <p:column headerText="Nombre" filterBy="#{det.empleados.nombreCompleto}" filterMatchMode="contains" >
+                    <h:outputText value="#{det.empleados.nombreCompleto}"/>
+                </p:column>
+                <p:column headerText="Seleccionar" style="width: 8%" >
+                    <p:commandButton  id="cmdSeleccionarEmpleado" update="principalForm:mensajes,principalForm:panelAcciones,principalForm:tblAsistencia,principalForm:lbEmpleadosSeleccionados" image="ui-icon-circle-check" title="Agregar Empleado" action="#{capacitaciones$capacitaciones.agregarDetalleAsistencia}" oncomplete="dialogBuscaEmpAsis.hide();" >
+                        <f:setPropertyActionListener value="#{det}" target="#{capacitaciones$capacitaciones.detalleSelec}" /> 
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+        </p:dialog>
+    </ui:define>
+    <!-- ============================ -->
+    <ui:define name="acciones">
+        <p:tab title="Acciones">
+            <h:panelGrid columns="1" style="height: 180px !important;">
+                <p:commandLink styleClass="opcionMenu"  ajax="true" immediate="true"
+                               action="#{capacitaciones$capacitaciones.consultar$vh$action()}" update="tablaConcursos,panelContenido,principalForm:panelAcciones">
+                    <p:graphicImage value="/resources/iconos/search.png"/>
+                    <h:outputText value="Consultar" styleClass="espacioTexto"/>
+                </p:commandLink>
+                <p:commandLink styleClass="opcionMenu" ajax="true" immediate="true"
+                               action="#{capacitaciones$capacitaciones.nuevo$vh$action()}" update="panelCrearCapacitacion,principalForm:panelContenido,principalForm:panelAcciones">
+                    <p:graphicImage value="/resources/iconos/new.png"/>
+                    <h:outputText value="Nueva Capacitacion" styleClass="espacioTexto"/>
+                </p:commandLink>
+                <p:commandLink styleClass="opcionMenu"  ajax="true" immediate="true" rendered="#{capacitaciones$capacitaciones.capacitacionSeleccionada ne null}" action="#{capacitaciones$capacitaciones.editar$cap$action()}" update="mensajes, panelContenido">
+                    <p:graphicImage value="/resources/iconos/edit.png"/>
+                    <h:outputText value="Editar Capacitacion" styleClass="espacioTexto"/>
+                </p:commandLink>
+                <p:commandLink styleClass="opcionMenu" ajax="true" immediate="true" rendered="#{capacitaciones$capacitaciones.capacitacionSeleccionada ne null}" action="#{capacitaciones$capacitaciones.participante$ver$action()}" update="tblDetalleParticipantes, panelContenido, tablBusEmp">
+                    <p:graphicImage value="/resources/iconos/user-group-new.png"/>
+                    <h:outputText value="Participantes" styleClass="espacioTexto"/>
+                </p:commandLink>
+                <p:commandLink styleClass="opcionMenu" ajax="true" immediate="true" rendered="#{capacitaciones$capacitaciones.capacitacionSeleccionada ne null}" action="#{capacitaciones$capacitaciones.asistencia$ver$action()}" update="tblAsistencia,panelContenido,tablBusEmpAsis">
+                    <p:graphicImage value="/resources/iconos/view-pim-journal.png"/>
+                    <h:outputText value="Asistencias" styleClass="espacioTexto"/>
+                </p:commandLink>
+                <p:commandLink styleClass="opcionMenu" ajax="true" immediate="true" rendered="#{capacitaciones$capacitaciones.capacitacionSeleccionada ne null}" action="#{capacitaciones$capacitaciones.notas$ver$action()}" update="tblDetalleNotas, panelContenido, nota, tlNota">
+                    <p:graphicImage value="/resources/iconos/user-properties.png"/>
+                    <h:outputText value="Notas" styleClass="espacioTexto"/>
+                </p:commandLink>
+                <p:commandLink styleClass="opcionMenu" ajax="true" immediate="true" rendered="#{capacitaciones$capacitaciones.capacitacionSeleccionada ne null}" onclick="confirmation.show()" >
+                    <p:graphicImage value="/resources/iconos/edit-delete.png"/>
+                    <h:outputText value="Eliminar" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Otras acciones">
+            <h:panelGrid columns="1" style="height: 180px !important;">
+                <p:commandLink styleClass="opcionMenu textoNormal" ajax="true" action="#{capacitaciones$capacitaciones.inicio$action}" update="principalForm:mensajes" onmouseover="this.className = 'opcionMenu  textonegrita';" onmouseout="this.className = 'opcionMenu  textonormal';">
+                    <p:graphicImage value="/resources/iconos/application-exit.png"/>
+                    <h:outputText value="Cancelar" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+    </ui:define>
+    <!-- ============================ -->
+    <ui:define name="titulo">
+        <h:outputText value="Capacitaciones"/>
+    </ui:define>
+    <!-- ============================ -->
+    <ui:define name="contenido">    
+        <p:accordionPanel id="panelCrearCapacitacion" style="border:none;" rendered="#{(capacitaciones$capacitaciones.estadoAccion eq 2)}">  
+            <p:tab title="DATOS DE CAPACITACION">  
+                <h:panelGrid columns="2" cellpadding="10">              
+                    <p:panel>
+                        <i:fieldset leyenda="Datos de la Capacitaci&oacute;n"/>
+                        <table width="100%" cellpadding="2" border="0" >
+                            <tr>
+                                <td width="15%">
+                                    <h:outputLabel value="Nombre" />
+                                </td>
+                                <td colspan="4" >
+                                    <p:inputText id="Nombre" value="#{capacitaciones$capacitaciones.nombre}" maxlength="200" required="true" style=" width: 450px;" requiredMessage="El Nombre la Capacitación es un campo obligatorio"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Instituci&oacute;n"/>
+                                </td>
+                                <td colspan="4">
+                                    <h:selectOneMenu id="lstInst" value="#{capacitaciones$capacitaciones.inst}" style="height: 25px;padding-top: 3px; width: 300px;" required="true" requiredMessage="La institución es un campo obligatorio" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                                        <f:selectItem itemLabel="[ SELECCIONE ]" itemValue="0"/>
+                                        <f:selectItems value="#{capacitaciones$capacitaciones.listaInst}" var="inst" itemValue="#{inst.institucionesPK.codInsti}"  itemLabel="#{inst.desInsti}"/>
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Area: " />
+                                </td>
+                                <td colspan="4" >
+                                    <h:selectOneMenu id="lstArea" value="#{capacitaciones$capacitaciones.codArea}"  style="height: 25px;padding-top: 3px; width: 300px;" required="true" requiredMessage="El Area es un campo obligatorio" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                                        <f:ajax render="lstTema" event="change" execute="lstArea" />
+                                        <f:selectItem itemLabel="[ SELECCIONE ]" itemValue="0"/>
+                                        <f:selectItems value="#{capacitaciones$capacitaciones.listaArea}" var="area" itemValue="#{area.capacitacionAreasPK.codArea}"  itemLabel="#{area.nomArea}"/>
+                                    </h:selectOneMenu>                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Tema: "/>
+                                </td>
+                                <td colspan="4" >
+                                    <h:selectOneMenu id="lstTema" value="#{capacitaciones$capacitaciones.codTema}"  style="height: 25px;padding-top: 3px; width: 300px;" required="true" requiredMessage="El Tema es un campo obligatorio" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                                        <f:selectItem itemLabel="[ SELECCIONE ]" itemValue="0"/>
+                                        <f:selectItems value="#{capacitaciones$capacitaciones.listaTemas}" var="tema" itemValue="#{tema.capacitacionTemasPK.codTema}"  itemLabel="#{tema.nomTema}"/>
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Capacitador: "/>
+                                </td>
+                                <td colspan="4" >
+                                    <h:selectOneMenu id="lstCapacitador" value="#{capacitaciones$capacitaciones.codCapacitador}"  style="height: 25px;padding-top: 3px; width: 300px;" required="true" requiredMessage="El Capacitador es un campo obligatorio" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                                        <f:selectItem itemLabel="[ SELECCIONE ]" itemValue="0"/>
+                                        <f:selectItems value="#{capacitaciones$capacitaciones.listaCapacitadores}" var="capa" itemValue="#{capa.capacitadoresPK.codCapacitador}"  itemLabel="#{capa.nombre}"/>
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Impartida por: "/>
+                                </td>
+                                <td colspan="4" >
+                                    <p:inputText id="impartida" value="#{capacitaciones$capacitaciones.impartido}" maxlength="100" required="true" style=" width: 450px;" requiredMessage="Impartida por es un campo obligatorio"/>
+                                </td>
+                            </tr> 
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Duraci&oacute;n (Hrs): " />
+                                </td>
+                                <td colspan="4">
+                                    <p:inputText id="Duracion" value="#{capacitaciones$capacitaciones.duracion}" maxlength="100" required="true" requiredMessage="La duraci&#243;n es un campo obligatorio"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:outputLabel value="Raz&#243;n de la capacitaci&#243;n: " />
+                                </td>
+                                <td colspan="4" >
+                                    <p:inputTextarea autoResize="false" id="Razon" value="#{capacitaciones$capacitaciones.razon}" style=" width: 450px;"/>        
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td colspan="4" >
+                                    <p:commandButton id="cmdGuardar" type="push" value="Guardar" image="ui-icon ui-icon-disk" action="#{capacitaciones$capacitaciones.guardar$cap$action}"
+                                                     update="mensajes, impartida,lstStatus, lstInst, Nombre, calFecIni, calFecFin, Duracion, impartida, Razon, costoRazon, lstCapacitador" />  
+                                </td>
+                            </tr>
+                        </table>
+                    </p:panel>
+                </h:panelGrid>  
+            </p:tab>  
+            <p:tab title="DETALLE CAPACITACION">  
+                <h:panelGrid columns="2" cellpadding="10">  
+                    
+                </h:panelGrid>  
+            </p:tab>      
+        </p:accordionPanel>  
+
+
+        <!-- Consulta Finalizada -->
+        <p:panel id="panelCapacitaciones" style="border: none;" rendered="#{(capacitaciones$capacitaciones.estadoAccion eq null) or (capacitaciones$capacitaciones.estadoAccion eq 0)}" >
+            <i:fieldset leyenda="Consulta de Capacitaciones"  >
+                <f:facet name="contenido" >
+                    <p:spacer height="10"/>
+                    <h:panelGrid columns="1">
+                        <h:outputLabel value="Seleccione una Capacitaci&oacute;n para editar su informaci&oacute;n o eliminarla." />
+                    </h:panelGrid>
+                    <p:spacer height="10"/>
+                    <p:dataTable id="tablaCapacitaciones" paginatorAlwaysVisible="true" var="capacitacion" 
+                                 value="#{capacitaciones$capacitaciones.listaCap}" paginator="true" 
+                                 emptyMessage="No se han encontrado Capacitaciones." rows="5"  
+                                 rowStyleClass="#{capacitaciones$capacitaciones.capacitacionSeleccionada eq capacitacion ? 'elementoSeleccionado': ''}"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100" >
+
+                        <f:facet name="header">
+                            <h:outputText value="Capacitaciones"/>
+                        </f:facet>
+
+                        <p:column sortBy="#{capacitacion.capacitacionPK.codCapacitacion}" headerText="C&oacute;digo" >
+                            <h:outputLabel value="#{capacitacion.capacitacionPK.codCapacitacion}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{capacitacion.nomCapacitacion}" filterMatchMode="contains" headerText="Nombre ">
+                            <h:outputLabel value="#{capacitacion.nomCapacitacion}"/>
+                        </p:column> 
+
+                        <p:column sortBy="#{capacitacion.fechaDesde}" headerText="Fecha inicial" >
+                            <h:outputLabel value="#{capacitacion.fechaDesde}" >
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputLabel>
+                        </p:column>    
+
+                        <p:column sortBy="#{capacitacion.fechaHasta}" headerText="Fecha final" >
+                            <h:outputLabel value="#{capacitacion.fechaHasta}" >
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputLabel>
+                        </p:column>         
+
+                        <p:column filterBy="#{capacitacion.status}" filterOptions="#{capacitaciones$capacitaciones.estadoCapacitacion}"
+                                  filterMatchMode="exact" headerText="Estado" >
+                            <h:outputLabel value="#{capacitacion.descripcionEstado}" />
+                        </p:column> 
+
+                        <p:column headerText="Capacitador " filterBy="#{capacitacion.impartidaPor}" filterMatchMode="contains" >
+                            <h:outputLabel value="#{capacitacion.impartidaPor}" />
+                        </p:column>
+
+                        <p:column headerText="Seleccionar" >
+                            <p:commandButton  id="cmdSeleccionar" update="principalForm:panelAcciones,principalForm:tablaCapacitaciones,principalForm:panelCapacitaciones" image="ui-icon-circle-check" title="Seleccionar Capacitaci&oacute;n"  >
+                                <f:setPropertyActionListener value="#{capacitacion}" target="#{capacitaciones$capacitaciones.capacitacionSeleccionada}" /> 
+                            </p:commandButton>
+                        </p:column>
+                    </p:dataTable>
+                </f:facet>
+            </i:fieldset>
+        </p:panel>
+
+
+        <p:panel id="panelEditarCapacitacion" style="border:none;" rendered="#{(capacitaciones$capacitaciones.estadoAccion eq 1)}">
+
+            <p:spacer height="15" />
+            <i:fieldset leyenda="Editar Datos - Informaci&oacute;n de la capacitaci&oacute;n">
+                <f:facet name="contenido" >
+
+                    <table width="100%" cellpadding="3" >
+
+                        <tr>
+                            <td><h:outputLabel value="Nombre: " /></td>
+                            <td colspan="4" >
+                                <p:inputText id="Nombre2" value="#{capacitaciones$capacitaciones.nombre}" maxlength="200" required="true" style="width: 450px;"
+                                             requiredMessage="El Nombre de la Capacitacion es un campo obligatorio" />        
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="16%" ><h:outputLabel value="Instituci&#243;n: " /></td>
+                            <td colspan="4" >
+                                <h:selectOneMenu id="lstInst2" value="#{capacitaciones$capacitaciones.inst}"  style="height: 25px;padding-top: 3px; width: 300px;" required="true" requiredMessage="La isntitución es un campo obligatorio"  >
+                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                    <f:selectItems value="#{capacitaciones$capacitaciones.listaInst}" var="inst" itemValue="#{inst.institucionesPK.codInsti}"  itemLabel="#{inst.desInsti}"/>
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><h:outputLabel value="Area: " /></td>    
+                            <td colspan="4" >
+                                <h:selectOneMenu id="lstArea2" value="#{capacitaciones$capacitaciones.codArea}"  style="height: 25px;padding-top: 3px; width: 300px;"
+                                                 required="true" requiredMessage="El Area es un campo obligatorio">
+                                    <f:ajax render="lstTema2" event="change" execute="lstArea2" />
+                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                    <f:selectItems value="#{capacitaciones$capacitaciones.listaArea}" var="area" itemValue="#{area.capacitacionAreasPK.codArea}"  itemLabel="#{area.nomArea}"/>
+                                </h:selectOneMenu>
+                            </td>    
+                        </tr>
+
+                        <tr>
+                            <td><h:outputLabel value="Tema: " /></td>    
+                            <td colspan="4" >
+                                <h:selectOneMenu id="lstTema2" value="#{capacitaciones$capacitaciones.codTema}"  style="height: 25px;padding-top: 3px; width: 300px;" 
+                                                 required="true" requiredMessage="El Tema es un campo obligatorio">
+                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                    <f:selectItems value="#{capacitaciones$capacitaciones.listaTemas}" var="tema" itemValue="#{tema.capacitacionTemasPK.codTema}"  itemLabel="#{tema.nomTema}"/>
+                                </h:selectOneMenu>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Capacitador: " /></td>    
+                            <td colspan="4">
+                                <h:selectOneMenu id="lstCapacitador2" value="#{capacitaciones$capacitaciones.codCapacitador}"  style="height: 25px;padding-top: 3px; width: 300px;" required="true" requiredMessage="El Capacitador es un campo obligatorio"  >
+                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                    <f:selectItems value="#{capacitaciones$capacitaciones.listaCapacitadores}" var="capa" itemValue="#{capa.capacitadoresPK.codCapacitador}"  itemLabel="#{capa.nombre}"/>
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Impartida por: " /></td>
+                            <td colspan="4" ><p:inputText id="impartida2" value="#{capacitaciones$capacitaciones.impartido}" maxlength="100" required="true" style=" width: 450px;"
+                                                          requiredMessage="Impartida por es un campo obligatorio" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Duraci&#243;n (Hrs): " /></td>    
+                            <td><p:inputText id="Duracion2" value="#{capacitaciones$capacitaciones.duracion}" maxlength="100" required="true" 
+                                             requiredMessage="La duraci&#243;n es un campo obligatorio" /></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Fecha Inicial: " /></td>    
+                            <td><p:calendar id="calFecIni2" value="#{capacitaciones$capacitaciones.fechaInicial}" showOn="button" required="true" 
+                                            requiredMessage="La Fecha Inicial del concurso es un campo obligatorio" pattern="dd/MM/yyyy" /></td>
+                            <td></td>
+                            <td><h:outputLabel value="Fecha Final: " /></td>
+                            <td><p:calendar id="calFecFin2" value="#{capacitaciones$capacitaciones.fechaFinal}"  showOn="button" required="true"
+                                            requiredMessage="La Fecha Final del concurso es un campo obligatorio" pattern="dd/MM/yyyy"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Estado: " /></td>
+                            <td colspan="4">
+                                <h:selectOneMenu id="lstStatus2" value="#{capacitaciones$capacitaciones.status}"  style="height: 25px;padding-top: 3px;" required="true" requiredMessage="El Puesto del Concurso es un campo obligatorio"  >
+                                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                                    <f:selectItem itemLabel="Grabado" itemValue="G"/>
+                                    <f:selectItem itemLabel="Aprobado" itemValue="A"/>
+                                    <f:selectItem itemLabel="Rechazado" itemValue="R"/>
+                                    <f:selectItem itemLabel="Realizado" itemValue="RE"/>
+                                    <f:selectItem itemLabel="Notificada" itemValue="N"/>
+                                </h:selectOneMenu></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Raz&#243;n de la capacitaci&#243;n: " /></td>
+                            <td colspan="4" ><p:inputTextarea autoResize="false" id="Razon2" value="#{capacitaciones$capacitaciones.razon}" style="width: 450px;" /></td>
+
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="4" >
+                                <p:commandButton id="cmdModificar" type="push" value="Guardar" image="ui-icon ui-icon-disk" action="#{capacitaciones$capacitaciones.guardar$cap$action()}"
+                                                 update="principalForm:mensajes, impartida2, lstStatus2, lstInst2, Nombre2, calFecIni2, calFecFin2, Duracion2, impartida2, Razon2, costoRazon2, lstCapacitador2" />  
+                            </td>
+                        </tr>
+                    </table>
+                </f:facet>
+            </i:fieldset>
+        </p:panel>
+
+        <!--Participantes-->
+        <p:panel style="border: none;" rendered="#{(capacitaciones$capacitaciones.estadoAccion eq 3) or (capacitaciones$capacitaciones.estadoAccion eq 4) or (capacitaciones$capacitaciones.estadoAccion eq 5)}">
+            <i:fieldset leyenda="Capacitaci&#243;n Seleccionada" >
+                <f:facet name="contenido">
+                    <table width="100%" cellpadding="2" border="0" >
+                        <tr>
+                            <td width="10%" ><h:outputLabel value="Nombre " style="font-weight: bold" /></td>
+                            <td colspan="4" ><h:outputLabel value="#{capacitaciones$capacitaciones.capacitacionSeleccionada.nomCapacitacion}" /></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Area " style="font-weight: bold" /></td>
+                            <td colspan="4" ><h:outputLabel value="#{capacitaciones$capacitaciones.capacitacionSeleccionada.capacitacionAreas.nomArea}" /></td>
+                        </tr>
+
+                        <tr>
+                            <td><h:outputLabel value="Tema " style="font-weight: bold" /></td>
+                            <td colspan="4" ><h:outputLabel value="#{capacitaciones$capacitaciones.capacitacionSeleccionada.capacitacionTemas.nomTema}" /></td>
+                        </tr>
+
+                        <tr>
+                            <td><h:outputLabel value="Instituci&#243;n " style="font-weight: bold" /></td>
+                            <td colspan="4" ><h:outputLabel value="#{capacitaciones$capacitaciones.capacitacionSeleccionada.instituciones.nomCortoInsti}" /></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Capacitador " style="font-weight: bold"/></td>
+                            <td colspan="4" ><h:outputLabel value="#{capacitaciones$capacitaciones.capacitacionSeleccionada.capacitadores.nombre}" /></td>
+                        </tr>                        
+                        <tr>
+                            <td><h:outputLabel value="Fecha Inicial " style="font-weight: bold" /></td>
+                            <td>
+                                <h:outputLabel value="#{capacitaciones$capacitaciones.capacitacionSeleccionada.fechaDesde}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputLabel>
+                            </td>
+                            <td></td>
+                            <td width="10%" ><h:outputLabel value="Fecha Final " style="font-weight: bold" /></td>
+                            <td>                        
+                                <h:outputLabel value="#{capacitaciones$capacitaciones.capacitacionSeleccionada.fechaHasta}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputLabel>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><h:outputLabel value="Estado " style="font-weight: bold" /></td>
+                            <td colspan="3" ><h:outputLabel value="#{capacitaciones$capacitaciones.capacitacionSeleccionada.descripcionEstado}" /></td>
+                            <td align="right" >
+                                <p:commandButton id="cmdBuscaEmp" onclick="dialogBuscaEmp.show()" value="Agregar Empleado"
+                                                 type="button" image="beneficiarios" rendered="#{capacitaciones$capacitaciones.estadoAccion eq 3}" /> 
+                                <p:commandButton id="cmdBuscaEAsistencia" onclick="dialogBuscaEmpAsis.show()" value="Registrar Asistencia" update="principalForm:tablBusEmpAsis"
+                                                 type="button" image="ui-icon ui-icon-search" rendered="#{capacitaciones$capacitaciones.estadoAccion eq 4}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </f:facet>
+            </i:fieldset>
+
+            <p:dataTable id="tblDetalleParticipantes" rows="5" paginator="true"
+                         rendered="#{(capacitaciones$capacitaciones.estadoAccion eq 3) }" var="detalle" update="txtJefe"
+                         emptyMessage="No hay Empleados que mostrar"
+                         value="#{capacitaciones$capacitaciones.listaDetalle}"
+                         paginatorAlwaysVisible="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100">
+                <f:facet name="header">
+                    <h:outputText value="Participantes"/>
+                </f:facet>
+
+                <p:column headerText="C&oacute;digo" style="width: 8%" filterBy="#{detalle.empleados.empleadosPK.codEmp}" >
+                    <h:outputText value="#{detalle.empleados.empleadosPK.codEmp}"/>
+                </p:column>
+
+                <p:column headerText="Nombre" filterBy="#{detalle.empleados.nombreCompleto}" >
+                    <h:outputText value="#{detalle.empleados.nombreCompleto}"/>
+                </p:column>
+
+                <p:column headerText="Eliminar" style="width: 10%" >
+                    <p:commandButton  title="Eliminar Empleado" image="ui-icon ui-icon-circle-minus" ajax="true" onclick="confirmationParticipante.show()">
+                        <f:setPropertyActionListener value="#{detalle}" target="#{capacitaciones$capacitaciones.detalleCapSeleccionada}" />
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <h:panelGrid columns="1" >
+                <p:commandButton id="cmdEnviar" type="push" value="Generar Correos" image="ui-icon ui-icon-mail-closed" action="#{capacitaciones$capacitaciones.enviar$correo$action()}"
+                                 update="mensajes, lstStatus3, tblDetalleParticipantes, tablaConcursos" rendered="#{capacitaciones$capacitaciones.estadoAccion eq 3}"/>  
+            </h:panelGrid>
+
+            <p:dataTable id="tblAsistencia"
+                         rendered="#{(capacitaciones$capacitaciones.estadoAccion eq 4) }"
+                         rows="3" paginator="true" paginatorAlwaysVisible="true"
+                         emptyMessage="No hay participantes que mostrar"
+                         var="asistencia" value="#{capacitaciones$capacitaciones.listaAsistencia}"         
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100">
+
+                <f:facet name="header">
+                    <h:outputText value="Asistencias"/>
+                    <h:outputLabel id="lbEmpleadosSeleccionados" value="Empleado seleccionado: #{capacitaciones$capacitaciones.detalleSelec.empleados.nombreCompleto}" rendered="#{capacitaciones$capacitaciones.detalleSelec ne null}" />
+                </f:facet>
+
+                <p:column headerText="Fecha" style="width: 8%;" >
+                    <h:outputText value="#{asistencia.capacitacionAsistenciaPK.fecha}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column headerText="Asistio">
+                    <h:outputLabel value="#{asistencia.asiste}" style="#{asistencia.asiste eq 'No' ?  'color: red;' : ''}" />  
+                </p:column>
+                <p:column headerText="Registrar Asistencia" style="width: 8%;" >
+                    <p:commandButton value="No Asistio" image="cancelar" update="principalForm:tblAsistencia,principalForm:mensajes" rendered="#{asistencia.asiste eq 'Si'}" action="#{capacitaciones$capacitaciones.editarAsistencia('N')}" >
+                        <f:setPropertyActionListener value="#{asistencia}" target="#{capacitaciones$capacitaciones.asistenciaSeleccionada}" />
+                    </p:commandButton>
+                    <p:commandButton value="Si Asistio" image="button-ok" update="principalForm:tblAsistencia,principalForm:mensajes" rendered="#{asistencia.asiste ne 'Si'}" action="#{capacitaciones$capacitaciones.editarAsistencia('S')}" >
+                        <f:setPropertyActionListener value="#{asistencia}" target="#{capacitaciones$capacitaciones.asistenciaSeleccionada}"  />
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+
+            <h:panelGrid columns="3" rendered="#{(capacitaciones$capacitaciones.estadoAccion eq 5)}">
+                <h:outputLabel value="Nota General: " />
+                <p:inputText value="#{capacitaciones$capacitaciones.notaCapacitacion}" id="nota" immediate="true" style=" width: 50px;"/>
+                <p:commandButton id="cmdGuardarNota" value="Guardar" image="ui-icon ui-icon-disk" action="#{capacitaciones$capacitaciones.guardar$notaCap$action()}"
+                                 update="mensajes, nota"/>
+            </h:panelGrid>
+
+            <p:dataTable id="tblDetalleNotas" paginatorAlwaysVisible="true" onRowEditUpdate="principalForm:mensajes"
+                         rendered="#{(capacitaciones$capacitaciones.estadoAccion eq 5) }"
+                         rows="3" paginator="true" emptyMessage="No hay notas que mostrar" var="detalle" 
+                         rowEditListener="#{capacitaciones$capacitaciones.rowEditListenerNotas}"
+                         value="#{capacitaciones$capacitaciones.listaDetalle}"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100">
+                <f:facet name="header">
+                    <h:outputText value="Notas"/>
+                </f:facet>
+                <p:column headerText="C&oacute;digo" filterBy="#{detalle.empleados.empleadosPK.codEmp}" style="width: 8%;" >
+                    <h:outputText value="#{detalle.empleados.empleadosPK.codEmp}"/>
+                </p:column>
+                <p:column headerText="Nombre" filterBy="#{detalle.empleados.nombreCompleto}" >
+                    <h:outputText value="#{detalle.empleados.nombreCompleto}"/>
+                </p:column>
+                <p:column headerText="Nota" style="width: 5%;" >
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{detalle.nota}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{detalle.nota}" style="width:100%" label="Nota"/>  
+                        </f:facet>  
+                    </p:cellEditor>  
+                </p:column>
+                <p:column headerText="Editar Nota" style="width: 5%;" >
+                    <p:rowEditor />  
+                </p:column>
+            </p:dataTable>
+        </p:panel>
+    </ui:define>
+    <!-- ============================ -->
+</ui:composition>

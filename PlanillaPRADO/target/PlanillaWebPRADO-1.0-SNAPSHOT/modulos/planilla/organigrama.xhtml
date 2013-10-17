@@ -1,0 +1,145 @@
+<html
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Estructura organizativa</title>
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/css/default.css"  rel="stylesheet" type="text/css"/>
+        <script type="text/javascript" charset="UTF-8">
+            var listaPuestos = #{planilla$organigrama.datosCias};
+            var myTree = null;
+            function CreateTree()
+            {
+                myTree = new ECOTree('myTree', 'myTreeContainer_content');
+                for (var puesto in listaPuestos)
+                {
+                    if ((listaPuestos[puesto].codCiaJefe === -1))
+                        myTree.add(("" +listaPuestos[puesto].codCia + "-" + listaPuestos[puesto].codPuesto),                                                                               -1, listaPuestos[puesto].nomPuesto + ": " + listaPuestos[puesto].nomEmpleado);
+                    else
+                        myTree.add(("" +listaPuestos[puesto].codCia + "-" + listaPuestos[puesto].codPuesto), ("" +listaPuestos[puesto].codCiaJefe + "-" + listaPuestos[puesto].codPuestoJefe), listaPuestos[puesto].nomPuesto + ": " + listaPuestos[puesto].nomEmpleado);
+                }
+                myTree.collapseAll();
+                myTree.UpdateTree();
+            }
+
+            function ChangePosition()
+            {
+                var pos = parseInt(document.forms[0].rootPosition.value);
+                myTree.config.iRootOrientation = pos;
+                switch (pos)
+                {
+                    case ECOTree.RO_TOP:
+                        myTree.config.topXAdjustment = +20;
+                        myTree.config.topYAdjustment = -20;
+                        break;
+                    case ECOTree.RO_BOTTOM:
+                        myTree.config.topXAdjustment = +20;
+                        myTree.config.topYAdjustment = -500;
+                        break;
+                    case ECOTree.RO_RIGHT:
+                        myTree.config.topXAdjustment = +20;
+                        myTree.config.topYAdjustment = -500;
+                        break;
+                    case ECOTree.RO_LEFT:
+                        myTree.config.topXAdjustment = +20;
+                        myTree.config.topYAdjustment = -20;
+                        break;
+                }
+                myTree.UpdateTree();
+            }
+
+            function ChangeLinkType()
+            {
+                myTree.config.linkType = document.forms[0].linktype.value;
+                myTree.UpdateTree();
+            }
+
+            function Modify(what, inp, val)
+            {
+                var q = parseInt(document.forms[0][inp].value) + val;
+                document.forms[0][inp].value = q;
+                myTree.config[what] = q;
+                myTree.UpdateTree();
+            }
+
+            function IncreaseSubtreeSep()
+            {
+                Modify("iSubtreeSeparation", "stsep", +5);
+            }
+
+            function DecreaseSubtreeSep()
+            {
+                Modify("iSubtreeSeparation", "stsep", -5);
+            }
+
+            function IncreaseSiblingSep()
+            {
+                Modify("iSiblingSeparation", "sbsep", +5);
+            }
+
+            function DecreaseSiblingSep()
+            {
+                Modify("iSiblingSeparation", "sbsep", -5);
+            }
+
+            function IncreaseLevelSep()
+            {
+                Modify("iLevelSeparation", "lvsep", +5);
+            }
+
+            function DecreaseLevelSep()
+            {
+                Modify("iLevelSeparation", "lvsep", -5);
+            }
+        </script>
+    </h:head>
+    <h:body onload="CreateTree();">
+        <h:outputStylesheet name="ECOTree.css" library="ECOTree"/>
+        <h:outputScript name="ECOTree.js" library="ECOTree" target="head"/>
+        <h:form prependId="false">
+            <h:panelGrid columns="8">
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Posicion de la raiz:" style="font-size: 8pt;"/>
+                    <h:selectOneMenu id="rootPosition" onchange="ChangePosition();" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                        <f:selectItem itemValue="0" itemLabel="Arriba"/>
+                        <f:selectItem itemValue="1" itemLabel="Abajo"/>
+                        <f:selectItem itemValue="2" itemLabel="Derecha"/>
+                        <f:selectItem itemValue="3" itemLabel="Izquierda"/>
+                    </h:selectOneMenu>
+                </h:panelGroup>
+                <h:panelGroup layout="block">
+                    <h:outputLabel value="Tipo de linea:" style="font-size: 8pt;"/>
+                    <h:selectOneMenu id="linktype" onchange="ChangeLinkType();" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                        <f:selectItem itemValue="M" itemLabel="Manhattan"/>
+                        <f:selectItem itemValue="B" itemLabel="Bezier"/>
+                    </h:selectOneMenu>
+                </h:panelGroup>
+                <h:panelGroup layout="span">
+                    <h:outputLabel value="Subtree Sep" style="font-size: 8pt;"/>
+                    <p:commandButton image="ui-icon ui-icon-minus" onclick="DecreaseSubtreeSep();"/>
+                    <p:inputText id="stsep" value="80" size="3" maxlength="3" readonly="true"/>
+                    <p:commandButton image="ui-icon ui-icon-plus" onclick="IncreaseSubtreeSep();"/>
+                </h:panelGroup>
+                <h:panelGroup layout="span">
+                    <h:outputLabel value="Sibling Sep" style="font-size: 8pt;"/>
+                    <p:commandButton image="ui-icon ui-icon-minus" onclick="DecreaseSiblingSep();"/>
+                    <p:inputText id="sbsep" value="40" size="3" maxlength="3" readonly="true"/>
+                    <p:commandButton image="ui-icon ui-icon-plus" onclick="IncreaseSiblingSep();"/>
+                </h:panelGroup>
+                <h:panelGroup layout="span">
+                    <h:outputLabel value="Level Sep" style="font-size: 8pt;"/>
+                    <p:commandButton image="ui-icon ui-icon-minus" onclick="DecreaseLevelSep();"/>
+                    <p:inputText id="lvsep" value="40" size="3" maxlength="3" readonly="true"/>
+                    <p:commandButton image="ui-icon ui-icon-plus" onclick="IncreaseLevelSep();"/>
+                </h:panelGroup>
+                <p:commandButton value="Cerrar todo" image="ui-icon ui-icon-triangle-1-sw" onclick="myTree.collapseAll();"/>
+                <p:commandButton value="Abrir todo" image="ui-icon ui-icon-extlink" onclick="myTree.expandAll();"/>
+                <p:commandButton value="Volver" image="ui-icon ui-icon-circle-arrow-w" action="#{index.inicio$action}"/>
+            </h:panelGrid>
+            <p:separator/>
+            <div id="myTreeContainer_content" />
+            <div id="paneles"/>
+        </h:form>
+    </h:body>
+</html>

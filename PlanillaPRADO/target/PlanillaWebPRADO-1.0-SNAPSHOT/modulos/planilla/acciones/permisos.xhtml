@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:i="http://java.sun.com/jsf/composite/components/presentacion"
+                template="editarSolicitud.xhtml">
+    <ui:define name="panelAccionesSolicitud" >
+        <p:tab title="Otras acciones">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu textoNormal" action="#{solicitudPermisoEdit.regresar}" onmouseover="this.className='opcionMenu  textonegrita';" onmouseout="this.className='opcionMenu  textonormal';">
+                    <p:graphicImage value="/resources/iconos/arrow-left.png"/>
+                    <h:outputText value="Acciones de personal" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+    </ui:define>
+    <ui:define name="detalleSolicitud">
+        <table border="0" width="100%" cellpadding="2"  >
+            <tr>
+                <td width="12%" >
+                    <i:etiquetaRequerido value="Fecha inicio" styleClass="requerido" />
+                </td>
+                <td width="22%" >
+                    <p:calendar id="spFecInicial" showOn="button" pattern="dd/MM/yyyy" value="#{solicitudPermisoEdit.fechaInicial}" selectListener="#{solicitudPermisoEdit.handleFechaInicial}" onSelectUpdate="principalForm:txtDias" />
+                </td>
+                <td/>
+                <td width="12%" >
+                    <i:etiquetaRequerido value="Fecha fin" styleClass="requerido" />
+                </td>
+                <td>
+                    <p:calendar id="spFecFinal" showOn="button" pattern="dd/MM/yyyy" value="#{solicitudPermisoEdit.fechaFinal}" selectListener="#{solicitudPermisoEdit.handleFechaFinal}" onSelectUpdate="principalForm:txtDias"/>
+                </td>
+            </tr>            
+            <tr>
+                <td width="12%" >
+                    <h:outputLabel value="Dias" />
+                </td>
+                <td>
+                    <p:inputText id="txtDias"  value="#{solicitudPermisoEdit.dias}" style="width: 25px;" />
+                </td>
+                <td/>
+                <td width="12%" >
+                    <h:outputLabel value="Horas"/>
+                </td>
+                <td>
+                    <p:inputText id="txtHoras"  value="#{solicitudPermisoEdit.horas}" maxlength="5" style="width: 25px;" />
+                </td>
+            </tr>
+            <tr>
+                <td width="10%" >
+                    <h:outputLabel value="Valor del Descuento" />
+                </td>
+                <td>
+                    <p:inputText id="txtDescuento" value="#{solicitudPermisoEdit.valorDescuento}" />
+                </td>
+                <td colspan="3" />
+            </tr>
+            <tr>                   
+                <td><i:etiquetaRequerido value="Tipo Planilla" styleClass="requerido" /></td>
+                <td>                
+                    <h:selectOneMenu id="lstTipoPlanilla" style="height: 25px;padding-top: 3px;width: 250px;" disabled="#{!request.isUserInRole('rrhh')}" label="Tipo Planilla" value="#{solicitudPermisoEdit.tipoPlanilla}" >                       
+                        <f:ajax render="lstPlanilla" event="change" execute="lstTipoPlanilla" />
+                        <f:selectItem itemValue="-1" itemLabel="[SELECCIONE TIPO PLANILLA]" />
+                        <f:selectItems value="#{solicitudPermisoEdit.listaTipos}" var="tipo" itemValue="#{tipo.tiposPlanillaPK.codTipopla}" itemLabel="#{tipo.nomTipopla}"/>
+                    </h:selectOneMenu>
+                </td>
+                <td></td>
+                <td width="12%" ><i:etiquetaRequerido value="Planilla" styleClass="requerido" /></td>
+                <td>
+                    <h:selectOneMenu id="lstPlanilla" style="height: 25px;padding-top: 3px;width: 250px;" disabled="#{!request.isUserInRole('rrhh')}" label="Planilla" value="#{solicitudPermisoEdit.planilla}" >
+                        <f:selectItem itemValue="-1" itemLabel="[SELECCIONE PLANILLA]" />
+                        <f:selectItems value="#{solicitudPermisoEdit.listaPlanillas}" var="pla" 
+                                       itemValue="#{pla.pkAsString}"
+                                       itemLabel="#{pla.anio} ------ #{pla.mes} ------ #{pla.numPlanilla}" />
+                    </h:selectOneMenu>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" ></td>
+                <td><i:etiquetaPlanilla/></td>
+            </tr>
+            <tr>
+                <td valign="top" ><h:outputLabel value="Observaci&oacute;n" /></td>
+                <td colspan="3" ><p:inputTextarea id="txtobservacionesSP" style="width:100%;" value="#{solicitudPermisoEdit.observacion}" autoResize="false" /></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td colspan="4" >
+                    <p:commandButton image="ui-icon-disk" value="Guardar Cambios" action="#{solicitudPermisoEdit.guardarCambios}" update="principalForm:mensajes" disabled="#{not solicitudPermisoEdit.usuarioEnRol('rrhh') and (SessionBeanPLA.accionSeleccionada.status ne 'G')}"/>
+                </td>
+            </tr>
+        </table>
+    </ui:define>
+</ui:composition>

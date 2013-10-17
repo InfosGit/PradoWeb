@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Infosweb - Recursos Humanos</title>
+        <style>
+            *{ margin:0; padding:0;}
+            html { font-family:Arial, Helvetica, sans-serif; font-size:100%;}
+
+            /*HEADER
+            ---------------------------------------------------------------------*/
+            #header{border-bottom:2px solid #DBDBDB; height:75px;}
+            #floatLeft, #floatRight{ position: relative; width:50%;}
+            #floatLeft{ float:left;}
+            #floatRight{ float:right;}
+            #floatRight p {font-size:0.75em; text-align:right; padding:10px 10px 0 0;}
+            .logo { margin-top:18px; outline: 0 !important; }
+            .homeLink{ background:#808080; color:#fff; text-transform:uppercase; display:inline-block; position: absolute; top:60%; font-size:0.6875em; text-decoration:none; padding:3px; -webkit-border-radius:5px; -moz-border-radius:5px; -o-border-radius:5px; border-radius:5px;}
+
+            h2{font-family: Arial,Helvetica,sans-serif; color:#2B5BA5; font-size: 18px; font-style: normal; font-weight: bold; font-variant: normal; text-align:center; padding:30px 0;}
+
+            /*ERROR
+            ---------------------------------------------------------------------*/
+            #error{ width:350px; margin:0 auto 10px auto; background:#FEF8F6; border:1px solid #CD0A0A; padding:20px;}
+            #error p {font-size:0.75em; color:#CD0A0A;}
+            /*LOGIN
+            ---------------------------------------------------------------------*/
+            form{ width:350px; margin:0 auto; background:#E5E5E5; text-align:center; -webkit-border-radius:10px; -moz-border-radius:10px; border-radius:10px; -webkit-box-shadow:2px 2px 0px rgba(0,0,0, 0.3);-moz-box-shadow:2px 2px 0px rgba(0,0,0, 0.3); box-shadow:2px 2px 0px rgba(0,0,0, 0.3);}
+            form div{ padding:20px;}
+            form p	{ font-size:0.75em;}
+            form p a{ text-decoration:none;}
+            form .help{ margin-top:10px; display:inline-block;}
+            form #login{ border-bottom:1px solid #C0C0C0;}
+            form #register{ border-top:1px solid #ffffff;}
+            form label{ display:block;margin-bottom:10px; font-weight:bold; font-size:0.875em;}
+            form input[type=text],form input[type=password]{display:inline-block; margin-bottom:20px; border:1px solid #C0BAB6; width:70%; padding:4px; }
+            form input[type=submit]{ margin-bottom:10px; border:none; padding:3px 10px; border:1px solid #C0BAB6; cursor:pointer;}
+            form input[type=submit]:hover{ background:#C0BAB6;}
+
+            /*FOOTER
+            ---------------------------------------------------------------------*/
+            #footer{ margin-top:20px;}
+            #footer p { text-align:center;font-size:0.75em; color:#999;}
+        </style>
+    </head>
+    <body>
+        <div id="header"><!-- Header STARTS -->
+            <div id="floatLeft">
+                <a href="http://www.infosgroup.com">
+                    <img class="logo" src="/PlanillaWebTOTO/resources/imagenes/infosgroup.png" width="233" height="53" alt="infosgroup"/>
+                </a>
+            </div>
+            <div id="floatRight">
+                <p>
+                    <h:outputText value="Version : 1.0.0, Lenguage: Espa&ntilde;ol"/>
+                </p>
+            </div>
+        </div><!--Header ENDS-->
+        <h2>Infosgroup - Portal de Recursos Humanos</h2>
+        <form method="post" action="j_security_check">
+            <div id="login">
+                <label for="username">Usuario</label>
+                <input type="text" name="j_username" id="usuario" />
+                <label for="password">Password</label>
+                <input type="password" name="j_password" id="password" /><br />
+                <input type="submit" value="Iniciar Sesi&oacute;n" /><br />
+                <label style="color: red;font-size: 11px;" >El nombre de usuario o la contrase&ntilde;a introducidos no son correctos.</label>
+                <p><a href="#">Olvido su usuario o contrase&ntilde;a</a></p>
+            </div>
+            <div id="register">
+                <p><a href="#">Registrarse</a> para solicitar una cuenta.<br/>
+                    <a href="#" class="help">Ayuda</a></p>
+            </div>
+        </form>
+        <div id="footer">
+            <p>
+                Infosgroup 1997 - 2012<br />
+                All Rights Reserved.
+            </p>
+        </div>
+    </body>
+</html>

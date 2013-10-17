@@ -1,0 +1,304 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    template="/plantillas/defaultTemplate.xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:i="http://java.sun.com/jsf/composite/components/presentacion"
+    xmlns:d="http://java.sun.com/jsf/composite/components/dialogo" >
+
+    <ui:define name="titulo">
+        <h:outputText value="Resumen de Asistencia"/>
+    </ui:define>
+
+    <ui:define name="acciones">
+        <p:tab title="Acciones">
+            <h:panelGrid columns="1" style="height: 120px;">
+                <p:commandLink styleClass="opcionMenu" update="mensajes, tablaResumenAsistencia" action="#{resumenAsistenciaBackendBean.mostrarResumenAsistencia$action}">
+                    <p:graphicImage value="/resources/iconos/personal.png"/>
+                    <h:outputText value="Mostrar Asistencia" styleClass="espacioTexto"/>
+                </p:commandLink>
+                <p:commandLink styleClass="opcionMenu" update="mensajes, tablaResumen" oncomplete="dlgEmpSolPermisos.show();" >
+                    <p:graphicImage value="/resources/iconos/beneficiarios.png"/>
+                    <h:outputText value="Agregar Empleados" styleClass="espacioTexto"/>
+                </p:commandLink>
+                <p:commandLink styleClass="opcionMenu" update="mensajes, tablaResumen" oncomplete="dlgEliminarPlanilla.show();" >
+                    <p:graphicImage value="/resources/iconos/edit-delete.png"/>
+                    <h:outputText value="Borrar Planilla" styleClass="espacioTexto"/>
+                </p:commandLink>
+                <p:commandLink styleClass="opcionMenu" update="mensajes, tablaResumen" >
+                    <p:graphicImage value="/resources/iconos/search.png"/>
+                    <h:outputText value="B&uacute;scar Vacaciones" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Otras Acciones">
+            <h:panelGrid columns="1" style="height: 120px;">
+                <p:commandLink styleClass="opcionMenu" update="mensajes, tablaResumen" action="#{resumenAsistenciaBackendBean.inicio$action}">
+                    <p:graphicImage value="/resources/iconos/application-exit.png"/>
+                    <h:outputText value="Cancelar" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+    </ui:define>
+    <ui:define name="contenido">
+        <p:panel id="panelHorasExtras" style="border: none;">
+            <h:panelGrid columns="2" >
+                <i:etiquetaRequerido value="Tipo de planilla"/>
+                <h:selectOneMenu id="LstTipoPlanilla" style="height: 25px; padding-top: 3px; width: 300px;" label="Tipo Planilla" value="#{resumenAsistenciaBackendBean.tipoPlanilla}" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                    <f:ajax render="panelHorasExtras tablaResumenAsistencia" event="change" execute="LstTipoPlanilla" listener="#{resumenAsistenciaBackendBean.updateByTipoPlanilla}" />
+                    <f:selectItem itemValue="-1" itemLabel="[ SELECCIONE TIPO PLANILLA ]" />
+                    <f:selectItems value="#{resumenAsistenciaBackendBean.listaTipos}" var="tipo" itemValue="#{tipo.tiposPlanillaPK.codTipopla}" itemLabel="#{tipo.nomTipopla}"/>
+                </h:selectOneMenu>
+                <i:etiquetaRequerido value="Programaci&#243;n planilla" />
+                <h:panelGroup>
+                    <h:panelGrid columns="1">
+                        <p:autoComplete id="AutCompltProgPla" forceSelection="true" var="programacionPla"
+                                        value="#{resumenAsistenciaBackendBean.proPlaSeleccionada}"
+                                        itemValue="#{programacionPla.pkAsString}" itemLabel="#{programacionPla.stringProgramacionPla}"
+                                        completeMethod="#{resumenAsistenciaBackendBean.completeProgramacionPla}"
+                                        converter="#{resumenAsistenciaBackendBean.programacionPlaConverter}" title="Seleccione la planilla" >
+                        </p:autoComplete>
+                        <i:etiquetaPlanilla />
+                    </h:panelGrid>
+                </h:panelGroup>
+
+                <h:outputLabel value="Sucursal" style="font-weight: bold;" />
+                <h:panelGrid columns="3" style="margin-left: -4px;" >
+                    <h:selectOneMenu id="LstSucursales" style="height: 25px;padding-top: 3px;width: 300px;" label="Sucursales" value="#{resumenAsistenciaBackendBean.agenciaSeleccionada}" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                        <f:selectItem itemValue="-1" itemLabel="[ TODAS LAS SUCURSALES ]" />
+                        <f:selectItems value="#{resumenAsistenciaBackendBean.listaAgencias}" var="sucursal" itemValue="#{sucursal.agenciasPK.codAgencia}" itemLabel="#{sucursal.nomAgencia}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="Departamento" style="font-weight: bold;" />
+                    <h:selectOneMenu id="LstDepartamentos" style="height: 25px;padding-top: 3px;width: 300px;" label="Departamentos" value="#{resumenAsistenciaBackendBean.departamentoSeleccionado}" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                        <f:selectItem itemValue="-1" itemLabel="[ TODOS LOS DEPARTAMENTOS ]" />
+                        <f:selectItems value="#{resumenAsistenciaBackendBean.listaDepartamentos}" var="departamento" itemValue="#{departamento.departamentosPK.codDepto}" itemLabel="#{departamento.nomDepto}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+
+            </h:panelGrid>
+            <p:spacer height="15" />
+
+            <p:dataTable id="tablaResumenAsistencia" emptyMessage="No se han encontrado Empleados" value="#{resumenAsistenciaBackendBean.listaResumenAsistencia}" paginator="true"
+                         rows="5" var="resumenAsistencia" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  rowsPerPageTemplate="5,10,25,50,100,1000,10000"
+                         rowEditListener="#{resumenAsistenciaBackendBean.rowEditListener}" onRowEditUpdate="principalForm:mensajes,principalForm:tablaResumenAsistencia,lbEstado" >
+
+                <f:facet name="header" >
+                    <h:outputLabel value="Asistencia por Empleado" />
+                </f:facet>
+
+                <p:columnGroup type="header" >
+                    <p:row>
+                        <p:column colspan="1" rowspan="2" headerText="Empleado " filterBy="#{resumenAsistencia.empleados.nombreCompleto}" filterMatchMode="contains" />
+                        <p:column colspan="4" rowspan="1" headerText="Dias" />
+                        <p:column colspan="6" rowspan="1" headerText="Compensaci&oacute;n" />
+                        <p:column colspan="1" rowspan="2" headerText="Editar"/>
+                        <p:column colspan="1" rowspan="2" headerText="Eliminar" style="width: 5%;"/>
+                    </p:row>
+                    <p:row>
+                        <p:column headerText="Lab." style="width: 6%" />
+                        <p:column headerText="No. Lab." style="width: 6%" />
+                        <p:column headerText="Noc." style="width: 6%" />
+                        <p:column headerText="HAD." style="width: 6%" />
+
+                        <p:column headerText="Diur." style="width: 6%" />
+                        <p:column headerText="Noc." style="width: 6%" />
+                        <p:column headerText="Di. Fe." style="width: 6%" />
+                        <p:column headerText="No. Fe." style="width: 6%" />
+                        <p:column headerText="Dias. Vac." style="width: 6%" />
+                        <p:column headerText="Estado" style="width: 6%" />
+                    </p:row>
+                </p:columnGroup>
+
+                <p:column>
+                    <h:outputLabel value="#{resumenAsistencia.empleados.nombreCompleto}" title="#{resumenAsistencia.empleados.nombreYCodigo}" />
+                </p:column>
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputLabel value="#{resumenAsistencia.DLaborados}" title="Laborados" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{resumenAsistencia.DLaborados}" styleClass="txtTableEditCantidad" title="Laborados" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputLabel value="#{resumenAsistencia.dnLaborados}" title="No Laborados" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{resumenAsistencia.dnLaborados}" title="No Laborados" styleClass="txtTableEditCantidad" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputLabel value="#{resumenAsistencia.DNocturnidad}" title="Nocturnidad" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{resumenAsistencia.DNocturnidad}" title="Nocturnidad" styleClass="txtTableEditCantidad" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputLabel value="#{resumenAsistencia.viaticos}" title="Horas a Descontar" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{resumenAsistencia.viaticos}" title="Horas a Descontar" styleClass="txtTableEditCantidad" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputLabel value="#{resumenAsistencia.HXsencillas}" title="Diurnas" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{resumenAsistencia.HXsencillas}" title="Diurnas" styleClass="txtTableEditCantidad" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{resumenAsistencia.HXdobles}" title="Nocturnas" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{resumenAsistencia.HXdobles}" title="Nocturnas" styleClass="txtTableEditCantidad" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{resumenAsistencia.HXf150}" title="Diurnas Festivas" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{resumenAsistencia.HXf150}" title="Diurnas Festivas" styleClass="txtTableEditCantidad" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{resumenAsistencia.HXf250}" title="Nocturnas Festivas"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{resumenAsistencia.HXf250}" title="Nocturnas Festivas" styleClass="txtTableEditCantidad" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputLabel value="#{resumenAsistencia.vacaciones}" title="D&iacute;as de Vacaci&oacute;n" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{resumenAsistencia.vacaciones}" title="D&iacute;as de Vacaci&oacute;n" styleClass="txtTableEditCantidad" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputLabel value="#{resumenAsistencia.estado.descripAusen}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <h:selectOneMenu value="#{resumenAsistenciaBackendBean.estadoEdit}" style="height: 25px;padding-top: 3px;width: 80px; margin-left: -8px; margin-right: -8px;" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                                <f:selectItems id="lstEditEstado" value="#{resumenAsistenciaBackendBean.listaEstados}" var="estado" itemValue="#{estado.codAusen}" itemLabel="#{estado.descripAusen}" />
+                                <f:ajax render="tablaResumenAsistencia" event="change" execute="lstEditEstado" />
+                            </h:selectOneMenu>
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column>
+                    <p:rowEditor rendered="#{resumenAsistenciaBackendBean.proPlaSeleccionada.status ne 'C'}" />
+                </p:column>
+
+                <p:column>
+                    <p:commandButton image="ui-icon-circle-minus" title="Eliminar" oncomplete="dlgEliminarResumen.show();" disabled="#{resumenAsistenciaBackendBean.proPlaSeleccionada.status eq 'C'}" >
+                        <f:setPropertyActionListener value="#{resumenAsistencia}" target="#{resumenAsistenciaBackendBean.resumenSeleccionado}" />
+                    </p:commandButton>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Imprimir Hoja de Asistencia" image="documentPDF" action="#{resumenAsistenciaBackendBean.imprimirResumenDeAsistencia}" ajax="false" />
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+
+    </ui:define>
+
+    <ui:define name="dialogos">
+
+        <p:confirmDialog message="&#191; Esta seguro que desea eliminar el resumen seleccionado ?" showEffect="bounce" hideEffect="explode"
+                         modal="true" header="Eliminar Resumen Asistencia" severity="alert" widgetVar="dlgEliminarResumen">
+            <p:commandButton value="Si, estoy seguro" update="principalForm:mensajes,tablaResumenAsistencia" oncomplete="dlgEliminarResumen.hide()"
+                             action="#{resumenAsistenciaBackendBean.eliminarResumen$Action}" />
+            <p:commandButton value="No" onclick="dlgEliminarResumen.hide()" type="button" />
+
+        </p:confirmDialog>
+
+        <p:confirmDialog message="&#191; Esta seguro que desea eliminar la planilla ?" showEffect="bounce" hideEffect="explode"
+                         modal="true" header="Eliminar Planilla" severity="alert" widgetVar="dlgEliminarPlanilla">
+            <p:commandButton value="Si, estoy seguro" update="principalForm:mensajes,tablaResumenAsistencia" oncomplete="dlgEliminarPlanilla.hide()"
+                             action="#{resumenAsistenciaBackendBean.borrarPlanilla}" />
+            <p:commandButton value="No" onclick="dlgEliminarPlanilla.hide()" type="button" />
+
+        </p:confirmDialog>
+
+        <p:dialog widgetVar="dlgEmpSolPermisos" header="Listado general de Empleados" showEffect="fold" hideEffect="fold" width="506" height="475" >
+
+            <h:panelGrid columns="2" >
+                <p:graphicImage value="/resources/imagenes/64/meeting-participant.png" />
+                <h:outputLabel id="lbl1" value="Seleccione un empleado para agregar al resumen."  style="font-weight: bold;"/>
+            </h:panelGrid>
+
+            <p:dataTable id="listadoEmpleados" value="#{resumenAsistenciaBackendBean.listaEmpleados}" var="empleado"
+                         paginator="true" rows="5"  emptyMessage="No se han encontrado Empleados." dynamic="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,25,50,100" style="margin-top: 20px;" >
+
+                <f:facet name="header">
+                    Empleados
+                </f:facet>
+
+                <p:column headerText="Nombre " filterBy="#{empleado.nombreCompleto}" filterMatchMode="contains"  >
+                    <h:outputLabel value="#{empleado.nombreCompleto}" title="#{empleado.nombreYCodigo}" />
+                </p:column>
+
+                <p:column headerText="Estado " style="width:5%;" >
+                    <h:selectOneMenu value="#{resumenAsistenciaBackendBean.estadoSeleccionado}" style="height: 25px;padding-top: 3px;width: 100px; margin-left: -8px; margin-right: -8px;" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                        <f:selectItems id="lstAddEstado" value="#{resumenAsistenciaBackendBean.listaEstados}" var="estado" itemValue="#{estado.codAusen}" itemLabel="#{estado.descripAusen}" />
+                    </h:selectOneMenu>
+                </p:column>
+
+                <p:column style="width: 5%;" >
+                    <p:commandButton styleClass="opcionMenu" update="principalForm:mensajes,principalForm:tablaResumenAsistencia" oncomplete="dlgEmpSolPermisos.hide();" action="#{resumenAsistenciaBackendBean.seleccionarEmpleado}" image="ui-icon-circle-check" title="Agregar al Resumen" >
+                        <f:setPropertyActionListener value="#{empleado}" target="#{resumenAsistenciaBackendBean.empleadoSeleccionado}" />
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:spacer height="15" />
+            <h:panelGrid columns="2">
+                <p:commandButton value="Cancelar" styleClass="opcionMenu" update="principalForm:mensajes,principalForm:tablaResumenAsistencia}" oncomplete="dlgEmpSolPermisos.hide();" action="#{resumenAsistenciaBackendBean.cancelSeleccionarEmpleado}" image="ui-icon-circle-check" />
+            </h:panelGrid>
+
+        </p:dialog>
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteContratoTOTO" pageWidth="612" pageHeight="1303" whenNoDataType="NoDataSection" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="912"/>
+	<property name="ireport.background.image" value="/root/Imágenes/Infosgroup.jpg"/>
+	<property name="ireport.background.image.properties" value="false,true,0.25,0,0,0,0,0,0"/>
+	<parameter name="COD_CIA" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="COD_EMP" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+        p.cod_cia,
+        p.cod_rep_patronal,
+        null as cod_contrato,
+        e.nombres || ' ' || e.apellidos as nombre_empl,
+        trunc((sysdate - e.fecha_nac)/365) as edad_empl,
+        decode(e.sexo, 1, 'Masculino', 2, 'Femenino') as sexo_empl,
+        ece.nom_estado_civil as estado_civil_empl,
+        pre.nom_profesion as profesion_empl,
+        nvl(e.direccion, '[no disponible]') as direccion_empl,
+        pe.nacionalidad as nacionalidad_empl,
+        e.num_dui as dui_empl,
+
+        j.nombres || ' ' || j.apellidos as nombre_jefe,
+        trunc((sysdate - j.fecha_nac)/365) as edad_jefe,
+        decode(j.sexo, 1, 'masculino', 2, 'femenino') as sexo_jefe,
+        ecj.nom_estado_civil as estado_civil_jefe,
+        prj.nom_profesion as profesion_jefe,
+        nvl(j.direccion, '[no disponible]') as direccion_jefe,
+        pj.nacionalidad as nacionalidad_jefe,
+        j.num_dui as dui_jefe,
+
+        ci.nom_comercial as nombre_empresa,
+        e.fec_ingreso as inicio_contrato,
+        null as fin_contrato,
+        pue.nom_puesto as puesto_empl,
+        e.salario as salario_empl,
+        importeenletras(e.salario/30.00) as sal_letras,
+        e.fec_ingreso as fecha_contrato
+from
+        cias ci,
+        param_plan p,
+
+        empleados e,
+        estado_civil ece,
+        paises pe,
+        profesion pre,
+        puestos pue,
+
+        empleados j,
+        estado_civil ecj,
+        paises pj,
+        profesion prj
+where
+                ci.cod_cia = e.cod_cia
+        and     p.cod_cia = e.cod_cia
+        and     e.cod_cia = $P{COD_CIA}
+        and     e.cod_emp = $P{COD_EMP}
+        and     pue.cod_cia = p.cod_cia
+        and     pue.cod_puesto = e.cod_puesto
+        and     ece.cod_estado_civil = e.estado_civil
+        and     pe.cod_pais = e.cod_pais_nacionalidad
+
+        and     pre.cod_cia = p.cod_cia
+        and     pre.cod_profesion = e.cod_profesion
+
+        and     j.cod_cia = p.cod_cia
+        and     j.cod_emp = p.cod_rep_patronal
+
+        and     ecj.cod_estado_civil = j.estado_civil
+        and     pj.cod_pais = j.cod_pais_nacionalidad
+
+        and     prj.cod_cia = p.cod_cia
+        and     prj.cod_profesion = j.cod_profesion]]>
+	</queryString>
+	<field name="COD_CIA" class="java.math.BigDecimal"/>
+	<field name="COD_REP_PATRONAL" class="java.math.BigDecimal"/>
+	<field name="COD_CONTRATO" class="java.lang.String"/>
+	<field name="NOMBRE_EMPL" class="java.lang.String"/>
+	<field name="EDAD_EMPL" class="java.math.BigDecimal"/>
+	<field name="SEXO_EMPL" class="java.lang.String"/>
+	<field name="ESTADO_CIVIL_EMPL" class="java.lang.String"/>
+	<field name="PROFESION_EMPL" class="java.lang.String"/>
+	<field name="DIRECCION_EMPL" class="java.lang.String"/>
+	<field name="NACIONALIDAD_EMPL" class="java.lang.String"/>
+	<field name="DUI_EMPL" class="java.lang.String"/>
+	<field name="NOMBRE_JEFE" class="java.lang.String"/>
+	<field name="EDAD_JEFE" class="java.math.BigDecimal"/>
+	<field name="SEXO_JEFE" class="java.lang.String"/>
+	<field name="ESTADO_CIVIL_JEFE" class="java.lang.String"/>
+	<field name="PROFESION_JEFE" class="java.lang.String"/>
+	<field name="DIRECCION_JEFE" class="java.lang.String"/>
+	<field name="NACIONALIDAD_JEFE" class="java.lang.String"/>
+	<field name="DUI_JEFE" class="java.lang.String"/>
+	<field name="NOMBRE_EMPRESA" class="java.lang.String"/>
+	<field name="INICIO_CONTRATO" class="java.sql.Timestamp"/>
+	<field name="FIN_CONTRATO" class="java.lang.String"/>
+	<field name="PUESTO_EMPL" class="java.lang.String"/>
+	<field name="SALARIO_EMPL" class="java.math.BigDecimal"/>
+	<field name="SAL_LETRAS" class="java.lang.String"/>
+	<field name="FECHA_CONTRATO" class="java.sql.Timestamp"/>
+	<variable name="variable1" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTRATO INDIVIDUAL DE TRABAJO]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="211" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="286" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Generales del Trabajador]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="0" width="286" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Generales del Contratante Patronal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Edad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="70" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="90" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Estado civil:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="30" width="186" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMBRE_EMPL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="50" width="186" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{EDAD_EMPL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="70" width="186" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SEXO_JEFE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="90" width="186" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ESTADO_CIVIL_EMPL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="110" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Profesión u oficio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="110" width="186" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PROFESION_EMPL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="130" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="130" width="186" height="40"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DIRECCION_EMPL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="170" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Nacionalidad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="170" width="186" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NACIONALIDAD_EMPL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="190" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[DUI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="190" width="186" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DUI_EMPL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="30" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="387" y="30" width="185" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMBRE_JEFE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="50" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Edad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="387" y="50" width="185" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.math.BigDecimal"><![CDATA[$F{EDAD_JEFE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="70" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Sexo:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="387" y="70" width="185" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{SEXO_JEFE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="90" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Estado civil:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="387" y="90" width="185" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{ESTADO_CIVIL_JEFE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="110" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Profesión u oficio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="387" y="110" width="185" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PROFESION_JEFE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="287" y="130" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Domicilio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="387" y="130" width="185" height="40"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DIRECCION_JEFE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="170" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Nacionalidad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="387" y="170" width="185" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NACIONALIDAD_JEFE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="286" y="190" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[DUI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="387" y="190" width="185" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DUI_JEFE}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="127">
+			<staticText>
+				<reportElement x="0" y="8" width="150" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[En representación de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="8" width="422" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMBRE_EMPRESA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="28" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Nosotros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="48" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Patrono:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="68" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Empleado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="68" width="473" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMBRE_EMPL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="48" width="472" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMBRE_JEFE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="92" width="572" height="35"/>
+				<textElement textAlignment="Justified" lineSpacing="Single">
+					<font isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[De las generales arriba indicadas y actuando de carácter que aparece expresado, convenimos en celebrar el presente Contrato Individual de Trabajo sujeto a las estipulaciones siguentes:]]></text>
+			</staticText>
+		</band>
+		<band height="578">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="16"/>
+				<textElement textAlignment="Justified" lineSpacing="Single" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[A) CLASE DE TRABAJO O SERVICIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="17" width="356" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[El trabajador se compromete a prestar sus servicios al patrono como:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="356" y="16" width="216" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{PUESTO_EMPL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="37" width="356" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Tendrá como obligaciones propias de su cargo las siguientes:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="37" width="216" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Las afines al cargo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="68" width="572" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[B) DURACIÓN DEL CONTRATO Y TIEMPO DE SERVICIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="88" width="572" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[El presente contrato se celebra por: 1 año, debido a que la Empresa indemniza cada año.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="108" width="72" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[A partir de:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="72" y="108" width="215" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{INICIO_CONTRATO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="303" y="108" width="53" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Hasta:]]></text>
+			</staticText>
+			<textField pattern="dd MMMMM yyyy">
+				<reportElement x="356" y="108" width="214" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{FIN_CONTRATO} != null ? $F{FIN_CONTRATO} : (new GregorianCalendar(2013, 11, 31).getTime())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="128" width="570" height="52"/>
+				<textElement textAlignment="Justified" lineSpacing="Single"/>
+				<text><![CDATA[Fecha desde la cual el trabajador presta servicios al patrono sin que la relación laboral se haya disuelto. Queda estipulado para trabajadores de nuevo ingreso que los primeros treinta días serán de prueba y dentro de este término cualquiera de las partes podrá dar por terminado el contrato sin expresión de causa ni responsabilidad alguna.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="186" width="573" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[C)LUGAR DE PRESTACIÓN DE SERVICIOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="206" width="201" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[El lugar de prestación del servicio será:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="201" y="206" width="372" height="40"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Calle Acceso a Plan de La Laguna, Block A-B No. 6 Antiguo Cuscatlán, La Libertad.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="252" width="573" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[D) HORARIO DE TRABAJO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="272" width="572" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Del día LUNES al día VIERNES de: 8:00 a.m. a 12:00 md. y de 1:00 p.m. a 5:00 p.m.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="292" width="572" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Día SABADO de: 8:00 a.m. a 12:00 md.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="312" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Semana laboral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="312" width="50" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[44]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="312" width="100" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[horas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="332" width="570" height="33"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Únicamente podrán ejecutarse trabajos extraordinarios cuando sean pactados de común acuerdo entre el Patrono o Representante Legal y el Trabajador o la presona asignada por éstos.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="371" width="572" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[E) SALARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="391" width="573" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[El salario que recibirá el trabajador por sus servicios será la suma de:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="411" width="573" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $F{SAL_LETRAS} + " DÓLARES DIARIOS"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="431" width="573" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Y se pagará en Dólares de los Estados Unidos de América en la cuidad de:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="451" width="572" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<text><![CDATA[Antiguo Cuscatlán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="471" width="573" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Dicho pago se hará de la manera siguiente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="491" width="573" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<text><![CDATA[Quincenal, por planillas.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="517" width="572" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[F) HERRAMIENTAS Y MATERIALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="537" width="573" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[El patrono suministrará al trabajador las herramientas y materiales siguientes:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="557" width="573" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<text><![CDATA[Las necesarias para desempeñar su labor.]]></text>
+			</staticText>
+		</band>
+		<band height="60">
+			<staticText>
+				<reportElement x="0" y="0" width="572" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[G) PERSONAS QUE DEPENDEN ECONOMICAMENTE DEL TRABAJADOR:]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="20" width="573" height="40"/>
+				<subreportParameter name="COD_CIA">
+					<subreportParameterExpression><![CDATA[$P{COD_CIA}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="COD_EMP">
+					<subreportParameterExpression><![CDATA[$P{COD_EMP}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression class="java.lang.String"><![CDATA["dependientesEmpSubreport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="238">
+			<staticText>
+				<reportElement x="0" y="0" width="573" height="20"/>
+				<textElement lineSpacing="Single">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[H) OTRAS ESTIPULACIONES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="20" width="573" height="59"/>
+				<textElement textAlignment="Justified" lineSpacing="Single"/>
+				<text><![CDATA[En el presente Contrato Individual de Trabajo se entenderán incluídos, según el caso, los derechos y deberes laborales establecidos por las Leyes Pertinentes, por el Reglamento Interno de Trabajo y por el o los Contratos Colectivos de Trabajo que celebre el patrono; los reconocidos en las sentencias que resuelvan conflictos colectivos de trabajo en la Empresa, y los consagrados por la costumbre.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="79" width="573" height="48"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Este contrato sustotuye cualquier otro Convenio Individual de Trabajo anterior, ya sea escrito o verbal que haya estado vigente entre el patrono y el trabajador, pero no altera en manera alguna los derechos y prerrogativas del trabajo que emanen de su antigüedad en el servicio ni se entenderán como negativo las mejores condiciones concedidad al trabajador en el contrato anterior y que no consten en el presente.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="146" width="330" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[En fe de lo cual firmamos el presente documento por triplicado en:
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="146" width="243" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Antiguo Cuscatlán]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="166" width="26" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[Al]]></text>
+			</staticText>
+			<textField pattern="dd &apos;de&apos; MMMMM &apos;de&apos; yyyy">
+				<reportElement x="26" y="166" width="547" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{FECHA_CONTRATO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="26" y="198" width="234" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[F. ___________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="26" y="218" width="234" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<text><![CDATA[Patrono o representante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="218" width="201" height="20"/>
+				<textElement textAlignment="Center" lineSpacing="Single"/>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="198" width="201" height="20"/>
+				<textElement lineSpacing="Single"/>
+				<text><![CDATA[F. ____________________________________]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

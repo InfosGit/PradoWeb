@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:i="http://java.sun.com/jsf/composite/components/presentacion" 
+                template="./../../../plantillas/defaultTemplate.xhtml">
+
+    <ui:define name="titulo">Aprobar Solicitud</ui:define>
+
+    <ui:define name="dialogos" />
+
+    <ui:define name="acciones">
+        <p:tab title="Otras acciones">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu textoNormal" action="#{aprobarSolicitud.regresar}" onmouseover="this.className='opcionMenu  textonegrita';" onmouseout="this.className='opcionMenu  textonormal';">
+                    <p:graphicImage value="/resources/iconos/arrow-left.png"/>
+                    <h:outputText value="Acciones de personal" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+    </ui:define>
+
+    <ui:define name="titulo">
+        Aprobar Acciones de Personal - #{SessionBeanPLA.accionSeleccionada!= null ? SessionBeanPLA.accionSeleccionada.tipoAccion.nomTipoaccion : 'Ninguna Acción Seleccionada'}
+    </ui:define>
+
+    <ui:define name="contenido">
+        <p:spacer height="5" />
+        <p:panel id="panelAprobacion" style="border: none;">
+            <table width="80%" cellpadding="5" >
+                <tr>
+                    <td width="15%" ><h:outputLabel value="Nombre " style="font-weight: bold;" /></td>
+                    <td width="30%" ><h:outputLabel value="#{SessionBeanPLA.accionSeleccionada.empleados.nombreCompleto}" /></td>
+                    <td width="15%" align="right" ><h:outputLabel value="Fecha de Solicitud" style="font-weight: bold;"/></td>
+                    <td><h:outputLabel value="#{SessionBeanPLA.accionSeleccionada.fecha}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </h:outputLabel></td>
+                </tr>
+                <tr>
+                    <td><h:outputLabel value="Puesto" style="font-weight: bold;"  /></td>
+                    <td colspan="3">
+                        <h:outputLabel value="#{SessionBeanPLA.accionSeleccionada.empleados.puestos ne null ? SessionBeanPLA.accionSeleccionada.empleados.puestos.nomPuesto: ''}" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><h:outputLabel value="Estado" style="font-weight: bold;"  /></td>
+                    <td colspan="3">
+                        <h:outputLabel value="#{SessionBeanPLA.accionSeleccionada.accEstado}" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td valign="top" ><h:outputLabel value="Tipo" style="font-weight: bold;" /></td>
+                    <td colspan="3" ><h:outputLabel value="#{SessionBeanPLA.accionSeleccionada.tipoAccion.nomTipoaccion}" style="width: 100%;" /></td>
+                </tr>
+
+                <tr>
+                    <td><h:outputLabel value="Fecha Inicial" style="font-weight: bold;" /></td>
+                    <td><h:outputLabel value="#{SessionBeanPLA.accionSeleccionada.fechaInicial}" >
+                            <f:convertDateTime pattern="dd/MM/yyyyy" />
+                        </h:outputLabel>
+                    </td>
+                    <td><h:outputLabel value="Fecha Final" style="font-weight: bold;" /></td>
+                    <td><h:outputLabel value="#{SessionBeanPLA.accionSeleccionada.fechaFinal}" >
+                            <f:convertDateTime pattern="dd/MM/yyyyy" />
+                        </h:outputLabel>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td valign="top" ><h:outputLabel value="Observaci&oacute;n" style="font-weight: bold;" /></td>
+                    <td colspan="3" ><p:inputTextarea value="#{SessionBeanPLA.accionSeleccionada.observacion}" autoResize="false" style="width: 100%;" readonly="true" /></td>
+                </tr>
+
+                <tr>
+                    <td><i:etiquetaRequerido value="Tipo de planilla" rendered="#{aprobarSolicitud.renderPlanilla}" /></td>
+                    <td>
+                        <h:selectOneMenu id="lstTipoPlanilla" rendered="#{aprobarSolicitud.renderPlanilla}" style="height: 25px;padding-top: 3px;width: 250px;" disabled="#{!request.isUserInRole('rrhh')}" label="Tipo Planilla" value="#{aprobarSolicitud.tipoPlanilla}" >                       
+                            <f:ajax render="lstPlanilla" event="change" execute="lstTipoPlanilla" />
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE TIPO PLANILLA]" />
+                            <f:selectItems value="#{aprobarSolicitud.listaTipos}" var="tipo" itemValue="#{tipo.tiposPlanillaPK.codTipopla}" itemLabel="#{tipo.nomTipopla}"/>
+                        </h:selectOneMenu>
+                    </td>
+                    <td><i:etiquetaRequerido value="Planilla" rendered="#{aprobarSolicitud.renderPlanilla}" /></td>
+                    <td>
+                        <h:selectOneMenu id="lstPlanilla" style="height: 25px;padding-top: 3px;width: 250px;" rendered="#{aprobarSolicitud.renderPlanilla}" disabled="#{!request.isUserInRole('rrhh')}" label="Planilla" value="#{aprobarSolicitud.planilla}" >
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE PLANILLA]" />
+                            <f:selectItems value="#{aprobarSolicitud.listaPlanillas}" var="pla" 
+                                        itemValue="#{pla.pkAsString}"
+                                        itemLabel="#{pla.anio} ------ #{pla.mes} ------ #{pla.numPlanilla}" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td colspan="4" >
+                        <h:panelGroup rendered="#{!request.isUserInRole('jefes') and !request.isUserInRole('rrhh')}" >
+                            <p:graphicImage value="/resources/iconos/window-close.png"/>
+                            <h:outputLabel value="Usuario no autorizado para aprobar solicitudes." styleClass="opcionMenu textoNormal" style="font-weight: bold; color: #DF0000;" />
+                        </h:panelGroup>            
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel value="Aprobaci&oacute;n Jefe" rendered="#{request.isUserInRole('jefes')}" style="font-weight: bold;" />
+                        <h:outputLabel value="Aprobaci&oacute;n Recursos Humanos" rendered="#{request.isUserInRole('rrhh')}" style="font-weight: bold;" />
+                    </td>
+                    <td colspan="3" >
+                        
+                        <h:panelGroup rendered="#{request.isUserInRole('jefes')}"  >
+                            <p:commandButton value="Aprobar" image="ui-icon-circle-check" action="#{aprobarSolicitud.aprobarSolicitudJefe}" disabled="#{(SessionBeanPLA.accionSeleccionada.status eq 'A') or (SessionBeanPLA.accionSeleccionada.status eq 'R') or (SessionBeanPLA.accionSeleccionada.status eq 'J')}" update="principalForm:mensajes,lblEstado,panelAprobacion" />
+                            <p:spacer width="15" />
+                            <p:commandButton value="Rechazar" image="ui-icon-closethick" action="#{aprobarSolicitud.rechazarSolicitudJefe}" disabled="#{(SessionBeanPLA.accionSeleccionada.status eq 'A') or (SessionBeanPLA.accionSeleccionada.status eq 'R') or (SessionBeanPLA.accionSeleccionada.status eq 'J')}" update="principalForm:mensajes,lblEstado,panelAprobacion" />
+                        </h:panelGroup >
+
+                        
+                        <h:panelGroup rendered="#{request.isUserInRole('rrhh')}" >
+                            <p:commandButton value="Aprobar" image="ui-icon-circle-check" action="#{aprobarSolicitud.aprobarSolicitudRH}" disabled="#{((SessionBeanPLA.accionSeleccionada.status eq 'A') and (SessionBeanPLA.accionSeleccionada.fApruebaRh ne null)) or (SessionBeanPLA.accionSeleccionada.status eq 'R')}" update="principalForm:mensajes,lblEstado,panelAprobacion" />
+                            <p:spacer width="15" />
+                            <p:commandButton value="Rechazar"  image="ui-icon-closethick" action="#{aprobarSolicitud.rechazarSolicitudRH}" disabled="#{((SessionBeanPLA.accionSeleccionada.status eq 'A')and (SessionBeanPLA.accionSeleccionada.fApruebaRh ne null)) or (SessionBeanPLA.accionSeleccionada.status eq 'R')}" update="principalForm:mensajes,lblEstado,panelAprobacion" />
+                        </h:panelGroup>    
+                    </td>
+                </tr>
+
+            </table>
+            <p:spacer height="15" />
+        </p:panel>
+    </ui:define>
+</ui:composition>

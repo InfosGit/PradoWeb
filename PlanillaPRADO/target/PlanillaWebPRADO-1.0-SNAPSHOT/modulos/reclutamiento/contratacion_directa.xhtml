@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    template="/plantillas/defaultTemplate.xhtml">
+
+    <ui:define name="titulo">
+        <h:outputText value="Contrataciones"/>
+    </ui:define>
+
+    <ui:define name="acciones">
+        <p:tab title="Acciones">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu" update="mensajes actaAcuerdo fechaAcuerdo sueldoAprobado fechaInicio fechaFin puesto representantePatronal tipoContrato estadoContrato usuario tipoPlanilla" ajax="true" action="#{reclutamiento$contratacionDirecta.contratar$action}">
+                    <p:graphicImage value="/resources/iconos/personal.png"/>
+                    <h:outputText value="Contratar" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu" update="mensajes" ajax="false" action="#{reclutamiento$contratacionDirecta.imprimirContrato$action}">
+                    <p:graphicImage value="/resources/iconos/document-print.png"/>
+                    <h:outputText value="Imprimir contrato" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <p:spacer height="20" />
+        <p:wizard>
+
+            <p:tab id="tabCandidatos" title="Candidato">
+                <p:dataTable id="candidatosTable" value="#{reclutamiento$contratacionDirecta.listaCandidatos}" var="candidato" rowStyleClass="#{(candidato eq reclutamiento$contratacionDirecta.candidatoSeleccionado) ? 'accionSeleccionada' : '' }" emptyMessage="No se han encontrado candidatos" paginatorAlwaysVisible="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100" paginator="true">
+                    <f:facet name="header">
+                        <h:outputText value="Candidatos"/>
+                    </f:facet>
+                    <p:column headerText="C&oacute;digo">
+                        <h:outputText value="#{candidato.candidatoPK.codCandidato}"/>
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{candidato.nombreCompleto}"/>
+                    </p:column>
+                    <p:column headerText="[Seleccionar]" style="width: 50px;">
+                        <p:commandButton id="seleccionarCommandButton" update="principalForm:candidatosTable" image="ui-icon-circle-check" title="Seleccionar" immediate="true">
+                            <f:setPropertyActionListener value="#{candidato}" target="#{reclutamiento$contratacionDirecta.candidatoSeleccionado}"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </p:tab>
+
+            <p:tab id="tabContratar" title="Datos del contrato" >
+                <h:panelGrid columns="2">
+                    <p:graphicImage width="16" height="16" alt="Informaci&oacute;n" url="/resources/imagenes/64/info.png"/>
+                    <h:outputText style="font-style: italic; font-weight: bold;" value="Todos los campos son requeridos"/>
+                </h:panelGrid>
+                <p:panel>
+                    <h:panelGrid width="100%" columns="4">
+                        <h:outputText value="Acta y acuerdo" />
+                        <p:inputText id="actaAcuerdo" validatorMessage="El numero de acta y acuerdo es requerido" value="#{reclutamiento$contratacionDirecta.actaAcuerdo}"/>
+                        <h:outputText value="Fecha de acuerdo"/>
+                        <p:calendar id="fechaAcuerdo" showOn="button" pattern="dd/MM/yyyy" navigator="true" value="#{reclutamiento$contratacionDirecta.fechaAcuerdo}"/>
+                        <h:outputText value="Sueldo aprobado"/>
+                        <p:inputText id="sueldoAprobado" value="#{reclutamiento$contratacionDirecta.sueldoAprobado}"/>
+                        <h:outputText value="Puesto"/>
+                        <h:selectOneMenu id="puesto" style="width: 200px;" hideNoSelectionOption="false" value="#{reclutamiento$contratacionDirecta.puesto}">
+                            <f:selectItems value="#{reclutamiento$contratacionDirecta.listaPuestos}" var="puesto" itemValue="#{puesto.puestosPK.codPuesto}" itemLabel="#{puesto.nomPuesto}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Fecha inicio"/>
+                        <p:calendar id="fechaInicio" showOn="button" pattern="dd/MM/yyyy" navigator="true" value="#{reclutamiento$contratacionDirecta.fechaInicio}"/>
+                        <h:outputText value="Fecha fin"/>
+                        <p:calendar id="fechaFin" showOn="button" pattern="dd/MM/yyyy" navigator="true" value="#{reclutamiento$contratacionDirecta.fechaFin}"/>                        
+                        <h:outputText value="Representante patronal"/>                        
+                        <h:selectOneMenu id="representantePatronal" style="width: 200px;" hideNoSelectionOption="false" value="#{reclutamiento$contratacionDirecta.representantePatronal}">
+                            <f:selectItems value="#{reclutamiento$contratacionDirecta.listaJefes}" var="jefe" itemValue="#{jefe.empleadosPK.codEmp}" itemLabel="#{jefe.nombreCompleto}"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Tipo de contrato"/>
+                        <h:selectOneMenu id="tipoContrato" style="width: 200px;" hideNoSelectionOption="false" value="#{reclutamiento$contratacionDirecta.tipoContrato}">
+                            <f:selectItem itemValue="1" itemLabel="Servicios profesionales"/>
+                            <f:selectItem itemValue="2" itemLabel="Indefinido"/>
+                            <f:selectItem itemValue="3" itemLabel="Periodo de prueba"/>
+                            <f:selectItem itemValue="4" itemLabel="Eventual"/>
+                        </h:selectOneMenu>
+                        <h:outputText value="Estado del contrato"/>
+                        <h:selectOneMenu id="estadoContrato" style="width: 200px;" hideNoSelectionOption="false" value="#{reclutamiento$contratacionDirecta.estadoContrato}">
+                            <f:selectItem itemValue="1" itemLabel="Generado"/>
+                            <f:selectItem itemValue="2" itemLabel="Anulado"/>
+                            <f:selectItem itemValue="3" itemLabel="Finalizado"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <p:separator/>
+                    <h:panelGrid columns="4">
+                        <h:outputText value="Usuario"/>
+                        <p:inputText id="usuario" value="#{reclutamiento$contratacionDirecta.usuario}"/>
+                        <h:outputText value="Tipo de planilla"/>
+                        <h:selectOneMenu id="tipoPlanilla" value="#{reclutamiento$contratacionDirecta.tipoPlanilla}">
+                            <f:selectItems value="#{reclutamiento$contratacionDirecta.listaTiposPlanilla}" var="tipoPlanilla" itemValue="#{tipoPlanilla.tiposPlanillaPK.codTipopla}" itemLabel="#{tipoPlanilla.nomTipopla}"/>
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                </p:panel>
+            </p:tab>
+
+        </p:wizard>
+    </ui:define>
+</ui:composition>

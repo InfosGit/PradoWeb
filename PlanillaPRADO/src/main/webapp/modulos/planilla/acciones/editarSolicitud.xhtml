@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ap="http://java.sun.com/jsf/composite/components/accionPersonal" 
+                template="./../../../plantillas/defaultTemplate.xhtml">
+
+    <ui:define name="titulo">Editar Solicitud</ui:define>
+
+    <ui:define name="dialogos" />
+
+    <ui:define name="acciones">
+        <ui:insert name="panelAccionesSolicitud" />
+    </ui:define>
+
+    <ui:define name="titulo">
+        Edici&oacute;n de Acciones de Personal - #{SessionBeanPLA.accionSeleccionada!= null ? SessionBeanPLA.accionSeleccionada.tipoAccion.nomTipoaccion : 'Ninguna Acción Seleccionada'}
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <p:panel id="contenedorEdicionSolicitud" style="border: none;width: 100%;">
+            <ap:encabezadoSolicitudEdicion />
+            <ui:insert name="detalleSolicitud" />
+        </p:panel>
+        
+    </ui:define>
+    
+</ui:composition>

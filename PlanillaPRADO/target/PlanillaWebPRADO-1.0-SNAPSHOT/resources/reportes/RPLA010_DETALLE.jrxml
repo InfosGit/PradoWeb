@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPLA010_DETALLE" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="792" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="b189d69f-0c02-4a28-a52e-225895c8e385">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="departamento" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empresa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="anio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mes" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="planilla" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tipo_planilla" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.nom_depto, a.cod_emp, a.nombre, a.salario_base, a.had,a.vhad, a.chextra,a.vextra, a.bonificacion, b.otras_presta,a.tot_debenga,
+b.isr,b.ivm,b.emrp,b.fsv,b.otras_deduc,a.deducciones, a.liquido
+from
+(
+SELECT a.cod_cia,a.cod_tipopla,a.anio, a.mes, a.num_planilla, a.cod_emp,
+ DECODE(a.estado,'L',b.apellidos||', '||b.nombres,'V',b.apellidos||', '||b.nombres||' **** VACACIONES','I',
+ b.apellidos||', '||b.nombres||' **** INCAPACIDAD','P',b.apellidos||', '||b.nombres||' **** PERMISO SIN GOCE DE SUELDO',b.apellidos||', '||b.nombres) NOMBRE,
+b.num_tarjeta,b.cheque_dep,a.cod_afp,
+-- b.salario_base,
+a.sueldo_base salario_base, c.nom_depto, a.tot_debenga, a.bonificacion BONIFICACION,
+a.chr_noche HAD,a.vhr_noche VHAD, (a.ch_xsencilla+a.ch_xdoble+a.ch_x250+a.ch_x150) CHEXTRA,
+decode(a.ch_xsencilla,0,'','D')|| decode(a.ch_xdoble,0,'','M')||decode(a.ch_x250,0,'','T') TIPO,
+(a.vh_xsencilla + a.vh_xdoble +a.vh_x250+a.vh_x150) VEXTRA, NVL(a.vh_hora,0) TARDE,
+a.tot_debenga BRUTO,
+a.Liq_recibir  LIQUIDO,
+a.Deducciones,
+NVL(a.D_LABORADOS,0) D_Laborados,
+c.cod_depto
+FROM EMPLEADOS b, PLANILLA a, DEPARTAMENTOS c
+WHERE b.cod_cia = a.cod_cia
+   And b.cod_emp = a.cod_emp
+   And c.cod_cia = b.cod_cia
+   And c.COD_DEPTO = b.cod_depto
+   And c.cod_depto = DECODE($P{departamento},NULL,c.cod_depto,$P{departamento})
+   And  a.cod_cia = $P{empresa}
+   And a.anio = $P{anio}
+   And a.mes = $P{mes}
+   And a.num_planilla = $P{planilla}
+   And a.cod_tipopla = $P{tipo_planilla}
+--Order By c.cod_depto, a.cod_emp
+) a,
+(
+select cod_cia, tipo_planilla cod_tipopla, anio,mes,num_planilla,cod_emp,
+isr,ivm,emrp,fsv,otras_deduc,otras_presta
+from v_mov_dp v
+where  v.cod_cia = $P{empresa}
+   And v.anio = $P{anio}
+   And v.mes = $P{mes}
+   And v.cod_depto = nvl($P{departamento}, v.cod_depto)
+   And v.num_planilla = $P{planilla}
+   And v.tipo_planilla = $P{tipo_planilla}
+union
+select a.cod_cia,a.cod_tipopla, a.anio,a.mes,a.num_planilla,a.cod_emp,0,0.0,0,0,0,0
+from planilla a
+where  a.cod_cia = $P{empresa}
+   And a.anio = $P{anio}
+   And a.mes = $P{mes}
+   And a.cod_depto =  nvl($P{departamento}, a.cod_depto)
+   And a.num_planilla = $P{planilla}
+   And a.cod_tipopla = $P{tipo_planilla}
+   and a.cod_emp not in
+  (select c.cod_emp
+     from mov_dp c
+   where c.cod_cia = a.cod_cia
+    and c.anio = a.anio
+    and c.mes = a.mes
+    and c.cod_depto =  nvl($P{departamento}, c.cod_depto)
+    and c.num_planilla = a.num_planilla
+    and c.cod_tipopla = a.cod_tipopla )
+) b
+WHERE A.COD_CIA = B.COD_CIA
+AND  A.ANIO = B.ANIO
+AND  A.MES  = B.MES
+AND  A.COD_TIPOPLA = B.COD_TIPOPLA
+AND  A.NUM_PLANILLA = B.NUM_PLANILLA
+AND  A.COD_EMP = B.COD_EMP
+order by 1,2]]>
+	</queryString>
+	<field name="NOM_DEPTO" class="java.lang.String"/>
+	<field name="COD_EMP" class="java.math.BigDecimal"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="SALARIO_BASE" class="java.math.BigDecimal"/>
+	<field name="HAD" class="java.math.BigDecimal"/>
+	<field name="VHAD" class="java.math.BigDecimal"/>
+	<field name="CHEXTRA" class="java.math.BigDecimal"/>
+	<field name="VEXTRA" class="java.math.BigDecimal"/>
+	<field name="BONIFICACION" class="java.math.BigDecimal"/>
+	<field name="OTRAS_PRESTA" class="java.math.BigDecimal"/>
+	<field name="TOT_DEBENGA" class="java.math.BigDecimal"/>
+	<field name="ISR" class="java.math.BigDecimal"/>
+	<field name="IVM" class="java.math.BigDecimal"/>
+	<field name="EMRP" class="java.math.BigDecimal"/>
+	<field name="FSV" class="java.math.BigDecimal"/>
+	<field name="OTRAS_DEDUC" class="java.math.BigDecimal"/>
+	<field name="DEDUCCIONES" class="java.math.BigDecimal"/>
+	<field name="LIQUIDO" class="java.math.BigDecimal"/>
+	<variable name="total_registros" class="java.math.BigDecimal" calculation="Count">
+		<variableExpression><![CDATA[$F{COD_EMP}]]></variableExpression>
+	</variable>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="7c54b0a4-7de7-4b7e-8db6-aa83836446bf" mode="Opaque" x="0" y="41" width="42" height="20" backcolor="#CCCCCC"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="68c7b039-7ef1-44f2-b09e-1f401040aa99" mode="Opaque" x="42" y="41" width="80" height="20" backcolor="#CCCCCC"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ae03d4f2-d41a-49ba-bcd6-8005241ad0a1" mode="Opaque" x="122" y="41" width="43" height="20" backcolor="#CCCCCC"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Salario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8cbe08fa-d009-4a4c-b512-9a26ae24d19f" mode="Opaque" x="165" y="41" width="25" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[HAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e4eb4858-2dc2-4e26-abcd-44cf3e0678b8" mode="Opaque" x="190" y="41" width="33" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[VHAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="64a4820b-2c86-4c8e-aeb6-04ceacc54b17" mode="Opaque" x="223" y="41" width="50" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[C. Hrs. Extra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="46454903-66ff-4615-b812-9577c08ca285" mode="Opaque" x="273" y="41" width="50" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[V. Hrs. Extra]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="71c4f7f5-a6ea-45ce-85ca-9b60ac184785" mode="Opaque" x="323" y="41" width="52" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Bonificación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5c2cb8f4-9f87-45b1-beb7-19394b8d83e0" mode="Opaque" x="375" y="41" width="77" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Otros Ingresos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="38068158-df96-4e34-8352-be4e265bca92" mode="Opaque" x="452" y="41" width="59" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Devengado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a1ea2d4e-9454-4380-8793-84db74b1b6bc" mode="Opaque" x="511" y="41" width="33" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Renta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7c2dd8b3-da26-4db2-aee9-4c976affff89" mode="Opaque" x="544" y="41" width="37" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Seguro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f9f3e528-230f-4468-91c1-30660e35ec89" mode="Opaque" x="581" y="41" width="60" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Otros. Desc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f85f228b-e969-41d7-bbef-bf787f0fdf76" mode="Opaque" x="640" y="41" width="60" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Deducciones]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="97f74326-4c90-4a9b-9197-5de96dfdc4cc" mode="Opaque" x="700" y="41" width="56" height="20" backcolor="#CCCCCC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Liquido]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="a09dbeea-1e19-4f5e-86e0-2f1b2ecd4d63" x="69" y="10" width="687" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOM_DEPTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f5f62314-ea3e-4f42-a6da-487d6d3fc029" mode="Opaque" x="0" y="10" width="69" height="20" backcolor="#FFFFFF"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Departamento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement uuid="935b2a0d-35fd-46be-915d-cffb9c5bf166" x="0" y="0" width="42" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COD_EMP}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="5e4ae03a-7107-43ae-9613-6b80ee09b73a" x="42" y="0" width="80" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="92e506e4-cc56-4463-ad03-75212102625e" x="122" y="0" width="43" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SALARIO_BASE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b202b1c-5ef2-4385-91ec-b0f1823e7e8c" x="190" y="0" width="33" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VHAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1f4f08e7-b18e-4027-8d75-83e0db46757f" x="165" y="0" width="25" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HAD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d297bfbe-827c-4f76-ba8e-543105902d9f" x="223" y="0" width="50" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CHEXTRA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="675b3491-8e61-4189-8f16-add2539ac4dc" x="273" y="0" width="50" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VEXTRA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f1b5ca74-4acc-44b5-a5f1-e150b1a90a52" x="323" y="0" width="52" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BONIFICACION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="56a2d5a3-183f-42e4-8642-104868d5deb7" x="375" y="0" width="77" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OTRAS_PRESTA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="02a3418d-ee63-4b9f-952b-9719f3f930b2" x="452" y="0" width="59" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TOT_DEBENGA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="34b219dc-f2cc-4dc7-858c-d3a3122e2e78" x="511" y="0" width="33" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ISR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cae1b0c1-dd4b-45c4-8d65-4b2f8b0326f1" x="544" y="0" width="37" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{EMRP}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="db05d437-c1fc-4c7a-a13e-ea5b155ee834" x="581" y="0" width="60" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{OTRAS_DEDUC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="866ce5c0-348c-43fc-bff6-fac049a13a91" x="641" y="0" width="59" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DEDUCCIONES}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="44708477-04bf-469c-8c25-2039e98e3ffd" x="700" y="0" width="56" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LIQUIDO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

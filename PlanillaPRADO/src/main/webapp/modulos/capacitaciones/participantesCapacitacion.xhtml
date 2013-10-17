@@ -1,0 +1,291 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="./../../plantillas/defaultTemplate.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:define name="dialogos">
+        <p:confirmDialog message="&#191; Esta seguro que desea eliminar al Participante de esta Capacitación?"  
+                         showEffect="bounce" hideEffect="explode"  modal="true"
+                         header="Eliminar participante" severity="alert" widgetVar="confirmation">  
+            <p:commandButton value="Si, estoy seguro" update="mensajes, tblDetalle" oncomplete="confirmation.hide()"  
+                             actionListener="#{capacitaciones$participantesCapacitacion.eliminar$crud$action}" />  
+            <p:commandButton value="No" onclick="confirmation.hide()" type="button" />   
+
+        </p:confirmDialog>
+        
+        <p:dialog id="dialogBuscaEmp" widgetVar="dialogBuscaEmp" header="Buscar Empleado" showEffect="fold" hideEffect="fold" width="700" height="300">
+            <p:dataTable id="tablBusEmp"
+                         rows="5" paginator="true"
+                         emptyMessage="No hay Empleados que mostrar" onRowSelectComplete="dialogBuscaEmp.hide();"
+                         var="emp" update="txtEmp, tlEmp, tblDetalle, mensajes" 
+                         value="#{capacitaciones$participantesCapacitacion.listaEmpleado}"
+                         selection="#{SessionBeanCAP.empleadoSeleccionado}"
+                         rowSelectListener="#{capacitaciones$participantesCapacitacion.onRowSelectEmpleado}"  
+                         selectionMode="single"
+                         paginatorAlwaysVisible="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100">
+                <p:column headerText="Codigo" filterBy="#{emp.empleadosPK.codEmp}" >
+                    <h:outputText value="#{emp.empleadosPK.codEmp}"/>
+                </p:column>
+                <p:column headerText="Nombre" filterBy="#{jefe.nombreCompleto}" >
+                    <h:outputText value="#{emp.nombreCompleto}"/>
+                </p:column>
+                <!--f:facet name="footer">
+                    <p:commandButton value="Seleccionar Empleado" oncomplete="dialogBuscaEmp.hide();"/>
+                </f:facet-->
+                <!--p:column>
+                        <p:commandButton update="dialogBuscaJefe, dialogNoAfecta, txtJefe, tlJefe" onclick="dialogBuscaJefe.hide()" value="Seleccionar" >
+                            <f:setPropertyActionListener value="# {jefe}" target="# {planilla$accionesPersonal.jefeSeleccionado}"/>
+                        </p:commandButton>
+                </p:column-->
+            </p:dataTable>
+        </p:dialog>
+    </ui:define>
+
+    <ui:define name="acciones">
+        <p:tab title="Acciones">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu" ajax="true" immediate="true"
+                               action="#{capacitaciones$participantesCapacitacion.editar$Det$action()}" update="tblDetalle, panelContenido, tablBusEmp">
+                    <p:graphicImage value="/resources/iconos/new.png"/>
+                    <h:outputText value="Participantes" styleClass="espacioTexto"/>
+                </p:commandLink>
+
+                <p:commandLink styleClass="opcionMenu"  ajax="true" immediate="true"
+                               action="#{capacitaciones$participantesCapacitacion.consultar$vh$action()}" update="tablaCapacitacion, panelContenido, tablBusEmp, txtEmp">
+                    <p:graphicImage value="/resources/iconos/search.png"/>
+                    <h:outputText value="Consultar" styleClass="espacioTexto"/>
+                </p:commandLink>
+                
+            </h:panelGrid>
+        </p:tab>
+
+        <p:tab title="Otras acciones">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu textoNormal" value="Cancelar" ajax="true" action="#{reclutamiento$concursos.inicio$action}" update="principalForm:mensajes" onmouseover="this.className='opcionMenu  textonegrita';" onmouseout="this.className='opcionMenu  textonormal';" immediate="true">
+                    <p:graphicImage styleClass="ui-icon ui-icon-circle-close" />
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+
+    </ui:define>
+
+    <ui:define name="titulo">
+        Participantes
+    </ui:define>
+
+    <ui:define name="contenido">       
+        <p:spacer height="20" rendered="#{(SessionBeanADM.estadoAccion eq 2) }" />
+
+        <p:fieldset legend="Capacitaci&#243;n" rendered="#{(SessionBeanADM.estadoAccion eq 2) }" >
+            <h:panelGrid columns="4">
+                <h:outputLabel value="Nombre: "/>
+                <h:outputLabel value="#{capacitaciones$participantesCapacitacion.nomCapacitacion}" style=" font-weight: bold"/>
+                <p:spacer/>
+                <p:spacer/>
+                <h:outputLabel value="Area: " />
+                <h:outputLabel value="#{capacitaciones$participantesCapacitacion.nomArea}" style=" font-weight: bold"/>
+                <p:spacer/>
+                <p:spacer/>
+                <h:outputLabel value="Tema: " />
+                <h:outputLabel value="#{capacitaciones$participantesCapacitacion.nomTema}" style=" font-weight: bold"/>
+                <p:spacer/>
+                <p:spacer/>
+                <h:outputLabel value="Instituci&#243;n: " />
+                <h:outputLabel value="#{capacitaciones$participantesCapacitacion.nomInst}" style=" font-weight: bold"/>
+                <p:spacer/>
+                <p:spacer/>
+                <h:outputLabel value="Capacitador: " />
+                <h:outputLabel value="#{capacitaciones$participantesCapacitacion.nomCapacitador}" style=" font-weight: bold"/>
+                <p:spacer/>
+                <p:spacer/>
+                <h:outputLabel value="Fecha Inicial: " />
+                <h:outputLabel value="#{capacitaciones$participantesCapacitacion.fechaInicial}" style=" font-weight: bold">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputLabel>
+                <h:outputLabel value="Fecha Final: " />
+                <h:outputLabel value="#{capacitaciones$participantesCapacitacion.fechaFinal}" style=" font-weight: bold">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:outputLabel>
+                <h:outputLabel value="Estado: " />
+                <h:selectOneMenu id="lstStatus" value="#{capacitaciones$participantesCapacitacion.status}"  style="height: 25px;padding-top: 3px;" disabled="true" >
+                    <f:selectItem itemLabel="Seleccione" itemValue=""/>
+                    <f:selectItem itemLabel="Grabado" itemValue="G"/>
+                    <f:selectItem itemLabel="Aprobado" itemValue="A"/>
+                    <f:selectItem itemLabel="Rechazado" itemValue="R"/>
+                    <f:selectItem itemLabel="Realizado" itemValue="RE"/>
+                    <f:selectItem itemLabel="Notificada" itemValue="N"/>
+                </h:selectOneMenu>
+                <p:spacer/>
+                <p:spacer/>
+                <p:toolbar id="tlEmp" >
+                        <p:toolbarGroup align="left">
+                            <!--p:inputText value="# {capacitaciones$participantesCapacitacion.nomEmp}" id="txtEmp" immediate="true" style=" width: 300px;"/-->
+                            <p:commandButton id="cmdBuscaE" onclick="dialogBuscaEmp.show()" value="Agregar Empleado"
+                                             type="button" image="ui-icon ui-icon-search" />
+                        </p:toolbarGroup>
+                    </p:toolbar>
+            </h:panelGrid>
+            
+        </p:fieldset>
+        <p:spacer height="20" />
+        <p:dataTable id="tblDetalle"
+                         rendered="#{(SessionBeanADM.estadoAccion eq 2) }"
+                         rows="3" paginator="true"
+                         emptyMessage="No hay Empleados que mostrar"
+                         var="detalle" update="txtJefe"
+                         value="#{capacitaciones$participantesCapacitacion.listaDetalle}"
+                         selection="#{SessionBeanCAP.detalleCapSeleccionada}"
+                         rowSelectListener="#{capacitaciones$participantesCapacitacion.onRowSelectDetalle}"  
+                         selectionMode="single"
+                         paginatorAlwaysVisible="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100">
+                <f:facet name="header">
+                    <h:outputText value="Participantes"/>
+                </f:facet><p:column headerText="Codigo" filterBy="#{detalle.empleados.empleadosPK.codEmp}" >
+                    <h:outputText value="#{detalle.empleados.empleadosPK.codEmp}"/>
+                </p:column>
+                <p:column headerText="Nombre" filterBy="#{detalle.empleados.nombreCompleto}" >
+                    <h:outputText value="#{detalle.empleados.nombreCompleto}"/>
+                </p:column>
+                <p:column headerText="Eliminar">
+                    <p:commandButton value="Eliminar" image="ui-icon ui-icon-circle-minus" ajax="true" onclick="confirmation.show()"/>
+                </p:column>
+                
+            </p:dataTable>
+                <div style="float:left; width: 100%;"  >
+                    <p:toolbar rendered="#{(SessionBeanADM.estadoAccion eq 2)}" 
+                               styleClass="toolbarUsuario" >
+                        <p:toolbarGroup align="left"  >
+                            <p:commandButton id="cmdEnviar" type="push" value="Generar Correos" image="ui-icon ui-icon-mail-closed" action="#{capacitaciones$participantesCapacitacion.enviar$correo$action()}"
+                                             update="mensajes, lstStatus, lstInst, Nombre, calFecIni, calFecFin, impartida, txtEmp, costoRazon, tblDetalle" />  
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                </div>
+        
+        <!--p:toolbar rendered="# {(SessionBeanADM.estadoAccion eq null) or (SessionBeanADM.estadoAccion eq 0)}" 
+                   styleClass="toolbarUsuario" >
+            <p:toolbarGroup align="right" >
+                <p:commandButton value="Eliminar" image="ui-icon ui-icon-circle-minus" ajax="true" onclick="confirmation.show()"/>
+            </p:toolbarGroup>
+        </p:toolbar-->
+
+        <p:spacer height="20" rendered="#{(SessionBeanADM.estadoAccion eq null) or (SessionBeanADM.estadoAccion eq 0)}" />
+
+        <p:fieldset legend="Consulta de Capacitaciones" rendered="#{(SessionBeanADM.estadoAccion eq null) or (SessionBeanADM.estadoAccion eq 0)}" >
+
+            <p:spacer height="20" />
+            <p:dataTable id="tablaCapacitacion"
+                         var="capacitacion" rows="5"  paginator="true" 
+                         value="#{capacitaciones$participantesCapacitacion.listaCap}"
+                         emptyMessage="No se han encontrado Capacitaciones"
+                         binding="#{capacitaciones$participantesCapacitacion.tableCapacitaciones}"
+                         paginatorAlwaysVisible="true" selectionMode="single" 
+                         selection="#{SessionBeanCAP.capacitacionSeleccionada}"
+                         rowSelectListener="#{capacitaciones$participantesCapacitacion.onRowSelectCapacitacion}"  
+                         rowUnselectListener="#{capacitaciones$participantesCapacitacion.onRowUnSelectCapacitacion}"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100" >
+                <f:facet name="header">
+                    <h:outputText value="Capacitaciones"/>
+                </f:facet>
+
+                <p:column sortBy="#{capacitacion.capacitacionPK.codCapacitacion}">
+                    <f:facet name="header">
+                        C&oacute;digo
+                    </f:facet>
+                    <h:outputLabel value="#{capacitacion.capacitacionPK.codCapacitacion}"/>
+                </p:column>
+
+                <p:column sortBy="#{capacitacion.instituciones.desInsti}">
+                    <f:facet name="header">
+                        Institucion
+                    </f:facet>
+                    <h:outputLabel value="#{capacitacion.instituciones.desInsti}" />
+                </p:column> 
+
+                <p:column filterBy="#{capacitacion.nomCapacitacion}" 
+                          filterMatchMode="contains"
+                          headerText="Nombre de la capacitacion">
+                    <h:outputLabel value="#{capacitacion.nomCapacitacion}"/>
+                </p:column> 
+
+                <p:column sortBy="#{capacitacion.fechaDesde}">
+                    <f:facet name="header">
+                        Fecha inicial
+                    </f:facet>
+                    <h:outputLabel value="#{capacitacion.fechaDesde}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputLabel>
+                </p:column>    
+
+                <p:column sortBy="#{capacitacion.fechaHasta}">
+                    <f:facet name="header">
+                        Fecha final
+                    </f:facet>
+                    <h:outputLabel value="#{capacitacion.fechaHasta}" >
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputLabel>
+                </p:column>         
+                
+                <p:column sortBy="#{capacitacion.duracion}"
+                          filterBy="#{capacitacion.duracion}"
+                          filterMatchMode="contains">
+                    <f:facet name="header">
+                        Duracion (Hrs)
+                    </f:facet>
+                    <h:outputLabel value="#{capacitacion.duracion}" />
+                </p:column> 
+
+                <p:column sortBy="#{capacitacion.impartidaPor}"
+                          filterBy="#{capacitacion.impartidaPor}"
+                          filterMatchMode="contains">
+                    <f:facet name="header">
+                        Impartida por
+                    </f:facet>
+                    <h:outputLabel value="#{capacitacion.impartidaPor}" />
+                </p:column>
+                <!--p:column filterBy="# {concurso.estadoConcurso.nombre}"
+                          filterOptions="# {reclutamiento$concursos.itemEstado}"
+                          filterMatchMode="exact" >
+                    <f:facet name="header">
+                        Estado
+                    </f:facet>
+                    <h:outputLabel value="# {concurso.estadoConcurso.nombre}" />
+                </p:column--> 
+
+            </p:dataTable>
+            <p:spacer height="20" />    
+
+        </p:fieldset>
+
+
+        <p:panel id="panelInformacionEdit" style="border:none;" >
+            <div>
+                <div style="float:left;width: 30%;" >
+                    <h:panelGrid columns="4" rendered="#{(SessionBeanADM.estadoAccion eq 1)}" >
+                        <p:graphicImage value="../../resources/imagenes/64/info.png" />
+                        <h:outputLabel value="Campos marcardos con " style="font-style: italic;" />
+                        <h:outputLabel value="*" styleClass="requerido"/>                                
+                        <h:outputLabel value=" son requeridos." style="font-style: italic;" />
+                    </h:panelGrid>
+                </div>    
+                <div style="float:left; width: 70%;"  >
+                    <p:toolbar rendered="#{(SessionBeanADM.estadoAccion eq 1)}"
+                               styleClass="toolbarUsuario" >
+                        <p:toolbarGroup align="right"  >
+                            <p:commandButton id="cmdModificar" type="push" value="Guardar" image="ui-icon ui-icon-disk" action="#{capacitaciones$capacitaciones.guardar$cap$action()}"
+                                             update="mensajes, lstStatus2, lstInst2, Nombre2, calFecIni2, calFecFin2, Duracion2, impartida2, Razon2, costoRazon2" />  
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                </div>
+                <div style="clear:both;" ></div>
+            </div>
+        </p:panel>
+
+        
+
+    </ui:define>
+</ui:composition>

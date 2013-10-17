@@ -1,0 +1,19 @@
+package com.infosgroup.planilla.modelo.entidades;
+
+import com.infosgroup.planilla.modelo.entidades.DetPresupuestoHorasSucursalPK;
+import com.infosgroup.planilla.modelo.entidades.PresupuestoHorasSucursal;
+import java.math.BigDecimal;
+import javax.annotation.Generated;
+import javax.persistence.metamodel.SingularAttribute;
+import javax.persistence.metamodel.StaticMetamodel;
+
+@Generated(value="EclipseLink-2.3.2.v20111125-r10461", date="2013-10-17T11:26:22")
+@StaticMetamodel(DetPresupuestoHorasSucursal.class)
+public class DetPresupuestoHorasSucursal_ { 
+
+    public static volatile SingularAttribute<DetPresupuestoHorasSucursal, BigDecimal> horasPresup;
+    public static volatile SingularAttribute<DetPresupuestoHorasSucursal, String> estado;
+    public static volatile SingularAttribute<DetPresupuestoHorasSucursal, PresupuestoHorasSucursal> presupuestoHorasSucursal;
+    public static volatile SingularAttribute<DetPresupuestoHorasSucursal, DetPresupuestoHorasSucursalPK> detPresupuestoHorasSucursalPK;
+
+}

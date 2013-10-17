@@ -1,0 +1,569 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:i="http://java.sun.com/jsf/composite/components/presentacion"
+                template="/plantillas/defaultTemplate.xhtml">
+<!-- ============================= -->
+    <ui:define name="titulo">
+        <h:outputText value="Cat&aacute;logo de Puestos"/>        
+    </ui:define>
+<!-- ============================= -->
+    <ui:define name="dialogos">
+        <p:confirmDialog message="&#191; Esta seguro que desea eliminar el Puesto seleccionado ?" showEffect="slide" hideEffect="explode"  modal="true" header="Eliminar Puesto" severity="alert" widgetVar="confirmation">
+            <p:commandButton value="Si, estoy seguro" update="principalForm:mensajes,principalForm:tablaPuesto,fsConsulta" oncomplete="confirmation.hide()" actionListener="#{puestosBackendBean.eliminar$crud$action}"/>  
+            <p:commandButton value="No" onclick="confirmation.hide()" type="button"/>
+        </p:confirmDialog>
+        <p:confirmDialog message="&#191; Esta seguro que desea eliminar el Criterio seleccionado ?" showEffect="slide" hideEffect="explode"  modal="true" header="Eliminar Criterio" severity="alert" widgetVar="criterioDialog">
+            <p:commandButton value="Si, estoy seguro" update="principalForm:mensajes,principalForm:tablaPuesto,fsConsulta,fsCriterios,tablaCriteriosXPuesto" oncomplete="criterioDialog.hide()" actionListener="#{puestosBackendBean.eliminarCriterio$crud$action}"/>  
+            <p:commandButton value="No" onclick="criterioDialog.hide()" type="button"/>
+        </p:confirmDialog>
+        <p:dialog id="dialogNuevoCriterio" widgetVar="dialogCriterio" header="Agregar Criterio por Puesto" showEffect="fold" hideEffect="fold" width="417" height="422">
+            <p:panel id="panelInformacionCriterio" style="border:none;">
+                <h:panelGrid columns="1" >
+                    <h:outputLabel value="Seleccione los criterios que desea aplicar." />
+                </h:panelGrid>
+            </p:panel>
+
+            <p:fieldset id="fieldsetEncabezado" style="border:none;">
+
+                <p:dataTable id="tablaSelectCriterio"
+                             var="criterio" rows="5"  paginator="true" 
+                             value="#{puestosBackendBean.listaCriterios}"
+                             emptyMessage="No se han encontrado Criterios."
+                             paginatorAlwaysVisible="true"
+                             update="fieldsetEncabezado"
+                             onRowSelectUpdate="fieldsetEncabezado"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100" >
+
+                    <p:column headerText="C&oacute;digo" sortBy="#{criterio.criterioPK.codigo}">
+                        <h:outputLabel value="#{criterio.criterioPK.codigo}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{criterio.nombre}" 
+                              filterMatchMode="contains"
+                              headerText="Nombre">
+                        <h:outputLabel value="#{criterio.nombre}"/>
+                    </p:column>
+
+                    <p:column style="width: 8%;" >
+                        <p:commandButton image="ui-icon-circle-plus" ajax="true" title="Agregar" action="#{puestosBackendBean.guardarCriterio$crud$action}" update="principalForm:mensajes,principalForm:fsCriterios,principalForm:tablaCriteriosXPuesto" >
+                            <f:setPropertyActionListener value="#{criterio}" target="#{puestosBackendBean.criterioSeleccionado}" /> 
+                        </p:commandButton>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Cerrar" styleClass="opcionMenu"
+                                         oncomplete="dialogCriterio.hide()" action="#{puestosBackendBean.limpiarCriterio}" image="ui-icon-closethick" /> 
+                    </f:facet>
+
+                </p:dataTable>
+                <p:spacer height="15" />
+            </p:fieldset>
+        </p:dialog>
+
+        <p:dialog id="dialogNuevaFuncion" widgetVar="dlgFunciones" header="Agregar Funciones" showEffect="fold" hideEffect="fold" width="632" height="430" >
+
+            <h:panelGrid columns="1" >
+                <h:outputLabel value="Seleccione las funciones que desea agregar." />
+            </h:panelGrid>
+
+            <p:dataTable id="tableFunciones"
+                         var="funcion" rows="5"  paginator="true" 
+                         value="#{puestosBackendBean.listaFuncionPuesto}"
+                         emptyMessage="No se han encontrado funciones."
+                         paginatorAlwaysVisible="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100" >
+
+                <p:column filterBy="#{funcion.nomFuncion}" 
+                          filterMatchMode="contains"
+                          headerText="Nombre">
+                    <h:outputLabel value="#{funcion.nomFuncion}"/>
+                </p:column>
+
+                <p:column style="width: 8%;" >
+                    <p:commandButton image="ui-icon-circle-plus" title="Agregar" ajax="true" action="#{puestosBackendBean.agregarFuncion}" update="principalForm:mensajes,principalForm:tabFuncionesPerfiles,principalForm:tablaFunciones" >
+                        <f:setPropertyActionListener value="#{funcion}" target="#{puestosBackendBean.funcionPuestoSeleccionado}" /> 
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <h:panelGrid columns="1">
+                <p:commandButton value="Cerrar" styleClass="opcionMenu" oncomplete="dlgFunciones.hide()" image="ui-icon-closethick" /> 
+            </h:panelGrid>
+
+        </p:dialog>
+
+        <p:dialog id="dialogNuevoPerfil" widgetVar="dlgPerfiles" header="Agregar Perfiles" showEffect="fold" hideEffect="fold" width="632" height="430" >
+
+            <h:panelGrid columns="1" >
+                <h:outputLabel value="Seleccione los perfiles que desea agregar." />
+            </h:panelGrid>
+
+            <p:dataTable id="tablePerfiles"
+                         var="perfil" rows="5"  paginator="true" 
+                         value="#{puestosBackendBean.listaPerfil}"
+                         emptyMessage="No se han encontrado perfiles."
+                         paginatorAlwaysVisible="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100" >
+
+                <p:column filterBy="#{perfil.nomPerfil}" 
+                          filterMatchMode="contains"
+                          headerText="Nombre">
+                    <h:outputLabel value="#{perfil.nomPerfil}"/>
+                </p:column>
+
+                <p:column style="width: 8%;" >
+                    <p:commandButton image="ui-icon-circle-plus" title="Agregar" ajax="true" action="#{puestosBackendBean.agregarPerfil}" update="principalForm:mensajes,principalForm:tabFuncionesPerfiles,principalForm:tablaPerfiles" >
+                        <f:setPropertyActionListener value="#{perfil}" target="#{puestosBackendBean.perfilSeleccionado}" /> 
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <h:panelGrid columns="1">
+                <p:commandButton value="Cerrar" styleClass="opcionMenu" oncomplete="dlgPerfiles.hide()" image="ui-icon-closethick" /> 
+            </h:panelGrid>
+
+        </p:dialog>
+
+    </ui:define>
+
+    <ui:define name="acciones">
+        <p:tab title="Acciones">
+
+            <h:panelGrid columns="1" style="height: 150px !important;">
+                <p:commandLink styleClass="opcionMenu" ajax="true" immediate="true" action="#{puestosBackendBean.nuevo$crud$action()}" update="panelContenido">
+                    <p:graphicImage value="/resources/iconos/new.png"/>
+                    <h:outputText value="Nuevo" styleClass="espacioTexto"/>
+                </p:commandLink>
+
+                <p:commandLink styleClass="opcionMenu"  ajax="true" immediate="true" action="#{puestosBackendBean.consultar$crud$action()}" update="tablaConcursos, panelContenido">
+                    <p:graphicImage value="/resources/iconos/search.png"/>
+                    <h:outputText value="Consultar" styleClass="espacioTexto"/>
+                </p:commandLink>
+
+                <p:commandLink styleClass="opcionMenu"  ajax="true" immediate="true"
+                               action="#{puestosBackendBean.editar$crud$action()}" update="mensajes, panelContenido">
+                    <p:graphicImage value="/resources/iconos/edit.png"/>
+                    <h:outputText value="Editar" styleClass="espacioTexto"/>
+                </p:commandLink>
+
+                <p:commandLink styleClass="opcionMenu"  ajax="true" immediate="true"
+                               action="#{puestosBackendBean.criterios$crud$action()}" update="mensajes, panelContenido">
+                    <p:graphicImage value="/resources/iconos/rating.png"/>
+                    <h:outputText value="Criterios" styleClass="espacioTexto"/>
+                </p:commandLink>
+
+            </h:panelGrid>
+        </p:tab>
+
+        <p:tab title="Otras acciones">
+            <h:panelGrid columns="1" style="height: 150px !important;">
+                <p:commandLink styleClass="opcionMenu textoNormal" ajax="true" action="#{puestosBackendBean.inicio$action}" update="principalForm:mensajes" onmouseover="this.className='opcionMenu  textonegrita';" onmouseout="this.className='opcionMenu  textonormal';" immediate="true">
+                    <p:graphicImage value="/resources/iconos/application-exit.png"/>
+                    <h:outputText value="Cancelar" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+
+    </ui:define>
+
+    <ui:define name="titulo">Cat&aacute;logo de Puestos</ui:define>
+
+    <ui:define name="contenido">
+        <p:spacer height="5px"/>
+        <p:panel id="panelInformacion" style="border:none;" >
+            <div>
+                <div style="float:left;width: 30%;" >
+                    <h:panelGrid columns="4" rendered="#{(puestosBackendBean.estadoAccion eq null) or (puestosBackendBean.estadoAccion eq 0) or (puestosBackendBean.estadoAccion eq 1)}"  >
+                        <p:graphicImage value="../../resources/imagenes/64/info.png" />
+                        <h:outputLabel value="Campos marcardos con " style="font-style: italic;" />
+                        <h:outputLabel value="*" styleClass="requerido"/>                                
+                        <h:outputLabel value=" son requeridos." style="font-style: italic;" />
+                    </h:panelGrid>
+                </div>    
+                <div style="float:left; width: 70%;"  >
+                </div>
+                <div style="clear:both;" ></div>
+            </div>
+        </p:panel>
+        <p:spacer height="10" rendered="#{(puestosBackendBean.estadoAccion eq null) or (puestosBackendBean.estadoAccion eq 0) }" />
+        <p:fieldset legend="Datos del Puesto" rendered="#{(puestosBackendBean.estadoAccion eq null) or (puestosBackendBean.estadoAccion eq 0) }" >
+            <p:spacer height="5" />
+
+            <table cellpadding="3px;" width="100%" >
+
+                <tr valign="middle" >
+                    <td><i:etiquetaRequerido value="Nombre " /></td>
+                    <td colspan="5" >
+                        <p:inputText id="txNombre" value="#{puestosBackendBean.nombre}" maxlength="100" label="Nombre de Puesto" style="width: 100%;"/>
+                    </td>
+                </tr>
+
+                <tr valign="middle" >
+                    <td><h:outputLabel value="Opciones de Puesto" style="font-weight: bold;" /></td>
+                    <td colspan="5" >
+                        <h:panelGrid columns="6" >
+                            <h:panelGrid columns="2">
+                                <h:selectBooleanCheckbox id="chkHExtras" label="Horas Extras" value="#{puestosBackendBean.horasExtras}"  />
+                                <h:outputLabel value="Horas Extras" />
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2">
+                                <h:selectBooleanCheckbox id="chkHDobles" label="Horas Dobles" value="#{puestosBackendBean.horasDobles}" />
+                                <h:outputLabel value="Horas Dobles" />
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2">
+                                <h:selectBooleanCheckbox id="chkViaticos" label="Viaticos" value="#{puestosBackendBean.viaticos}" />
+                                <h:outputLabel value="Viaticos" />
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" >
+                                <h:selectBooleanCheckbox id="chkComision" label="Comisi&oacute;n" value="#{puestosBackendBean.comision}" />
+                                <h:outputLabel value="Comisi&oacute;n" />
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" >
+                                <h:selectBooleanCheckbox id="cnkInfConf" value="#{puestosBackendBean.informacionConfidencial}" />
+                                <h:outputLabel value="Informaci&oacute;n Confidencial" />
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" >
+                                <h:selectBooleanCheckbox id="chkJefatura" value="#{puestosBackendBean.jefatura}" />
+                                <h:outputLabel value="Jefatura" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </td>
+                </tr>
+                <tr>
+                    <td><i:etiquetaRequerido value="Salario Minimo #{SessionBeanEMP.compania.monedas.signo}" /></td>
+                    <td><p:inputText id="txSalarioMin"   value="#{puestosBackendBean.salarioMinimo}"/></td>
+                    <td></td>
+                    <td><i:etiquetaRequerido value="Salario M&aacute;ximo #{SessionBeanEMP.compania.monedas.signo}" /></td>
+                    <td><p:inputText id="txSalarioMax"  value="#{puestosBackendBean.salarioMaximo}" /></td>
+                </tr>
+                <tr>
+                    <td><i:etiquetaRequerido value="Tipo Puesto" /></td>
+                    <td>
+                        <h:selectOneMenu id="lstTipoPuesto" style="height: 25px;padding-top: 3px;width: 300px;" value="#{puestosBackendBean.tipoPuesto}" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE EL TIPO DE PUESTO]" />
+                            <f:selectItems value="#{puestosBackendBean.listaTipoPuesto}" var="tipoPuesto" itemValue="#{tipoPuesto.tipoPuestoPK.codTipoPuesto}" itemLabel="#{tipoPuesto.nomTipo}" />
+                        </h:selectOneMenu>
+                    </td>
+                    <td></td>
+                    <td><i:etiquetaRequerido value="Estado" /></td>
+                    <td colspan="5">
+                        <h:selectOneMenu id="lstEstadoPuesto" value="#{puestosBackendBean.estado}" style="height: 25px;padding-top: 3px;width: 300px;" required="true" requiredMessage="El Estado del Puesto es un campo obligatorio"  styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE EL ESTADO]" />
+                            <f:selectItem itemValue="A" itemLabel="ACTIVO" />
+                            <f:selectItem itemValue="I" itemLabel="INACTIVO" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><i:etiquetaRequerido value="Departamento" /></td>
+                    <td>
+                        <h:selectOneMenu id="lstDepartamentos" value="#{puestosBackendBean.departamento}" style="height: 25px;padding-top: 3px;width: 300px;" requiredMessage="El Departamento del Puesto es un campo obligatorio" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE EL DEPARTAMENTO]" />
+                            <f:selectItems value="#{puestosBackendBean.listaDepartamentos}" var="departamento" itemValue="#{departamento.departamentosPK.codDepto}" itemLabel="#{departamento.nomDepto}" />
+                        </h:selectOneMenu>
+                    </td>
+                    <td></td>
+                    <td><i:etiquetaRequerido value="&Aacute;rea" /></td>
+                    <td>
+                        <h:selectOneMenu id="lstAreas" value="#{puestosBackendBean.area}" style="height: 25px;padding-top: 3px;width: 300px;" requiredMessage="El Area del Puesto es un campo obligatorio"  styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE EL AREA]" />
+                            <f:selectItems value="#{puestosBackendBean.listaAreas}" var="areas" itemValue="#{areas.areasStaffPK.codArea}" itemLabel="#{areas.nomArea}" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td valign="top" ><i:etiquetaRequerido value="Descripci&oacute;n del Puesto " /></td>
+                    <td><p:inputTextarea id="txDescPuesto" value="#{puestosBackendBean.descripcion}" style="width: 300px;" label="Descripci&oacute;n del Puesto" autoResize="false" /></td>
+                    <td></td>
+                    <td valign="top" ><h:outputLabel value="Objetivo " style="font-weight: bold;" /></td>
+                    <td><p:inputTextarea id="txObjPuesto" value="#{puestosBackendBean.objetivo}" style="width: 300px;" label="Objetivo del Puesto" autoResize="false" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="4" >
+                        <p:commandButton id="cmdGuardar" type="push" value="Guardar" image="ui-icon ui-icon-disk" action="#{puestosBackendBean.guardar$crud$action()}"
+                                         update="principalForm:mensajes,txNombre,chkHExtras,chkHDobles,chkViaticos,chkComision,cnkInfConf,txSalarioMin,txSalarioMax,lstTipoPuesto,lstEstadoPuesto,lstDepartamentos,lstAreas,txDescPuesto,txObjPuesto" />  
+                    </td>
+                </tr>
+            </table>
+            <p:spacer height="10" />
+        </p:fieldset>
+
+        <p:fieldset id="fsConsulta" legend="Consulta de Puestos" rendered="#{(puestosBackendBean.estadoAccion eq 2)}" >
+
+            <p:spacer height="20" />
+            <p:dataTable id="tablaPuesto" paginatorAlwaysVisible="true"
+                         var="puesto" rows="5"  paginator="true" 
+                         rowStyleClass="#{puestosBackendBean.puestoSeleccionado eq puesto ? 'elementoSeleccionado': ''}"
+                         value="#{puestosBackendBean.listaPuestos}"
+                         emptyMessage="No se han encontrado Puestos."
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100" >
+                <f:facet name="header">
+                    <h:outputText value="Puestos"/>
+                </f:facet>
+
+                <p:column headerText="C&oacute;digo" >
+                    <h:outputLabel value="#{puesto.puestosPK.codPuesto}"/>
+                </p:column>
+
+                <p:column filterBy="#{puesto.nomPuesto}" 
+                          filterMatchMode="contains"
+                          headerText="Nombre del Puesto">
+                    <h:outputLabel value="#{puesto.nomPuesto}"/>
+                </p:column> 
+
+                <p:column filterBy="#{puesto.tipoPuesto.nomTipo}" 
+                          filterMatchMode="contains"
+                          headerText="Tipo Puesto">
+                    <h:outputLabel value="#{puesto.tipoPuesto.nomTipo}"/>
+                </p:column> 
+
+                <p:column filterBy="#{puesto.departamentos.nomDepto}" 
+                          filterMatchMode="contains"
+                          headerText="Departamento">
+                    <h:outputLabel value="#{puesto.departamentos.nomDepto}"/>
+                </p:column> 
+
+                <p:column filterBy="#{puesto.descripcionEstado}" 
+                          filterMatchMode="contains"
+                          headerText="Estado">
+                    <h:outputLabel value="#{puesto.descripcionEstado}"/>
+                </p:column> 
+
+                <p:column headerText="Seleccionar" >
+                    <p:commandButton  id="cmdSeleccionar" update="principalForm:panelAcciones,principalForm:tablaPuesto" image="ui-icon-circle-check" title="Seleccionar Campa&ntilde;a" >
+                        <f:setPropertyActionListener value="#{puesto}" target="#{puestosBackendBean.puestoSeleccionado}" /> 
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="Eliminar" >
+                    <p:commandButton title="Eliminar este puesto." update="tablaPuesto" image="ui-icon ui-icon-circle-minus" ajax="true" onclick="confirmation.show()">
+                        <f:setPropertyActionListener value="#{puesto}" target="#{puestosBackendBean.puestoSeleccionado}" /> 
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+            <p:spacer height="20" />    
+
+        </p:fieldset>
+
+        <p:fieldset legend="Editar Datos - Informaci&oacute;n del Puesto" rendered="#{(puestosBackendBean.estadoAccion eq 1)}" >
+            <p:spacer height="20" />
+
+            <table cellpadding="3px;"  width="100%"  >
+
+                <tr valign="middle" >
+                    <td><i:etiquetaRequerido value="Nombre" /></td>
+                    <td colspan="5" >
+                        <p:inputText id="txNombreED" value="#{puestosBackendBean.nombre}" maxlength="100" label="Nombre de Puesto" style="width: 100%;"/>
+                    </td>
+                </tr>
+
+                <tr valign="middle" >
+                    <td><h:outputLabel value="Opciones de Puesto" style="font-weight: bold;" /></td>
+                    <td colspan="5" >
+                        <h:panelGrid columns="6" >
+                            <h:panelGrid columns="2" >
+                                <h:selectBooleanCheckbox id="chkHExtrasED" label="Horas Extras" value="#{puestosBackendBean.horasExtras}" />
+                                <h:outputLabel value="Horas Extras" />
+                            </h:panelGrid>           
+
+                            <h:panelGrid columns="2" >
+                                <h:selectBooleanCheckbox id="chkHDoblesED" label="Horas Dobles" value="#{puestosBackendBean.horasDobles}" />
+                                <h:outputLabel value="Horas Dobles" />
+                            </h:panelGrid>
+
+                            <h:panelGrid columns="2" >
+                                <h:selectBooleanCheckbox id="chkViaticosED" label="Viaticos" value="#{puestosBackendBean.viaticos}" />
+                                <h:outputLabel value="Viaticos" />
+                            </h:panelGrid>              
+
+                            <h:panelGrid columns="2" >
+                                <h:selectBooleanCheckbox id="chkComisionED" label="Comisi&oacute;n" value="#{puestosBackendBean.comision}" />
+                                <h:outputLabel value="Comisi&oacute;n" />
+                            </h:panelGrid>              
+
+                            <h:panelGrid columns="2" >
+                                <h:selectBooleanCheckbox id="cnkInfConfED" value="#{puestosBackendBean.informacionConfidencial}"/>
+                                <h:outputLabel value="Informaci&oacute;n Confidencial" />
+                            </h:panelGrid>  
+                            <h:panelGrid columns="2" >
+                                <h:selectBooleanCheckbox id="chkJefaturaED" value="#{puestosBackendBean.jefatura}" />
+                                <h:outputLabel value="Jefatura" />
+                            </h:panelGrid>
+                        </h:panelGrid>
+                    </td>
+                </tr>
+                <tr>
+                    <td><i:etiquetaRequerido value="Salario Minimo #{SessionBeanEMP.compania.monedas.signo}" /></td>
+                    <td><p:inputText id="txSalarioMinED"   value="#{puestosBackendBean.salarioMinimo}"/></td>
+                    <td></td>
+                    <td><i:etiquetaRequerido value="Salario M&aacute;ximo #{SessionBeanEMP.compania.monedas.signo}" /></td>
+                    <td><p:inputText id="txSalarioMaxED"  value="#{puestosBackendBean.salarioMaximo}" /></td>
+                </tr>
+                <tr>
+                    <td><i:etiquetaRequerido value="Tipo Puesto" /></td>
+                    <td>
+                        <h:selectOneMenu id="lstTipoPuestoED" style="height: 25px;padding-top: 3px;width: 300px;" value="#{puestosBackendBean.tipoPuesto}" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE EL TIPO DE PUESTO]" />
+                            <f:selectItems value="#{puestosBackendBean.listaTipoPuesto}" var="tipoPuesto" itemValue="#{tipoPuesto.tipoPuestoPK.codTipoPuesto}" itemLabel="#{tipoPuesto.nomTipo}" />
+                        </h:selectOneMenu>
+                    </td>
+                    <td></td>
+                    <td><i:etiquetaRequerido value="Estado" /></td>
+                    <td>
+                        <h:selectOneMenu id="lstEstadoPuestoED" value="#{puestosBackendBean.estado}" style="height: 25px;padding-top: 3px;width: 300px;" required="true" requiredMessage="El Estado del Puesto es un campo obligatorio"  styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE EL ESTADO]" />
+                            <f:selectItem itemValue="A" itemLabel="ACTIVO" />
+                            <f:selectItem itemValue="I" itemLabel="INACTIVO" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                <tr>
+                    <td><i:etiquetaRequerido value="Departamento" /></td>
+                    <td>
+                        <h:selectOneMenu id="lstDepartamentosED" value="#{puestosBackendBean.departamento}" style="height: 25px;padding-top: 3px;width: 300px;" requiredMessage="El Departamento del Puesto es un campo obligatorio"  styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE EL DEPARTAMENTO]" />
+                            <f:selectItems value="#{puestosBackendBean.listaDepartamentos}" var="departamento" itemValue="#{departamento.departamentosPK.codDepto}" itemLabel="#{departamento.nomDepto}" />
+                        </h:selectOneMenu>
+                    </td>
+                    <td></td>
+                    <td><i:etiquetaRequerido value="&Aacute;rea" /></td>
+                    <td>
+                        <h:selectOneMenu id="lstAreasED" value="#{puestosBackendBean.area}" style="height: 25px;padding-top: 3px;width: 300px;" requiredMessage="El Area del Puesto es un campo obligatorio" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all">
+                            <f:selectItem itemValue="-1" itemLabel="[SELECCIONE EL AREA]" />
+                            <f:selectItems value="#{puestosBackendBean.listaAreas}" var="areas" itemValue="#{areas.areasStaffPK.codArea}" itemLabel="#{areas.nomArea}" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>        
+
+                <tr>
+                    <td valign="top" ><i:etiquetaRequerido value="Descripci&oacute;n del Puesto" /></td>
+                    <td><p:inputTextarea id="txDescPuestoED" value="#{puestosBackendBean.descripcion}" style="width: 300px;" label="Descripci&oacute;n del Puesto" autoResize="false" /></td>
+                    <td></td>
+                    <td valign="top" ><h:outputLabel value="Objetivo " style="font-weight: bold;" /></td>
+                    <td><p:inputTextarea id="txObjPuestoED" value="#{puestosBackendBean.objetivo}" style="width: 300px;" label="Objetivo del Puesto" autoResize="false" /></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="4" >
+                        <p:tabView id="tabFuncionesPerfiles" >
+                            <p:tab title="Funciones">
+                                <table width="100%" >
+                                    <tr>
+                                        <td width="90%" valign="top" >
+                                            <p:dataTable id="tablaFunciones" value="#{puestosBackendBean.funcionesPuesto}" var="funcion" emptyMessage="Aun no ha agregado funciones al puesto." >
+                                                <p:column headerText="Nombre" >
+                                                    <h:outputLabel value="#{funcion.nomFuncion}" />
+                                                </p:column>
+                                                <p:column style="width: 8%" headerText="Eliminar" >
+                                                    <p:commandButton  title="Eliminar Funci&oacute;n" image="ui-icon ui-icon-circle-minus" update="principalForm:mensajes,principalForm:tabFuncionesPerfiles,principalForm:tablaFunciones" action="#{puestosBackendBean.removerFuncion}" >
+                                                        <f:setPropertyActionListener value="#{funcion}" target="#{puestosBackendBean.funcionPuestoSeleccionado}" />
+                                                    </p:commandButton>
+                                                </p:column>
+                                            </p:dataTable>
+                                        </td>
+                                        <td width="10%" align="left" valign="top" >
+                                            <h:panelGroup>
+                                                <p:commandButton image="nuevo" title="Agregar" oncomplete="dlgFunciones.show();" />
+                                            </h:panelGroup>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p:tab>
+                            <p:tab title="Perfiles">
+                                <table width="100%" >
+                                    <tr>
+                                        <td width="90%" valign="top" >
+                                            <p:dataTable id="tablaPerfiles" value="#{puestosBackendBean.perfilesXPuesto}" var="perfil" emptyMessage="Aun no ha agregado perfiles al puesto." >
+                                                <p:column headerText="Nombre" >
+                                                    <h:outputLabel value="#{perfil.perfil.nomPerfil}" />
+                                                </p:column>
+                                                <p:column style="width: 8%" headerText="Eliminar" >
+                                                    <p:commandButton  title="Eliminar Perfil" image="ui-icon ui-icon-circle-minus" update="principalForm:mensajes,principalForm:tabFuncionesPerfiles,principalForm:tablaPerfiles" action="#{puestosBackendBean.removerPerfil}" >
+                                                        <f:setPropertyActionListener value="#{perfil}" target="#{puestosBackendBean.perfilxPuestoSeleccionado}" />
+                                                    </p:commandButton>
+                                                </p:column>
+                                            </p:dataTable>
+                                        </td>
+                                        <td width="10%" align="left" valign="top" >
+                                            <h:panelGroup>
+                                                <p:commandButton image="nuevo" title="Agregar" oncomplete="dlgPerfiles.show();" />
+                                            </h:panelGroup>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p:tab>
+                        </p:tabView>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td colspan="4" >
+                        <p:commandButton id="cmdModificar" type="push" value="Guardar" image="ui-icon ui-icon-disk" action="#{puestosBackendBean.guardar$crud$action()}"
+                                         update="principalForm:mensajes,txNombreED,chkHExtrasED,chkHDoblesED,chkViaticosED,chkComisionED,cnkInfConfED,txSalarioMinED,txSalarioMaxED,lstTipoPuestoED,lstEstadoPuestoED,lstDepartamentosED,lstAreasED,txDescPuestoED,txObjPuestoED" />  
+                    </td>
+                </tr>
+
+            </table>
+            <p:spacer height="20" />
+        </p:fieldset>
+
+        <p:fieldset id="fsCriterios" legend="Criterios Aplicados" rendered="#{(puestosBackendBean.estadoAccion eq 3)}" >
+            <p:spacer height="5" />
+            <h:panelGrid columns="2" >
+                <h:outputLabel value="Puesto Seleccionado: " style="font-weight: bold;" />
+                <h:outputLabel value="#{puestosBackendBean.puestoSeleccionado.nomPuesto}"/>
+            </h:panelGrid>
+            <p:spacer height="5" />
+            <p:dataTable id="tablaCriteriosXPuesto" paginatorAlwaysVisible="true"
+                         var="criteriosXpuesto" rows="5"  paginator="true" 
+                         value="#{puestosBackendBean.listaCriteriosXPuestos}"
+                         emptyMessage="No se han registrado Criterios para este puesto."
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100" >
+
+                <f:facet name="header">
+                    <h:outputText value="Criterios por Puesto"/>
+                </f:facet>
+
+                <p:column headerText="C&oacute;digo" sortBy="#{criteriosXpuesto.criterio.criterioPK.codigo}" style="width: 8%;">
+                    <h:outputLabel value="#{criteriosXpuesto.criterio.criterioPK.codigo}"/>
+                </p:column>
+
+                <p:column headerText="Nombre" sortBy="#{criteriosXpuesto.criterio.nombre}">
+                    <h:outputLabel value="#{criteriosXpuesto.criterio.nombre}"/>
+                </p:column>
+
+                <p:column headerText="Remover" style="width: 8%;">
+                    <p:commandButton image="ui-icon ui-icon-circle-minus" ajax="true" oncomplete="criterioDialog.show()" title="Remover criterio" >
+                        <f:setPropertyActionListener value="#{criteriosXpuesto}" target="#{puestosBackendBean.criterioXPuestoSeleccionado}" /> 
+                    </p:commandButton>
+                </p:column>
+
+                <f:facet name="footer">
+                    <p:commandButton value="Agregar criterios" image="ui-icon-circle-plus" ajax="true" oncomplete="dialogCriterio.show()">
+                        <f:setPropertyActionListener value="#{criteriosXpuesto}" target="#{puestosBackendBean.criterioXPuestoSeleccionado}" /> 
+                    </p:commandButton>
+                </f:facet>
+
+            </p:dataTable>
+
+            <p:spacer height="20" />    
+
+        </p:fieldset>
+    </ui:define>
+
+</ui:composition>

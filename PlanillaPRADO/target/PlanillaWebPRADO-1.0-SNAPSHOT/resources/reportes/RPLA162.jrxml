@@ -1,0 +1,598 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPLA162" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c9849f5a-5d7f-4605-9d66-dbac220fd660">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<parameter name="CIA" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ANIO" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[(
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        NVL(COUNT(*)/2,0) PERSONAL,
+        --NVL(SUM (A.TOT_DEBENGA),0) PAYROLL,
+	--NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + 	NVL(A.D_NOCTURNIDAD,0))),0) CHEXTRA,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) VEXTRA,
+        'PERSONAL' T
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA <= C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        --NVL(COUNT(*)/2,0) PERSONAL,
+        NVL(SUM (A.TOT_DEBENGA),0) PAYROLL,
+	--NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + 	NVL(A.D_NOCTURNIDAD,0))),0) CHEXTRA,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) VEXTRA,
+        'PAYROLL' T
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA <= C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        --NVL(COUNT(*)/2,0) PERSONAL,
+        --NVL(SUM (A.TOT_DEBENGA),0) PAYROLL,
+	NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + 	NVL(A.D_NOCTURNIDAD,0))),0) CHEXTRA,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) VEXTRA,
+        'CHEXTRA' T
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA <= C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        --NVL(COUNT(*)/2,0) PERSONAL,
+        --NVL(SUM (A.TOT_DEBENGA),0) PAYROLL,
+	--NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + 	NVL(A.D_NOCTURNIDAD,0))),0) CHEXTRA,
+        NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) VEXTRA,
+        'VEXTRA' T
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA <= C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+)
+UNION ALL
+(
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        NVL(COUNT(*),0) PERSONAL,
+        --NVL(SUM (A.TOT_DEBENGA),0) PAYROLL,
+        --NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CHEXTRA,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) VEXTRA,
+        'PERSONAL' T
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA > C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        --NVL(COUNT(*),0) PERSONAL,
+        NVL(SUM (A.TOT_DEBENGA),0) PAYROLL,
+        --NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CHEXTRA,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) VEXTRA,
+        'PAYROLL' T
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA > C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        --NVL(COUNT(*),0) PERSONAL,
+        --NVL(SUM (A.TOT_DEBENGA),0) PAYROLL,
+        NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CHEXTRA,
+        --NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) VEXTRA,
+        'CHEXTRA' T
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA > C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+UNION ALL
+SELECT
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        TO_CHAR(B.MES_NUMERO, '00') || '-' || (SUBSTR(B.MES_LETRA,0, 3)||'-'||SUBSTR(TO_CHAR($P{ANIO}),3)) MES,
+        --NVL(COUNT(*),0) PERSONAL,
+        --NVL(SUM (A.TOT_DEBENGA),0) PAYROLL,
+        --NVL(SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0))),0) CHEXTRA,
+        NVL(SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0))),0) VEXTRA,
+        'VEXTRA' T
+FROM
+        PLANILLA A,
+        MESES B,
+        CIAS C
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0,A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO}
+        AND     A.MES = B.MES_NUMERO
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = C.COD_CIA
+        AND     A.FECHA > C.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO,
+        B.MES_NUMERO,
+        B.MES_LETRA
+)
+UNION ALL
+(
+SELECT
+        A.COD_CIA,
+        $P{ANIO},
+        0,
+        ('PROM ' || ($P{ANIO} - 1)) PROM,
+        NVL(ROUND((COUNT(A.COD_EMP))/12),0)/2 PERSONAL,
+        --NVL((SUM (A.TOT_DEBENGA))/12,0) PAYROLL,
+        --NVL((SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0)))/12),0) CHEXTRA,
+        --NVL((SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0)))/12),0) VEXTRA,
+        'PERSONAL' T
+FROM
+        PLANILLA A,
+        CIAS B
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO} - 1
+        AND     A.COD_CIA = B.COD_CIA
+        AND     A.FECHA <=  B.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO
+UNION ALL
+SELECT
+        A.COD_CIA,
+        $P{ANIO},
+        0,
+        ('PROM ' || ($P{ANIO} - 1)) PROM,
+        --NVL(ROUND((COUNT(A.COD_EMP))/12),0)/2 PERSONAL,
+        NVL((SUM (A.TOT_DEBENGA))/12,0) PAYROLL,
+        --NVL((SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0)))/12),0) CHEXTRA,
+        --NVL((SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0)))/12),0) VEXTRA,
+        'PAYROLL' T
+FROM
+        PLANILLA A,
+        CIAS B
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO} - 1
+        AND     A.COD_CIA = B.COD_CIA
+        AND     A.FECHA <=  B.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO
+UNION ALL
+SELECT
+        A.COD_CIA,
+        $P{ANIO},
+        0,
+        ('PROM ' || ($P{ANIO} - 1)) PROM,
+        --NVL(ROUND((COUNT(A.COD_EMP))/12),0)/2 PERSONAL,
+        --NVL((SUM (A.TOT_DEBENGA))/12,0) PAYROLL,
+        NVL((SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0)))/12),0) CHEXTRA,
+        --NVL((SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0)))/12),0) VEXTRA,
+        'CHEXTRA' T
+FROM
+        PLANILLA A,
+        CIAS B
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO} - 1
+        AND     A.COD_CIA = B.COD_CIA
+        AND     A.FECHA <=  B.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO
+UNION ALL
+SELECT
+        A.COD_CIA,
+        $P{ANIO},
+        0,
+        ('PROM ' || ($P{ANIO} - 1)) PROM,
+        --NVL(ROUND((COUNT(A.COD_EMP))/12),0)/2 PERSONAL,
+        --NVL((SUM (A.TOT_DEBENGA))/12,0) PAYROLL,
+        --NVL((SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0)))/12),0) CHEXTRA,
+        NVL((SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0)))/12),0) VEXTRA,
+        'VEXTRA' T
+FROM
+        PLANILLA A,
+        CIAS B
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO} - 1
+        AND     A.COD_CIA = B.COD_CIA
+        AND     A.FECHA <=  B.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA,
+        A.ANIO
+)
+UNION ALL
+(
+SELECT
+        A.COD_CIA,
+        $P{ANIO},
+        0,
+        ('PROM ' || ($P{ANIO} - 1)) PROM,
+        NVL(ROUND((COUNT(A.COD_EMP))/12),0) PERSONAL,
+        --NVL((SUM (A.TOT_DEBENGA))/12,0) PAYROLL,
+        --NVL((SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0)))/12),0) CHEXTRA,
+        --NVL((SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0)))/12),0) VEXTRA,
+        'PERSONAL' T
+FROM
+        PLANILLA A,
+        CIAS B
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO} - 1
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = B.COD_CIA
+        AND     A.FECHA > B.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA, A.ANIO
+UNION ALL
+SELECT
+        A.COD_CIA,
+        $P{ANIO},
+        0,
+        ('PROM ' || ($P{ANIO} - 1)) PROM,
+        --NVL(ROUND((COUNT(A.COD_EMP))/12),0) PERSONAL,
+        NVL((SUM (A.TOT_DEBENGA))/12,0) PAYROLL,
+        --NVL((SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0)))/12),0) CHEXTRA,
+        --NVL((SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0)))/12),0) VEXTRA,
+        'PAYROLL' T
+FROM
+        PLANILLA A,
+        CIAS B
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO} - 1
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = B.COD_CIA
+        AND     A.FECHA > B.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA, A.ANIO
+UNION ALL
+SELECT
+        A.COD_CIA,
+        $P{ANIO},
+        0,
+        ('PROM ' || ($P{ANIO} - 1)) PROM,
+        --NVL(ROUND((COUNT(A.COD_EMP))/12),0) PERSONAL,
+        --NVL((SUM (A.TOT_DEBENGA))/12,0) PAYROLL,
+        NVL((SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0)))/12),0) CHEXTRA,
+        --NVL((SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0)))/12),0) VEXTRA,
+        'CHEXTRA' T
+FROM
+        PLANILLA A,
+        CIAS B
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO} - 1
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = B.COD_CIA
+        AND     A.FECHA > B.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA, A.ANIO
+UNION ALL
+SELECT
+        A.COD_CIA,
+        $P{ANIO},
+        0,
+        ('PROM ' || ($P{ANIO} - 1)) PROM,
+        --NVL(ROUND((COUNT(A.COD_EMP))/12),0) PERSONAL,
+        --NVL((SUM (A.TOT_DEBENGA))/12,0) PAYROLL,
+        --NVL((SUM((NVL(A.CH_XSENCILLA,0)+NVL(A.CH_XDOBLE,0)+NVL(A.CH_X250,0)+NVL(A.CH_X150,0) + NVL(A.D_NOCTURNIDAD,0)))/12),0) CHEXTRA,
+        NVL((SUM((NVL(A.VH_XSENCILLA,0) + NVL(A.VH_XDOBLE,0) +NVL(A.VH_X250,0)+NVL(A.VH_X150,0)+ NVL(A.CH_HD_NOCTURNIDAD,0)))/12),0) VEXTRA,
+        'VEXTRA' T
+FROM
+        PLANILLA A,
+        CIAS B
+WHERE
+                A.COD_CIA = DECODE($P{CIA}, 0, A.COD_CIA, $P{CIA})
+        AND     A.ANIO = $P{ANIO} - 1
+        AND     A.NUM_PLANILLA = 2
+        AND     A.COD_CIA = B.COD_CIA
+        AND     A.FECHA > B.FEC_INICIO_OPERACION
+GROUP BY
+        A.COD_CIA, A.ANIO
+)]]>
+	</queryString>
+	<field name="COD_CIA" class="java.math.BigDecimal"/>
+	<field name="ANIO" class="java.math.BigDecimal"/>
+	<field name="MES_NUMERO" class="java.math.BigDecimal"/>
+	<field name="MES" class="java.lang.String"/>
+	<field name="PERSONAL" class="java.math.BigDecimal"/>
+	<field name="T" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d08907c5-3f81-4d61-8f7d-1f89ab3ed3c9" x="0" y="0" width="752" height="26"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Reporte Gerencial]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="91e5cb20-e64d-4b9f-bb7c-661020fa1af4" x="0" y="0" width="39" height="20"/>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy HH:mm:ss">
+				<reportElement uuid="18e9cb83-3a98-43be-ac14-470aeba56ca6" x="39" y="0" width="151" height="20"/>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cc6512dd-d8bc-434d-9bdb-d81c79398cd7" x="194" y="0" width="362" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["AÑO " + $P{ANIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f26b8c25-1c09-4c85-8ec4-e7da69425f8d" x="632" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="a6388daa-ceb7-4e0d-8d35-428a1fb6ed80" x="712" y="0" width="40" height="20"/>
+				<textElement>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="48" splitType="Stretch">
+			<crosstab>
+				<reportElement uuid="22607ac8-d275-45a7-8f02-2285d5eff348" x="0" y="0" width="752" height="48"/>
+				<rowGroup name="T" width="70">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{T}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#EEEEEE" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="86f520b2-283f-46f3-9a3b-13b839e2d60c" style="Crosstab Data Text" x="0" y="0" width="70" height="25"/>
+								<textElement verticalAlignment="Middle">
+									<font size="8" isBold="true"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{T}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="MES" height="30">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{MES}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#A3B8CC" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="69d51dd4-55da-4792-a69a-81a18584043a" style="Crosstab Data Text" x="0" y="0" width="50" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="6" isBold="true"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{MES}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="PERSONALMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{PERSONAL}]]></measureExpression>
+				</measure>
+				<crosstabCell width="50" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField pattern="#,##0.00;-#,##0.00">
+							<reportElement uuid="2d598426-1aa0-4e27-a2e3-b4ba6a69ce4a" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement verticalAlignment="Middle">
+								<font size="6"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PERSONALMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="25" rowTotalGroup="T">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="050c1849-3118-4448-b6f9-bee46cc139f7" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PERSONALMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="MES">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="938301f1-c265-4545-84b3-fdaed712e9a5" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PERSONALMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="T" columnTotalGroup="MES">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="ba1ae56d-a6f4-4a56-b2fe-066eb3e8ce77" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{PERSONALMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

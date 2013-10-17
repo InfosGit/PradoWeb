@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RPLA161" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0dabd95-2442-4375-b883-fb6ac82f7060">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Crosstab Data Text" hAlign="Center">
+		<paragraph lineSpacing="Single"/>
+	</style>
+	<parameter name="CIA" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ANIO" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+        1 ORDEN,
+        'INICIAL' CONCEPTO,
+        TO_CHAR(B.MES_NUMERO, '00') MES,
+        SUM(DECODE(GREATEST(ADD_MONTHS(TO_DATE('0101'||$P{ANIO},'DDMMYYYY'),B.MES_NUMERO-1)-1, A.FEC_INGRESO),
+        ADD_MONTHS(TO_DATE('0101'||$P{ANIO},'DDMMYYYY')-1,B.MES_NUMERO-1),1,0))-(SELECT NVL(COUNT(*),0)
+FROM
+        EMPLEADOS
+WHERE
+                FEC_SALIDA < TO_DATE('01'||TO_CHAR(B.MES_NUMERO,'00')||TO_CHAR($P{ANIO},'0000'),'DDMMYYYY')
+        AND     COD_CIA = DECODE($P{CIA}, 0, COD_CIA, $P{CIA})) CANTIDAD
+FROM
+        EMPLEADOS A,
+        MESES B
+WHERE
+                COD_CIA = DECODE($P{CIA}, 0, COD_CIA, $P{CIA})
+        AND     TO_CHAR(FEC_INGRESO,'YYYY') <= $P{ANIO}
+	and b.MES_NUMERO < 13
+GROUP BY
+        B.MES_NUMERO
+
+UNION ALL
+
+SELECT
+        2 ORDEN,
+        'ALTAS' CONCEPTO,
+        TO_CHAR(TO_CHAR(FEC_INGRESO,'MM'), '00') MES,
+        NVL(COUNT(*),0) ALTAS
+FROM
+        EMPLEADOS
+WHERE
+                TO_CHAR(FEC_INGRESO,'YYYY') = $P{ANIO}
+        AND     COD_CIA = DECODE($P{CIA}, 0, COD_CIA, $P{CIA})
+GROUP BY
+        TO_CHAR(FEC_INGRESO,'MM')
+
+UNION ALL
+
+SELECT
+        3 ORDEN,
+        'BAJAS' CONCEPTO,
+        TO_CHAR(TO_CHAR(FEC_SALIDA,'MM'), '00') MES,
+        NVL(-COUNT(*),0) BAJAS
+FROM
+        EMPLEADOS
+WHERE
+                TO_CHAR(FEC_SALIDA,'YYYY') = $P{ANIO}
+        AND     COD_CIA = DECODE($P{CIA}, 0, COD_CIA, $P{CIA})
+GROUP BY
+        TO_CHAR(FEC_SALIDA,'MM')
+ORDER BY 1, 2, 3]]>
+	</queryString>
+	<field name="ORDEN" class="java.math.BigDecimal"/>
+	<field name="CONCEPTO" class="java.lang.String"/>
+	<field name="MES" class="java.lang.String"/>
+	<field name="CANTIDAD" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="52d90267-8440-4196-8c46-dfc7dd36b142" x="0" y="0" width="572" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE ROTACIÓN]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="03e93531-637c-4c9c-84da-aef4f8a25c57" x="0" y="22" width="572" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="708845fb-3ac0-4fd6-b821-c0030b490aeb" x="165" y="0" width="241" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["AÑO " + $P{ANIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm:ss">
+				<reportElement uuid="8d85229a-a3bc-4d68-b6fd-edcf2d1764f5" x="36" y="0" width="129" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="dccc3c9d-5fb1-4468-9c51-4ba2cf1750dc" x="0" y="0" width="36" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="44a484c4-5bd8-412e-a435-250b87d48726" x="452" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="787abc3b-3a4f-455a-88bc-5c88545cefe2" x="532" y="0" width="40" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="94" splitType="Stretch">
+			<crosstab>
+				<reportElement uuid="4f9ef2b7-1761-476c-9b71-66f61b4fd0e5" x="0" y="0" width="572" height="94"/>
+				<rowGroup name="CONCEPTO" width="70" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{CONCEPTO}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#EEEEEE" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="e34213cf-3133-4598-afad-c9447b40190d" style="Crosstab Data Text" x="0" y="0" width="70" height="25"/>
+								<textElement verticalAlignment="Middle">
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{CONCEPTO}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#6382BF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<staticText>
+								<reportElement uuid="137c656c-9050-43d4-9eb0-6168e0bd42da" x="0" y="0" width="70" height="25" forecolor="#FFFFFF"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="MES" height="30">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{MES}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#B8CFE5" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+							</box>
+							<textField>
+								<reportElement uuid="0c6d7e52-bcf5-498c-ab09-7a351698c411" style="Crosstab Data Text" x="0" y="0" width="41" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{MES}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="CANTIDADMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{CANTIDAD}]]></measureExpression>
+				</measure>
+				<crosstabCell width="41" height="25">
+					<cellContents>
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="25d3b96f-8b78-4932-936e-79ad05daff20" style="Crosstab Data Text" x="0" y="0" width="41" height="25"/>
+							<textElement verticalAlignment="Middle">
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{CANTIDADMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="41" height="25" rowTotalGroup="CONCEPTO">
+					<cellContents backcolor="#6382BF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="48d0962a-f08c-4100-8b35-d61a7f1a5cca" style="Crosstab Data Text" x="0" y="0" width="41" height="25" forecolor="#FFFFFF"/>
+							<textElement verticalAlignment="Middle">
+								<font isBold="true"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{CANTIDADMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="MES">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="d1a3ddb8-9344-4abd-8ad1-2ae1ea1619c1" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{CANTIDADMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="CONCEPTO" columnTotalGroup="MES">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
+						</box>
+						<textField>
+							<reportElement uuid="053519c5-05c8-481b-8c18-68cbf8e04ba2" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{CANTIDADMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

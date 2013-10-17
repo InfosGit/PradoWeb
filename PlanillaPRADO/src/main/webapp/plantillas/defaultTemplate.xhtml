@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/css/default.css"  rel="stylesheet" type="text/css"/>
+        <link href="#{facesContext.externalContext.requestContextPath}/resources/css/imagenes.css" rel="stylesheet" type="text/css"/>
+        <title><h:outputText value="Infosweb RH - "/><ui:insert name="titulo" /></title>
+    </h:head>
+    <h:body>
+        <h:form id="principalForm" prependId="true">
+            <p:growl id="mensajes" showDetail="true" showSummary="true"/>
+            <p:panel style="padding: 0px; border: none;">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tr>
+                        <td width="200" align="left">
+                            <h:graphicImage url="/resources/imagenes/infosgroup.png" width="150" height="40"/>
+                        </td>
+                        <td width="300" align="left">
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Powered by Glassfish"/>
+                                <h:graphicImage url="/resources/imagenes/glassfish.png"/>
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:outputText value="Bienvenido"/>
+                            <p:spacer width="5"/>
+                            <h:outputText value="#{SessionBeanEMP.empleadoSesion.nombres} #{SessionBeanEMP.empleadoSesion.apellidos}" style="font-weight: bold;"/>
+                        </td>
+                        <td width="15%" align="right">
+                            <p:ajaxStatus>
+                                <f:facet name="start">
+                                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                        <tr>
+                                            <td align="right">
+                                                <h:graphicImage url="/resources/imagenes/ajax_loader_large.gif" width="24" height="24"/>
+                                            </td>
+                                            <td><p:spacer width="5"/></td>
+                                            <td align="left">
+                                                <h:outputText value="Espere un momento..." style="font-size: 8pt; color:black;"/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </f:facet>
+                                <f:facet name="complete">
+                                    <h:outputText/>
+                                </f:facet>
+                            </p:ajaxStatus>
+                        </td>
+                        <td width="18%;">
+                            <p:commandButton value="Opciones" image="ui-icon ui-icon-wrench" oncomplete="dialogOpciones.show();"/>
+                            <p:spacer width="5"/>
+                            <p:commandButton value="Cerrar sesi&oacute;n" image="ui-icon ui-icon-locked" oncomplete="cerrarSessionDialog.show();"/>
+                            <p:dialog id="dialogOpciones" widgetVar="dialogOpciones" header="Opciones" closable="true" draggable="true" resizable="false" closeOnEscape="true" hideEffect="zoom" showEffect="zoom" modal="true" height="150" width="500">
+
+                                <h:panelGrid columns="1" style="width: 100%;">
+                                    <h:outputText value="Seleccione el aspecto visual que desea aplicar al entorno."/>
+                                </h:panelGrid>
+
+                                <h:panelGrid columns="2" style="width: 100%" >
+                                    <h:outputText value="Tema"/>
+                                    <p:themeSwitcher width="400"/>
+                                    <h:panelGroup />
+                                    <p:commandButton value="Aceptar" oncomplete="dialogOpciones.hide();" />
+                                </h:panelGrid>
+
+                            </p:dialog>
+                            <p:dialog id="cerrarSessionDialog" widgetVar="cerrarSessionDialog" header="Portal de Recursos Humanos" closable="true" draggable="true" resizable="false" closeOnEscape="true" hideEffect="zoom" showEffect="zoom" modal="true" width="400">
+                                <h:panelGrid columns="2" width="100%">
+                                    <p:graphicImage width="64" height="64" url="/resources/imagenes/64/dialog-question.png"/>
+                                    <h:outputText value="¿Confirma que desea cerrar sesi&oacute;n?"/>
+                                </h:panelGrid>
+                                <p:separator/>
+                                <h:panelGrid columns="2">
+                                    <p:commandButton value="Aceptar"  image="ui-icon ui-icon-circle-check" action="#{index.cerrarSesion$action}" immediate="true"/>
+                                    <p:commandButton value="Cancelar" image="ui-icon ui-icon-circle-close" onclick="cerrarSessionDialog.hide();" immediate="true"/>
+                                </h:panelGrid>
+                            </p:dialog>
+                            <ui:insert name="dialogos"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <p:menubar id="menuBar1" model="#{menu.menuModel}"/>
+                        </td>
+                    </tr>
+                </table>
+            </p:panel>
+            <p:spacer height="5"/>
+            <p:panel style="padding:0px; border:none;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                    <tr>
+                        <td id="accionesTD">
+                            <p:panel id="panelAcciones" header="Acciones" style="text-align: left;">
+                                <p:accordionPanel  >
+                                    <ui:insert name="acciones">
+                                        <h:outputText value=""/>
+                                    </ui:insert>
+                                </p:accordionPanel>
+                            </p:panel>
+                        </td>
+                        <td id="contenidoTD">
+                            <p:panel id="panelContenido">
+                                <f:facet name="header">
+                                    <ui:insert name="titulo">
+                                        <h:outputText value=""/>
+                                    </ui:insert>
+                                </f:facet>
+                                <ui:insert name="contenido">
+                                    <h:outputText value=""/>
+                                </ui:insert>
+                            </p:panel>
+                        </td>
+                    </tr>
+                </table>
+            </p:panel>
+            <p:spacer height="5"/>
+            <p:panel style="padding:0px; text-align:center;">
+                <h:outputText value="&copy; 2012 Infosgroup - El Salvador"/>
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>

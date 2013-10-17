@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/plantillas/defaultTemplate.xhtml"
+                xmlns:i="http://java.sun.com/jsf/composite/components/presentacion"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <!-- ==== -->
+    <ui:define name="titulo">
+        <h:outputText value="Reporte de personal"/>
+    </ui:define>
+    <!-- ==== -->
+    <ui:define name="acciones">
+        <p:tab title="Reporte">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu" ajax="false" action="#{reportes$reportePersonal.generarReporte$action}">
+                    <p:graphicImage value="/resources/iconos/document-pdf.png"/>
+                    <h:outputText value="Generar reporte" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>          
+        <p:tab title="Otras acciones">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu" ajax="true" action="#{reportes$reportePersonal.inicio$action}">
+                    <p:graphicImage value="/resources/iconos/application-exit.png"/>
+                    <h:outputText value="Cancelar" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+    </ui:define>
+    <!-- ==== -->
+    <ui:define name="contenido">
+        <h:panelGrid columns="2">
+            <h:outputText value="Gerencia"/>
+            <h:selectOneMenu valueChangeListener="#{reportes$reportePersonal.gerencias$valueChangeListener}" value="#{reportes$reportePersonal.gerencia}" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all" style="width: 300px;">
+                <f:selectItem itemValue="0" itemLabel="[TODAS]"/>
+                <f:selectItems value="#{reportes$reportePersonal.listaGerencias}" var="gerencia" itemValue="#{gerencia.gerenciaPK.codGerencia}" itemLabel="#{gerencia.nomGerencia}"/>
+                <f:ajax event="valueChange" render="listaDepartamentos"/>
+            </h:selectOneMenu>
+            <h:outputText value="Departamento"/>
+            <h:selectOneMenu id="listaDepartamentos" value="#{reportes$reportePersonal.departamento}" styleClass="ui-widget ui-inputfield ui-state-default ui-corner-all" style="width: 300px;">
+                <f:selectItem itemValue="0" itemLabel="[TODOS]"/>
+                <f:selectItems value="#{reportes$reportePersonal.listaDepartamentos}" var="departamento" itemValue="#{departamento.departamentosPK.codDepto}" itemLabel="#{departamento.nomDepto}"/>
+            </h:selectOneMenu>
+            <h:outputText value="A&ntilde;o"/>
+            <p:spinner min="1900" max="3000" stepFactor="1" value="#{reportes$reportePersonal.anio}"/>
+        </h:panelGrid>
+    </ui:define>
+    <!-- ==== -->
+</ui:composition>

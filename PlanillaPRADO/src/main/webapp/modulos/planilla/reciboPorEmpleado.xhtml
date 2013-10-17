@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition
+    template="/plantillas/defaultTemplate.xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"                
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:p="http://primefaces.prime.com.tr/ui"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:i="http://java.sun.com/jsf/composite/components/presentacion" 
+    xmlns:d="http://java.sun.com/jsf/composite/components/dialogo" >
+
+    <ui:define name="titulo">
+        <h:outputText value="Recibos Por Empleado"/>
+    </ui:define>
+
+    <ui:define name="acciones">
+        <p:tab title="Acciones">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu" ajax="false" action="#{planilla$reciboPorEmpleado.mostrar$reporte$action}" update="principalForm:mensajes">
+                    <p:graphicImage value="/resources/iconos/document-pdf.png"/>
+                    <h:outputText value="Mostrar boleta" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Otras acciones">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu textoNormal" ajax="true" action="#{planilla$reciboPorEmpleado.inicio$action}" update="principalForm:mensajes" onmouseover="this.className='opcionMenu textonegrita';" onmouseout="this.className='opcionMenu textonormal';">
+                    <p:graphicImage value="/resources/iconos/application-exit.png"/>
+                    <h:outputText value="Cancelar" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <p:spacer height="15" />
+        <p:panel id="panelInformacionPagos" style="border: none;" >
+            <table width="100%">
+                <tr>
+                    <td>
+                        <h:panelGrid columns="2" >
+
+                            <h:outputLabel value="Empleado " style="font-weight: bold;" />
+                            <h:panelGroup>
+                                <h:outputLabel id="lblNombreEmpleado" value="#{planilla$reciboPorEmpleado.empleado.nombreCompleto}" style=" font-weight: bold"/>
+                                <p:spacer width="15" rendered="#{request.isUserInRole('rrhh')}" />
+
+                                <p:commandLink styleClass="opcionMenu" oncomplete="dlgReciboEmpleados.show();" style="color:blue" rendered="#{request.isUserInRole('rrhh')}">
+                                    <p:graphicImage value="/resources/iconos/personal.png"/>
+                                    <h:outputText value="Seleccionar otro empleado" styleClass="espacioTexto" />
+                                </p:commandLink>
+
+                                <d:dialogoEmpleados name="dlgReciboEmpleados" title="Listado general de Empleados" information="Seleccione un empleado."
+                                                    selection="#{planilla$reciboPorEmpleado.empleado}" image="/resources/imagenes/64/meeting-participant.png"
+                                                    update="principalForm:mensajes,principalForm:lblNombreEmpleado,principalForm:AutCompltEmpleado,principalForm:panelInformacionPagos" 
+                                                    okAction="#{planilla$reciboPorEmpleado.okActionDialogEmpleado}"
+                                                    cancelAction="#{planilla$reciboPorEmpleado.cancelActionDialogEmpleado}"/>
+                            </h:panelGroup>
+
+                            <i:etiquetaRequerido value="Tipo de planilla" />
+                            <h:selectOneMenu id="LstTipoPlanilla" style="height: 25px;padding-top: 3px;width: 300px;" label="Tipo Planilla" value="#{planilla$reciboPorEmpleado.tipoPlanilla}" >                       
+                                <f:ajax render="AutCompltEmpleado panelInformacionPagos principalForm:mensajes" event="change" execute="LstTipoPlanilla" listener="#{planilla$reciboPorEmpleado.updateByTipoPlanilla}" />
+                                <f:selectItem itemValue="-1" itemLabel="[ SELECCIONE TIPO PLANILLA ]" />
+                                <f:selectItems value="#{planilla$reciboPorEmpleado.listaTipos}" var="tipo" itemValue="#{tipo.tiposPlanillaPK.codTipopla}" itemLabel="#{tipo.nomTipopla}"/>
+                            </h:selectOneMenu>
+                            <i:etiquetaRequerido value="Planilla" />
+                            <h:panelGroup>
+                                <h:panelGrid columns="1">
+                                    <p:autoComplete id="AutCompltEmpleado" var="planilla" 
+                                                    value="#{planilla$reciboPorEmpleado.planillaSeleccionada}"
+                                                    itemValue="#{planilla.pkAsString}" itemLabel="#{planilla.planillaToString}"
+                                                    completeMethod="#{planilla$reciboPorEmpleado.completePlanillaEmpleado}"
+                                                    converter="#{planilla$reciboPorEmpleado.planillaConverter}" 
+                                                    selectListener="#{planilla$reciboPorEmpleado.handleSelectPlanilla}"
+                                                    onSelectUpdate="tbIng,tbEgr,panelDescripcion"
+                                                    style="width: 300px;"  >
+                                    </p:autoComplete>
+                                    <i:etiquetaPlanilla/>
+                                </h:panelGrid>
+                            </h:panelGroup>
+                        </h:panelGrid>
+                    </td>
+                    <td>
+                        <p:panel>
+                            <h:panelGrid id="panelDescripcion" columns="2" style="padding-left: 0;" >
+                                <i:etiquetaMoneda label="Sueldo Base: " value="#{planilla$reciboPorEmpleado.planillaSeleccionada ne null ? planilla$reciboPorEmpleado.planillaSeleccionada.sueldoBase : '0.00'}" />
+                                <i:etiquetaMoneda label="Prestaciones: " value="#{planilla$reciboPorEmpleado.planillaSeleccionada ne null ? planilla$reciboPorEmpleado.planillaSeleccionada.prestaciones : '0.00'}" />
+                                <i:etiquetaMoneda label="Deducciones: "  value="#{planilla$reciboPorEmpleado.planillaSeleccionada ne null ? planilla$reciboPorEmpleado.planillaSeleccionada.deducciones : '0.00'}" />
+                                <i:etiquetaMoneda label="Total: " value="#{ planilla$reciboPorEmpleado.planillaSeleccionada ne null ? planilla$reciboPorEmpleado.planillaSeleccionada.liqRecibir : '0.00'}" />
+                            </h:panelGrid>
+                        </p:panel>
+                    </td>
+                </tr>
+            </table>
+
+            <table width="100%" border="0">
+                <tr valign="top">
+                    <td width="50%">
+                        <p:dataTable emptyMessage="No se han encontrado Ingresos" value="#{planilla$reciboPorEmpleado.listaPrestaciones}" var="ingreso" id="tbIng">
+                            <f:facet name="header">
+                                <h:outputText value="Ingresos"/>
+                            </f:facet>
+                            <p:column headerText="Descripci&oacute;n">
+                                <h:outputText value="#{ingreso.deducPresta.desDp}"/>
+                                <f:facet name="footer" >
+                                    <h:outputLabel value="Total" />
+                                </f:facet>
+                            </p:column>
+                            <p:column headerText="Cantidad" style="text-align: right">
+                                <h:outputText value="#{ingreso.valor}">
+                                    <f:convertNumber pattern="#,##0.00" maxFractionDigits="2" currencySymbol="$"/>
+                                </h:outputText>
+                                <f:facet name="footer" >
+                                    <h:outputLabel value="#{planilla$reciboPorEmpleado.totalPrestaciones}" >
+                                        <f:convertNumber pattern="#,##0.00" maxFractionDigits="2"/>
+                                    </h:outputLabel>
+                                </f:facet>
+                            </p:column>
+                        </p:dataTable>
+                    </td>
+                    <td width="50%">
+                        <p:dataTable emptyMessage="No se han encontrado Egresos" value="#{planilla$reciboPorEmpleado.listaDeducciones}" var="egreso" id="tbEgr">
+                            <f:facet name="header">
+                                <h:outputText value="Egresos"/>
+                            </f:facet>
+                            <p:column headerText="Descripci&oacute;n">
+                                <h:outputText value="#{egreso.deducPresta.desDp}"/>
+                                <f:facet name="footer" >
+                                    <h:outputLabel value="Total" />
+                                </f:facet>
+                            </p:column>
+                            <p:column headerText="Cantidad" style="text-align: right">
+                                <h:outputText value="#{egreso.valor}">
+                                    <f:convertNumber pattern="#,##0.00" maxFractionDigits="2" currencySymbol="$"/>
+                                </h:outputText>
+                                <f:facet name="footer" >
+                                    <h:outputLabel value="#{planilla$reciboPorEmpleado.totalDeducciones}" >
+                                        <f:convertNumber pattern="#,##0.00" maxFractionDigits="2"/>
+                                    </h:outputLabel>
+                                </f:facet>
+                            </p:column>
+                        </p:dataTable>
+                    </td>
+                </tr>
+            </table>
+        </p:panel>
+    </ui:define>
+</ui:composition>

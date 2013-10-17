@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/plantillas/defaultTemplate.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.prime.com.tr/ui"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <!-- ===================================================================================================== -->
+    <ui:define name="titulo">
+        <h:outputText value="Reporte de evaluaci&oacute;n"/>
+    </ui:define>
+    <!-- ===================================================================================================== -->
+    <ui:define name="acciones">
+        <p:tab title="Evaluaci&oacute;n">
+            <h:panelGrid columns="1" width="100%" border="0" cellpadding="0" cellspacing="0">
+                <p:commandLink styleClass="opcionMenu" action="#{empleados$reporteEvaluacion.mostrarReporteEvaluacion$action}" update="principalForm:mensajes" onmouseover="this.className='opcionMenu  textonegrita';" onmouseout="this.className='opcionMenu  textonormal';" ajax="false" disabled="#{empleados$reporteEvaluacion.evaluacionSeleccionada eq null}">
+                    <p:graphicImage value="/resources/iconos/view-pim-journal.png"/>
+                    <h:outputText value="Mostrar reporte" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>  
+        <p:tab title="Otras acciones">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu textoNormal" ajax="true" action="#{empleados$reporteEvaluacion.inicio$action}" update="principalForm:mensajes" onmouseover="this.className='opcionMenu  textonegrita';" onmouseout="this.className='opcionMenu  textonormal';">
+                    <p:graphicImage value="/resources/iconos/application-exit.png"/>
+                    <h:outputText value="Cancelar" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+    </ui:define>
+    <!-- ===================================================================================================== -->
+    <ui:define name="contenido">        
+        <p:fieldset id="fieldset1" legend="Reporte de evaluaci&oacute;n">
+            <table width="100%">
+                <tr valign="top">
+                    <td colspan="2">
+                        <p:dataTable id="campaniasDataList" value="#{empleados$reporteEvaluacion.listaCampanias}" var="campania" rowStyleClass="#{(empleados$reporteEvaluacion.campaniaSeleccionada eq campania) ? 'ui-dialog-titlebar ui-widget-header' : ''}" paginator="true" rows="3" paginatorAlwaysVisible="true" paginatorPosition="top" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}">
+                            <f:facet name="header">
+                                <h:outputText value="Campa&ntilde;a"/>
+                            </f:facet>
+                            <p:column headerText="Campa&ntilde;a">
+                                    <h:outputText value="#{campania.nomCampania}"/>
+                            </p:column>
+                            <p:column headerText="Fecha inicio">
+                                    <h:outputText value="#{campania.fechaInicial}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                            </p:column>
+                            <p:column headerText="Fecha fin">
+                                    <h:outputText value="#{campania.fechaFinal}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                            </p:column>
+                            <p:column style="width: 20px;">
+                                <f:facet name="header">
+                                    <h:outputText styleClass="ui-icon ui-icon-circle-check"/>
+                                </f:facet>
+                                <p:commandButton update="principalForm:mensajes principalForm:panelAcciones principalForm:tablaEmpleados principalForm:campaniasDataList principalForm:fieldset1" image="ui-icon ui-icon-circle-check">
+                                    <f:setPropertyActionListener value="#{campania}" target="#{empleados$reporteEvaluacion.campaniaSeleccionada}"/>
+                                </p:commandButton>
+                            </p:column>
+                        </p:dataTable>
+                    </td>
+                </tr>
+            </table>
+        </p:fieldset>
+        <p:spacer height="5"/>
+        <p:dataTable id="tablaEmpleados" value="#{empleados$reporteEvaluacion.listaEvaluaciones}" var="evaluacion" rows="5" paginator="true" paginatorAlwaysVisible="true" update="seleccionEvaluacionForm:tablaEmpleados" paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10,25,50,100" rowStyleClass="#{(empleados$reporteEvaluacion.evaluacionSeleccionada eq evaluacion) ? 'ui-dialog-titlebar ui-widget-header' : ''}" paginatorPosition="top">
+            <f:facet name="header">
+                <h:outputText value="Evaluaciones"/>
+            </f:facet>
+            <p:column headerText="Tipo evaluacion">
+                <h:outputText value="#{evaluacion.plantilla1.tipoEvaluacion.nomTipoEvaluacion}"/>
+            </p:column>     
+            <p:column headerText="Fecha">
+                <h:outputText value="#{evaluacion.fecha}">
+                    <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+                </h:outputText>
+            </p:column>
+            <p:column headerText="Empleado" filterBy="#{evaluacion.empleados.nombreCompleto}" filterMatchMode="contains">
+                <h:outputText value="#{evaluacion.empleados.nombreCompleto}"/>
+            </p:column>
+            <p:column style="width: 20px;">
+                <f:facet name="header">
+                    <h:outputText styleClass="ui-icon ui-icon-circle-check"/>
+                </f:facet>
+                <p:commandButton update="principalForm:mensajes principalForm:panelAcciones principalForm:tablaEmpleados principalForm:fieldset1" image="ui-icon ui-icon-circle-check">
+                    <f:setPropertyActionListener value="#{evaluacion}" target="#{empleados$reporteEvaluacion.evaluacionSeleccionada}" />
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+    </ui:define>
+    <!-- ===================================================================================================== -->
+    <ui:define name="dialogos"/>
+    <!-- ===================================================================================================== -->
+</ui:composition>

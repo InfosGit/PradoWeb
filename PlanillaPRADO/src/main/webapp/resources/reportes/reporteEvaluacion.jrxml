@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteEvaluacion" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8ec356ce-7ad9-4236-bcd1-7fed9bd475cd">
+	<property name="ireport.zoom" value="1.3310000000000097"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["./"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cod_cia" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="periodo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="campania" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="tipo_evaluacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="plantilla" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="empleado" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+c.nom_tipo_evaluacion as tipo_evaluacion,
+d.nombres || decode(nvl(d.apellidos, '0'), '0', '', ' '|| d.apellidos) || decode(nvl(d.ap_casada, '0'), '0', '', ' '|| d.ap_casada) as empleado,
+nvl(e.nom_depto, 'NO ASIGNADO') as departamento,
+nvl(f.nom_puesto,'NO ASIGNADO') as puesto,
+'del ' || to_char(b.fecha_inicial,'DD/MM/YYYY') || ' Al ' || to_char(b.fecha_final,'DD/MM/YYYY') as periodo,
+g.nom_comercial as nombre_empresa
+
+from
+evaluacion a, campania b, tipo_evaluacion c, empleados d, departamentos e, puestos f, cias g
+
+where
+a.cod_cia = $P{cod_cia} and a.periodo = $P{periodo} and a.cod_campania = $P{campania} and a.tipo_evaluacion = $P{tipo_evaluacion} and a.plantilla = $P{plantilla} and a.cod_emp = $P{empleado} and
+b.cod_cia = a.cod_cia and b.cod_campania = a.cod_campania and
+c.cod_cia = b.cod_cia and c.cod_tipo_evaluacion = a.tipo_evaluacion and
+d.cod_cia = c.cod_cia and d.cod_emp = a.cod_emp and
+e.cod_cia(+) = d.cod_cia and e.cod_depto(+) = d.cod_depto and
+f.cod_cia(+) = d.cod_cia and f.cod_puesto(+) = d.cod_puesto and
+g.cod_cia = d.cod_cia]]>
+	</queryString>
+	<field name="TIPO_EVALUACION" class="java.lang.String"/>
+	<field name="EMPLEADO" class="java.lang.String"/>
+	<field name="DEPARTAMENTO" class="java.lang.String"/>
+	<field name="PUESTO" class="java.lang.String"/>
+	<field name="PERIODO" class="java.lang.String"/>
+	<field name="NOMBRE_EMPRESA" class="java.lang.String"/>
+	<variable name="fecha_hora" class="java.util.Date">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[Calendar.getInstance().getTime()]]></initialValueExpression>
+	</variable>
+	<title>
+		<band height="204" splitType="Stretch">
+			<textField>
+				<reportElement uuid="cda18043-47b4-43e9-b883-3e3f4d5ce5b5" x="0" y="60" width="572" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NOMBRE_EMPRESA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="44ad96a1-f168-4b79-a80f-7b0b2fff7ae4" x="0" y="0" width="50" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Módulo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="faaf8882-8a85-49f7-97f6-00c67e6dce7d" x="51" y="0" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Recursos Humanos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5ea5e009-51e3-4d99-8ac9-b681d8d6c261" x="0" y="20" width="50" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Reporte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5764bb35-ca34-4181-ac41-73eca65f5a6a" x="51" y="20" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[RRH014]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a79f0446-4464-4639-a705-08356a763c82" x="444" y="0" width="40" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5f1cb297-0ad3-478e-93f2-33c0a1479522" x="444" y="20" width="40" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Hora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ad90a577-2ec8-4ea9-85d5-e95d31cbc3d1" x="444" y="40" width="40" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Página]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="82a50620-4a3b-4bb9-9f51-a7075cb5a58c" x="486" y="0" width="86" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{fecha_hora}]]></textFieldExpression>
+			</textField>
+			<textField pattern="hh:mm:ss a">
+				<reportElement uuid="dd96c34f-405f-4b88-8ecc-795424d6b647" x="486" y="20" width="86" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{fecha_hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1fdee21a-17e1-42f7-b31f-68641bfd2947" x="486" y="40" width="86" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="57ddd017-c288-4b26-bb02-9d46eb72a518" x="0" y="80" width="572" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[REPORTE DE EVALUACIÓN]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="fe4368be-0354-4b26-86f9-dc623e329ad3" x="0" y="100" width="572" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{TIPO_EVALUACION}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="9ff76346-41a1-4296-b433-ef14dd628749" x="0" y="120" width="572" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="0cb9da80-1d90-4946-a9fd-d3a13340f608" x="0" y="123" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Empleado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fb4ed572-941a-4ad1-9a6e-b355377ea121" x="0" y="143" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Puesto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d9de1e99-a7c8-446c-8aae-1ef6840fbf97" x="0" y="163" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Departamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e73a1c16-1f10-472d-9867-13d839b3dc45" x="0" y="183" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo a evaluar]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="d992007a-43a1-454d-8110-f76f5a04b372" x="103" y="123" width="432" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{EMPLEADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="91ed9444-954d-4903-99aa-a9f8faa210e7" x="103" y="143" width="432" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PUESTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4ddef04f-ba2e-4a71-9d29-508d1151b8c9" x="103" y="163" width="432" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DEPARTAMENTO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="33ba0bf2-4094-431d-9721-1a6d6da88d32" x="0" y="203" width="572" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="0abb62de-10c8-410a-9b71-97f0c7dd3a6d" x="103" y="183" width="432" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{PERIODO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a8f96edb-0bba-4312-a84a-d858075375db" mode="Opaque" x="0" y="0" width="472" height="20" backcolor="#99CCFF"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5ed8df55-f188-4383-8c25-29d79797a853" mode="Opaque" x="472" y="0" width="100" height="20" backcolor="#99CCFF"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Respuesta]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="8b19a49b-f251-4daf-8581-b602b1d29695" x="0" y="0" width="572" height="42"/>
+				<subreportParameter name="campania">
+					<subreportParameterExpression><![CDATA[$P{campania}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empleado">
+					<subreportParameterExpression><![CDATA[$P{empleado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="plantilla">
+					<subreportParameterExpression><![CDATA[$P{plantilla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_cia">
+					<subreportParameterExpression><![CDATA[$P{cod_cia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="periodo">
+					<subreportParameterExpression><![CDATA[$P{periodo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tipo_evaluacion">
+					<subreportParameterExpression><![CDATA[$P{tipo_evaluacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "preguntaRespuesta.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="48" splitType="Stretch">
+			<line>
+				<reportElement uuid="cba8d5b2-3bf0-4103-a255-4306e9725b81" x="0" y="0" width="572" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="361bb664-bc6b-4a46-bf63-ae93fe16c7ce" positionType="FixRelativeToBottom" x="0" y="45" width="572" height="1"/>
+			</line>
+			<subreport>
+				<reportElement uuid="ba64e11b-d369-4d34-8d56-d8ee9c81ee41" x="0" y="1" width="572" height="44"/>
+				<subreportParameter name="campania">
+					<subreportParameterExpression><![CDATA[$P{campania}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="empleado">
+					<subreportParameterExpression><![CDATA[$P{empleado}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="plantilla">
+					<subreportParameterExpression><![CDATA[$P{plantilla}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cod_cia">
+					<subreportParameterExpression><![CDATA[$P{cod_cia}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="periodo">
+					<subreportParameterExpression><![CDATA[$P{periodo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tipo_evaluacion">
+					<subreportParameterExpression><![CDATA[$P{tipo_evaluacion}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "reporteEvaluacionSubReport.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

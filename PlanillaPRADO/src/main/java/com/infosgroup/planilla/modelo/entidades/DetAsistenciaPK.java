@@ -1,0 +1,142 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.infosgroup.planilla.modelo.entidades;
+
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+/**
+ *
+ * @author root
+ */
+@Embeddable
+public class DetAsistenciaPK implements Serializable
+{
+
+private static final long serialVersionUID = 1L;
+//
+@Basic(optional = false)
+@NotNull
+@Column(name = "COD_CIA", nullable = false)
+private short codCia;
+@Basic(optional = false)
+@NotNull
+@Column(name = "COD_EMP", nullable = false)
+private int codEmp;
+@Basic(optional = false)
+@NotNull
+@Column(name = "FECHA_INICIAL", nullable = false)
+@Temporal(TemporalType.TIMESTAMP)
+private Date fechaInicial;
+@Basic(optional = false)
+@NotNull
+@Column(name = "FECHA_FINAL", nullable = false)
+@Temporal(TemporalType.TIMESTAMP)
+private Date fechaFinal;
+
+public DetAsistenciaPK()
+{
+}
+
+public DetAsistenciaPK(short codCia, int codEmp, Date fechaInicial, Date fechaFinal)
+{
+    this.codCia = codCia;
+    this.codEmp = codEmp;
+    this.fechaInicial = fechaInicial;
+    this.fechaFinal = fechaFinal;
+}
+
+public short getCodCia()
+{
+    return codCia;
+}
+
+public void setCodCia(short codCia)
+{
+    this.codCia = codCia;
+}
+
+public int getCodEmp()
+{
+    return codEmp;
+}
+
+public void setCodEmp(int codEmp)
+{
+    this.codEmp = codEmp;
+}
+
+public Date getFechaInicial()
+{
+    return fechaInicial;
+}
+
+public void setFechaInicial(Date fechaInicial)
+{
+    this.fechaInicial = fechaInicial;
+}
+
+public Date getFechaFinal()
+{
+    return fechaFinal;
+}
+
+public void setFechaFinal(Date fechaFinal)
+{
+    this.fechaFinal = fechaFinal;
+}
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 3;
+        hash = 43 * hash + this.codCia;
+        hash = 43 * hash + this.codEmp;
+        hash = 43 * hash + (this.fechaInicial != null ? this.fechaInicial.hashCode() : 0);
+        hash = 43 * hash + (this.fechaFinal != null ? this.fechaFinal.hashCode() : 0);
+        return hash;
+    }
+
+
+@Override
+public boolean equals(Object object)
+{
+    // TODO: Warning - this method won't work in the case the id fields are not set
+    if (!(object instanceof DetAsistenciaPK))
+        {
+        return false;
+        }
+    DetAsistenciaPK other = (DetAsistenciaPK) object;
+    if (this.codCia != other.codCia)
+        {
+        return false;
+        }
+    if (this.codEmp != other.codEmp)
+        {
+        return false;
+        }
+    if ((this.fechaInicial == null && other.fechaInicial != null) || (this.fechaInicial != null && !this.fechaInicial.equals(other.fechaInicial)))
+        {
+        return false;
+        }
+    if ((this.fechaFinal == null && other.fechaFinal != null) || (this.fechaFinal != null && !this.fechaFinal.equals(other.fechaFinal)))
+        {
+        return false;
+        }
+    return true;
+}
+
+@Override
+public String toString()
+{
+    return "com.infosgroup.planilla.modelo.entidades.DetAsistenciaPK[ codCia=" + codCia + ", codEmp=" + codEmp + ", fechaInicial=" + fechaInicial + ", fechaFinal=" + fechaFinal + " ]";
+}
+}

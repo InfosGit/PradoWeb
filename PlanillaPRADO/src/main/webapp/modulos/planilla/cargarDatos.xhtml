@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./../../plantillas/defaultTemplate.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" 
+                xmlns:p="http://primefaces.prime.com.tr/ui" 
+                xmlns:i="http://java.sun.com/jsf/composite/components/presentacion">
+
+    <ui:define name="titulo">
+        Carga de Datos
+    </ui:define>
+
+    <ui:define name="dialogos">
+
+        <p:confirmDialog message="&#191; Esta seguro que desea procesar los datos ingresados ?" showEffect="bounce" hideEffect="explode"  
+                         modal="true" header="Procesar datos" severity="alert" widgetVar="procesarEmpleados">  
+            <p:commandButton value="Si, estoy seguro" update="principalForm:mensajes" oncomplete="procesarEmpleados.hide()"  
+                             action="#{planilla$CargarDatosBackendBean.procesar}" />  
+            <p:commandButton value="No" onclick="procesarEmpleados.hide()" type="button" />   
+
+        </p:confirmDialog>  
+
+        <p:dialog id="dialogoEmpleados" widgetVar="dialogoEmpleados" header="Empleados" width="650" height="450"  resizable="true" showEffect="clip" hideEffect="clip" >  
+
+            <h:panelGrid columns="2" >
+                <p:graphicImage value="/resources/imagenes/64/meeting-participant.png" />   
+                <h:outputLabel id="lbl1" value="Empleados que ser&aacute;n incluidos "  style="font-weight: bold;"/>
+            </h:panelGrid>
+
+            <p:dataTable id="tableEmpleados" value="#{planilla$CargarDatosBackendBean.listaResumenAsistencia}" var="resumen" 
+                         paginator="true" rows="10"  emptyMessage="No se han encontrado Empleados." dynamic="true"  
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" 
+                         rowsPerPageTemplate="5,10,25,50,100,1000,10000" style="margin-top: 5px;" >
+
+                <p:column headerText="C&oacute;digo" >  
+                    <h:outputLabel value="#{resumen.empleados.empleadosPK.codEmp}" />
+                </p:column>  
+
+                <p:column headerText="Nombre" filterBy="#{resumen.empleados.nombreCompleto}" filterMatchMode="contains" >  
+                    <h:outputLabel value="#{resumen.empleados.nombreCompleto}" />
+                </p:column>  
+                <p:column headerText="Puesto" filterBy="#{resumen.empleados.puestos.nomPuesto}" filterMatchMode="contains" >  
+                    <h:outputLabel value="#{resumen.empleados.puestos.nomPuesto}" />
+                </p:column>  
+
+            </p:dataTable>
+            <p:spacer height="15" />
+        </p:dialog>    
+    </ui:define>
+
+    <ui:define name="acciones">
+        <p:tab id="tabAcciones" title="Acciones" rendered="#{planilla$CargarDatosBackendBean.listaResumenAsistencia ne null}" >
+            <h:panelGrid columns="1"  >
+                <p:commandLink styleClass="opcionMenu textoNormal" ajax="true" update="principalForm:mensajes,tableEmpleados"
+                               onmouseover="this.className='opcionMenu  textonegrita';" onmouseout="this.className='opcionMenu  textonormal';" 
+                               onclick="dialogoEmpleados.show();">
+                    <p:graphicImage value="/resources/iconos/personal.png"/>
+                    <h:outputText value="Mostrar empleados" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Acciones comunes">
+            <h:panelGrid columns="1">
+                <p:commandLink styleClass="opcionMenu textoNormal" ajax="true" action="#{planilla$accionesPersonal.inicio$action}" update="principalForm:mensajes" onmouseover="this.className='opcionMenu  textonegrita';" onmouseout="this.className='opcionMenu  textonormal';">
+                    <p:graphicImage value="/resources/iconos/application-exit.png"/>
+                    <h:outputText value="Cancelar" styleClass="espacioTexto"/>
+                </p:commandLink>
+            </h:panelGrid>
+        </p:tab>
+    </ui:define>
+
+    <ui:define name="contenido">
+
+        <p:panel id="panelCargaDatos" style="border: none;" >
+
+            <table width="100%" >
+                <tr>
+                    <td width="14%" >
+                        <h:outputLabel value="Tipo de planilla" />
+                    </td>
+                    <td>
+                        <h:selectOneMenu id="lstTipoPlanilla" style="height: 25px;padding-top: 3px;width: 300px;" label="Tipo Planilla" value="#{planilla$CargarDatosBackendBean.tipoPlanilla}" >                       
+                            <f:ajax render="autoCompleteProgramacionPla lstDeducPresta" event="change" execute="lstTipoPlanilla" />
+                            <f:selectItem itemValue="-1" itemLabel="[ SELECCIONE TIPO PLANILLA ]" />
+                            <f:selectItems value="#{planilla$CargarDatosBackendBean.listaTipos}" var="tipo" itemValue="#{tipo.tiposPlanillaPK.codTipopla}" itemLabel="#{tipo.nomTipopla}"/>
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputLabel value="Programaci&oacute;n planilla" />
+                    </td>
+                    <td>
+                        <h:panelGroup>
+                            <h:panelGrid columns="1">
+                                <p:autoComplete id="autoCompleteProgramacionPla" forceSelection="true" var="programacionPla" 
+                                                value="#{planilla$CargarDatosBackendBean.programacionPlaSeleccionada}"
+                                                itemValue="#{programacionPla.pkAsString}" itemLabel="#{programacionPla.stringProgramacionPla}"
+                                                completeMethod="#{planilla$CargarDatosBackendBean.completeProgramacionPla}"
+                                                converter="#{planilla$CargarDatosBackendBean.programacionPlaConverter}" >
+                                    <!--f:ajax render="panelCargaDatos" event="change" execute="autoCompleteProgramacionPla" /-->
+                                </p:autoComplete>
+                                <i:etiquetaPlanilla />
+                            </h:panelGrid>
+                        </h:panelGroup>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <!--h:panelGrid id="panelDescripcion" columns="8" style="padding-left: 0;" rendered="# {(planilla$CargarDatosBackendBean.programacionPlaSeleccionada ne null ) }" >
+                            <h:outputLabel value="Año: " style="font-weight: bold;" />
+                            <h:outputLabel value="# {planilla$CargarDatosBackendBean.anio}" />
+                            <h:outputLabel value="" />
+                            <h:outputLabel value="Mes: " style="font-weight: bold;" />
+                            <h:outputLabel value="# {planilla$CargarDatosBackendBean.mes}" />
+                            <h:outputLabel value="" />
+                            <h:outputLabel value="N&uacute;mero de Planilla: " style="font-weight: bold;" />
+                            <h:outputLabel value="# {planilla$CargarDatosBackendBean.numeroPlanilla}" />
+                        </h:panelGrid-->
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h:outputLabel value="Deducci&oacute;n/Prestaci&oacute;n" />
+                    </td>
+                    <td>
+
+                        <h:selectOneMenu id="lstDeducPresta" style="height: 25px;padding-top: 3px;width: 300px;" label="Deduccion/Prestacion" value="#{planilla$CargarDatosBackendBean.deduccionPrestacion}" >                       
+                            <!--f:ajax render="panelCargaDatos" event="change" execute="lstDeducPresta" /-->
+                            <f:selectItem itemValue="-1" itemLabel="[ SELECCIONE DEDUCCION/PRESTACION ]" />
+                            <f:selectItems value="#{planilla$CargarDatosBackendBean.listaDeduccionPrestacion}" var="deducpresta" itemValue="#{deducpresta.deducPrestaPK.codDp}" itemLabel="#{deducpresta.desDp}"/>
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <h:outputLabel value="Tipo de Deducci&oacute;n: #{planilla$CargarDatosBackendBean.deduccionPrestacionSeleccionada.descripcionSumaResta}" style="font-weight: bold;" rendered="#{(planilla$CargarDatosBackendBean.deduccionPrestacion ne null) and ( planilla$CargarDatosBackendBean.deduccionPrestacion ne '-1' ) }" />
+                    </td>
+                </tr>
+                <tr><td colspan="2" ><p:spacer height="10" /></td></tr>
+                <tr>
+                    <td><h:outputLabel value="Seleccionar Archivo" /></td>
+                    <td>
+                        <p:fileUpload id="file" sizeLimit="2097152"
+                                      label="Seleccionar"  widgetVar="uploader"
+                                      image="../../resources/imagenes/64/upload.png"
+                                      cancelImage="/resources/iconos/edit-delete.png"
+                                      description="Seleccione el archivo" allowTypes="*.txt"
+                                      fileUploadListener="#{planilla$CargarDatosBackendBean.handleFileUpload}" update="mensajes,panelAcciones"  > 
+                        </p:fileUpload>
+                    </td>
+                </tr>
+                <tr><td colspan="2" ><p:spacer height="10" /></td></tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <p:commandButton value="Cargar Movimientos" image="ui-icon-circle-check" onclick="#{planilla$CargarDatosBackendBean.listaResumenAsistencia ne null ? 'procesarEmpleados.show();' :''}" update="mensajes,panelContenido,panelAcciones" action="#{planilla$CargarDatosBackendBean.procesar}" />
+                    </td>
+                </tr>
+            </table>
+
+        </p:panel>                                         
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:tns="http://webservice.model.prueba.infosgroup.com/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="wsTrasladoBodegaBodega" targetNamespace="http://webservice.model.prueba.infosgroup.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://192.168.20.150:9999/ViducWebApp/wsTrasladoBodegaBodega?xsd=1" namespace="http://webservice.model.prueba.infosgroup.com/" />
+    </xsd:schema>
+  </types>
+  <message name="findProformasByEstado">
+    <part name="parameters" element="tns:findProformasByEstado" />
+  </message>
+  <message name="findProformasByEstadoResponse">
+    <part name="parameters" element="tns:findProformasByEstadoResponse" />
+  </message>
+  <message name="findProductosProforma">
+    <part name="parameters" element="tns:findProductosProforma" />
+  </message>
+  <message name="findProductosProformaResponse">
+    <part name="parameters" element="tns:findProductosProformaResponse" />
+  </message>
+  <message name="pickingProductoProforma">
+    <part name="parameters" element="tns:pickingProductoProforma" />
+  </message>
+  <message name="pickingProductoProformaResponse">
+    <part name="parameters" element="tns:pickingProductoProformaResponse" />
+  </message>
+  <message name="findUbicacionesBodegaProducto">
+    <part name="parameters" element="tns:findUbicacionesBodegaProducto" />
+  </message>
+  <message name="findUbicacionesBodegaProductoResponse">
+    <part name="parameters" element="tns:findUbicacionesBodegaProductoResponse" />
+  </message>
+  <message name="despacharProductoProforma">
+    <part name="parameters" element="tns:despacharProductoProforma" />
+  </message>
+  <message name="despacharProductoProformaResponse">
+    <part name="parameters" element="tns:despacharProductoProformaResponse" />
+  </message>
+  <message name="validarDespachoProforma">
+    <part name="parameters" element="tns:validarDespachoProforma" />
+  </message>
+  <message name="validarDespachoProformaResponse">
+    <part name="parameters" element="tns:validarDespachoProformaResponse" />
+  </message>
+  <message name="despacharTodaProforma">
+    <part name="parameters" element="tns:despacharTodaProforma" />
+  </message>
+  <message name="despacharTodaProformaResponse">
+    <part name="parameters" element="tns:despacharTodaProformaResponse" />
+  </message>
+  <message name="despacharProformaTraslado">
+    <part name="parameters" element="tns:despacharProformaTraslado" />
+  </message>
+  <message name="despacharProformaTrasladoResponse">
+    <part name="parameters" element="tns:despacharProformaTrasladoResponse" />
+  </message>
+  <message name="validarDespachoProformaTraslado">
+    <part name="parameters" element="tns:validarDespachoProformaTraslado" />
+  </message>
+  <message name="validarDespachoProformaTrasladoResponse">
+    <part name="parameters" element="tns:validarDespachoProformaTrasladoResponse" />
+  </message>
+  <message name="validarAreaDespacho">
+    <part name="parameters" element="tns:validarAreaDespacho" />
+  </message>
+  <message name="validarAreaDespachoResponse">
+    <part name="parameters" element="tns:validarAreaDespachoResponse" />
+  </message>
+  <message name="validarUbicacionOrigen">
+    <part name="parameters" element="tns:validarUbicacionOrigen" />
+  </message>
+  <message name="validarUbicacionOrigenResponse">
+    <part name="parameters" element="tns:validarUbicacionOrigenResponse" />
+  </message>
+  <message name="ponerEnTransito">
+    <part name="parameters" element="tns:ponerEnTransito" />
+  </message>
+  <message name="ponerEnTransitoResponse">
+    <part name="parameters" element="tns:ponerEnTransitoResponse" />
+  </message>
+  <message name="trasladoInterno">
+    <part name="parameters" element="tns:trasladoInterno" />
+  </message>
+  <message name="trasladoInternoResponse">
+    <part name="parameters" element="tns:trasladoInternoResponse" />
+  </message>
+  <message name="verificarPickingProforma">
+    <part name="parameters" element="tns:verificarPickingProforma" />
+  </message>
+  <message name="verificarPickingProformaResponse">
+    <part name="parameters" element="tns:verificarPickingProformaResponse" />
+  </message>
+  <message name="findAreasDespacho">
+    <part name="parameters" element="tns:findAreasDespacho" />
+  </message>
+  <message name="findAreasDespachoResponse">
+    <part name="parameters" element="tns:findAreasDespachoResponse" />
+  </message>
+  <message name="findProformasTraslado">
+    <part name="parameters" element="tns:findProformasTraslado" />
+  </message>
+  <message name="findProformasTrasladoResponse">
+    <part name="parameters" element="tns:findProformasTrasladoResponse" />
+  </message>
+  <message name="findProductosProformaTraslado">
+    <part name="parameters" element="tns:findProductosProformaTraslado" />
+  </message>
+  <message name="findProductosProformaTrasladoResponse">
+    <part name="parameters" element="tns:findProductosProformaTrasladoResponse" />
+  </message>
+  <message name="pickingProductoProformaTraslado">
+    <part name="parameters" element="tns:pickingProductoProformaTraslado" />
+  </message>
+  <message name="pickingProductoProformaTrasladoResponse">
+    <part name="parameters" element="tns:pickingProductoProformaTrasladoResponse" />
+  </message>
+  <message name="verificarPickingProformaTraslado">
+    <part name="parameters" element="tns:verificarPickingProformaTraslado" />
+  </message>
+  <message name="verificarPickingProformaTrasladoResponse">
+    <part name="parameters" element="tns:verificarPickingProformaTrasladoResponse" />
+  </message>
+  <message name="findDetalleProducto">
+    <part name="parameters" element="tns:findDetalleProducto" />
+  </message>
+  <message name="findDetalleProductoResponse">
+    <part name="parameters" element="tns:findDetalleProductoResponse" />
+  </message>
+  <message name="validarProductoUbicacionPicking">
+    <part name="parameters" element="tns:validarProductoUbicacionPicking" />
+  </message>
+  <message name="validarProductoUbicacionPickingResponse">
+    <part name="parameters" element="tns:validarProductoUbicacionPickingResponse" />
+  </message>
+  <message name="listarProductosEnTransito">
+    <part name="parameters" element="tns:listarProductosEnTransito" />
+  </message>
+  <message name="listarProductosEnTransitoResponse">
+    <part name="parameters" element="tns:listarProductosEnTransitoResponse" />
+  </message>
+  <message name="existeUbicacion">
+    <part name="parameters" element="tns:existeUbicacion" />
+  </message>
+  <message name="existeUbicacionResponse">
+    <part name="parameters" element="tns:existeUbicacionResponse" />
+  </message>
+  <message name="ubicarDesdeCarretilla">
+    <part name="parameters" element="tns:ubicarDesdeCarretilla" />
+  </message>
+  <message name="ubicarDesdeCarretillaResponse">
+    <part name="parameters" element="tns:ubicarDesdeCarretillaResponse" />
+  </message>
+  <portType name="wsTrasladoBodegaBodega">
+    <operation name="findProformasByEstado">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findProformasByEstadoRequest" message="tns:findProformasByEstado" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findProformasByEstadoResponse" message="tns:findProformasByEstadoResponse" />
+    </operation>
+    <operation name="findProductosProforma">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findProductosProformaRequest" message="tns:findProductosProforma" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findProductosProformaResponse" message="tns:findProductosProformaResponse" />
+    </operation>
+    <operation name="pickingProductoProforma">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/pickingProductoProformaRequest" message="tns:pickingProductoProforma" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/pickingProductoProformaResponse" message="tns:pickingProductoProformaResponse" />
+    </operation>
+    <operation name="findUbicacionesBodegaProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findUbicacionesBodegaProductoRequest" message="tns:findUbicacionesBodegaProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findUbicacionesBodegaProductoResponse" message="tns:findUbicacionesBodegaProductoResponse" />
+    </operation>
+    <operation name="despacharProductoProforma">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/despacharProductoProformaRequest" message="tns:despacharProductoProforma" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/despacharProductoProformaResponse" message="tns:despacharProductoProformaResponse" />
+    </operation>
+    <operation name="validarDespachoProforma">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarDespachoProformaRequest" message="tns:validarDespachoProforma" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarDespachoProformaResponse" message="tns:validarDespachoProformaResponse" />
+    </operation>
+    <operation name="despacharTodaProforma">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/despacharTodaProformaRequest" message="tns:despacharTodaProforma" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/despacharTodaProformaResponse" message="tns:despacharTodaProformaResponse" />
+    </operation>
+    <operation name="despacharProformaTraslado">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/despacharProformaTrasladoRequest" message="tns:despacharProformaTraslado" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/despacharProformaTrasladoResponse" message="tns:despacharProformaTrasladoResponse" />
+    </operation>
+    <operation name="validarDespachoProformaTraslado">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarDespachoProformaTrasladoRequest" message="tns:validarDespachoProformaTraslado" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarDespachoProformaTrasladoResponse" message="tns:validarDespachoProformaTrasladoResponse" />
+    </operation>
+    <operation name="validarAreaDespacho">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarAreaDespachoRequest" message="tns:validarAreaDespacho" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarAreaDespachoResponse" message="tns:validarAreaDespachoResponse" />
+    </operation>
+    <operation name="validarUbicacionOrigen">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarUbicacionOrigenRequest" message="tns:validarUbicacionOrigen" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarUbicacionOrigenResponse" message="tns:validarUbicacionOrigenResponse" />
+    </operation>
+    <operation name="ponerEnTransito">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/ponerEnTransitoRequest" message="tns:ponerEnTransito" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/ponerEnTransitoResponse" message="tns:ponerEnTransitoResponse" />
+    </operation>
+    <operation name="trasladoInterno">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/trasladoInternoRequest" message="tns:trasladoInterno" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/trasladoInternoResponse" message="tns:trasladoInternoResponse" />
+    </operation>
+    <operation name="verificarPickingProforma">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/verificarPickingProformaRequest" message="tns:verificarPickingProforma" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/verificarPickingProformaResponse" message="tns:verificarPickingProformaResponse" />
+    </operation>
+    <operation name="findAreasDespacho">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findAreasDespachoRequest" message="tns:findAreasDespacho" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findAreasDespachoResponse" message="tns:findAreasDespachoResponse" />
+    </operation>
+    <operation name="findProformasTraslado">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findProformasTrasladoRequest" message="tns:findProformasTraslado" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findProformasTrasladoResponse" message="tns:findProformasTrasladoResponse" />
+    </operation>
+    <operation name="findProductosProformaTraslado">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findProductosProformaTrasladoRequest" message="tns:findProductosProformaTraslado" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findProductosProformaTrasladoResponse" message="tns:findProductosProformaTrasladoResponse" />
+    </operation>
+    <operation name="pickingProductoProformaTraslado">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/pickingProductoProformaTrasladoRequest" message="tns:pickingProductoProformaTraslado" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/pickingProductoProformaTrasladoResponse" message="tns:pickingProductoProformaTrasladoResponse" />
+    </operation>
+    <operation name="verificarPickingProformaTraslado">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/verificarPickingProformaTrasladoRequest" message="tns:verificarPickingProformaTraslado" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/verificarPickingProformaTrasladoResponse" message="tns:verificarPickingProformaTrasladoResponse" />
+    </operation>
+    <operation name="findDetalleProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findDetalleProductoRequest" message="tns:findDetalleProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/findDetalleProductoResponse" message="tns:findDetalleProductoResponse" />
+    </operation>
+    <operation name="validarProductoUbicacionPicking">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarProductoUbicacionPickingRequest" message="tns:validarProductoUbicacionPicking" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/validarProductoUbicacionPickingResponse" message="tns:validarProductoUbicacionPickingResponse" />
+    </operation>
+    <operation name="listarProductosEnTransito">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/listarProductosEnTransitoRequest" message="tns:listarProductosEnTransito" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/listarProductosEnTransitoResponse" message="tns:listarProductosEnTransitoResponse" />
+    </operation>
+    <operation name="existeUbicacion">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/existeUbicacionRequest" message="tns:existeUbicacion" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/existeUbicacionResponse" message="tns:existeUbicacionResponse" />
+    </operation>
+    <operation name="ubicarDesdeCarretilla">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/ubicarDesdeCarretillaRequest" message="tns:ubicarDesdeCarretilla" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/wsTrasladoBodegaBodega/ubicarDesdeCarretillaResponse" message="tns:ubicarDesdeCarretillaResponse" />
+    </operation>
+  </portType>
+  <binding name="wsTrasladoBodegaBodegaPortBinding" type="tns:wsTrasladoBodegaBodega">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="findProformasByEstado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findProductosProforma">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="pickingProductoProforma">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesBodegaProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="despacharProductoProforma">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validarDespachoProforma">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="despacharTodaProforma">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="despacharProformaTraslado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validarDespachoProformaTraslado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validarAreaDespacho">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validarUbicacionOrigen">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ponerEnTransito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="trasladoInterno">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="verificarPickingProforma">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findAreasDespacho">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findProformasTraslado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findProductosProformaTraslado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="pickingProductoProformaTraslado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="verificarPickingProformaTraslado">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findDetalleProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validarProductoUbicacionPicking">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarProductosEnTransito">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="existeUbicacion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ubicarDesdeCarretilla">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="wsTrasladoBodegaBodega">
+    <port name="wsTrasladoBodegaBodegaPort" binding="tns:wsTrasladoBodegaBodegaPortBinding">
+      <soap:address location="http://192.168.20.150:9999/ViducWebApp/wsTrasladoBodegaBodega" />
+    </port>
+  </service>
+</definitions>

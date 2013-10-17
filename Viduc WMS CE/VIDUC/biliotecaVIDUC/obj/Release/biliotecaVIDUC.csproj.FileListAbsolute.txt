@@ -1,0 +1,10 @@
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\bin\Release\biliotecaVIDUC.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\bin\Release\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\obj\Release\ResolveAssemblyReference.cache
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\obj\Release\biliotecaVIDUC.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\obj\Release\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\VIDUC\biliotecaVIDUC\bin\Release\biliotecaVIDUC.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\VIDUC\biliotecaVIDUC\bin\Release\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\VIDUC\biliotecaVIDUC\obj\Release\ResolveAssemblyReference.cache
+C:\Users\INFOS16\Desktop\Viduc WMS CE\VIDUC\biliotecaVIDUC\obj\Release\biliotecaVIDUC.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\VIDUC\biliotecaVIDUC\obj\Release\biliotecaVIDUC.pdb

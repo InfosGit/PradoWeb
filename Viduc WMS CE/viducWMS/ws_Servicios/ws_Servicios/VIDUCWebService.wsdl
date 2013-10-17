@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:tns="http://webservice.model.prueba.infosgroup.com/" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" name="VIDUCWebService" targetNamespace="http://webservice.model.prueba.infosgroup.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://192.168.20.150:9999/ViducWebApp/VIDUCWebService?xsd=1" namespace="http://webservice.model.prueba.infosgroup.com/" />
+    </xsd:schema>
+  </types>
+  <message name="findUbicacionesProducto">
+    <part name="parameters" element="tns:findUbicacionesProducto" />
+  </message>
+  <message name="findUbicacionesProductoResponse">
+    <part name="parameters" element="tns:findUbicacionesProductoResponse" />
+  </message>
+  <message name="verificarEjecucionPlanificacionSolicitudRecepcion">
+    <part name="parameters" element="tns:verificarEjecucionPlanificacionSolicitudRecepcion" />
+  </message>
+  <message name="verificarEjecucionPlanificacionSolicitudRecepcionResponse">
+    <part name="parameters" element="tns:verificarEjecucionPlanificacionSolicitudRecepcionResponse" />
+  </message>
+  <message name="cambiarUbicacionPlanificada">
+    <part name="parameters" element="tns:cambiarUbicacionPlanificada" />
+  </message>
+  <message name="cambiarUbicacionPlanificadaResponse">
+    <part name="parameters" element="tns:cambiarUbicacionPlanificadaResponse" />
+  </message>
+  <message name="agregarUbicacionProducto">
+    <part name="parameters" element="tns:agregarUbicacionProducto" />
+  </message>
+  <message name="agregarUbicacionProductoResponse">
+    <part name="parameters" element="tns:agregarUbicacionProductoResponse" />
+  </message>
+  <message name="agregarComentarioProducto">
+    <part name="parameters" element="tns:agregarComentarioProducto" />
+  </message>
+  <message name="agregarComentarioProductoResponse">
+    <part name="parameters" element="tns:agregarComentarioProductoResponse" />
+  </message>
+  <message name="evaluarProductoOrdenCompra">
+    <part name="parameters" element="tns:evaluarProductoOrdenCompra" />
+  </message>
+  <message name="evaluarProductoOrdenCompraResponse">
+    <part name="parameters" element="tns:evaluarProductoOrdenCompraResponse" />
+  </message>
+  <message name="validarUsuario">
+    <part name="parameters" element="tns:validarUsuario" />
+  </message>
+  <message name="validarUsuarioResponse">
+    <part name="parameters" element="tns:validarUsuarioResponse" />
+  </message>
+  <message name="findEstadosSolicitud">
+    <part name="parameters" element="tns:findEstadosSolicitud" />
+  </message>
+  <message name="findEstadosSolicitudResponse">
+    <part name="parameters" element="tns:findEstadosSolicitudResponse" />
+  </message>
+  <message name="findDetallesSolicitud">
+    <part name="parameters" element="tns:findDetallesSolicitud" />
+  </message>
+  <message name="findDetallesSolicitudResponse">
+    <part name="parameters" element="tns:findDetallesSolicitudResponse" />
+  </message>
+  <message name="findDetallesSolicitudRecibidos">
+    <part name="parameters" element="tns:findDetallesSolicitudRecibidos" />
+  </message>
+  <message name="findDetallesSolicitudRecibidosResponse">
+    <part name="parameters" element="tns:findDetallesSolicitudRecibidosResponse" />
+  </message>
+  <message name="recibirProducto">
+    <part name="parameters" element="tns:recibirProducto" />
+  </message>
+  <message name="recibirProductoResponse">
+    <part name="parameters" element="tns:recibirProductoResponse" />
+  </message>
+  <message name="verificarRecepcionSolicitud">
+    <part name="parameters" element="tns:verificarRecepcionSolicitud" />
+  </message>
+  <message name="verificarRecepcionSolicitudResponse">
+    <part name="parameters" element="tns:verificarRecepcionSolicitudResponse" />
+  </message>
+  <message name="ubicarProducto">
+    <part name="parameters" element="tns:ubicarProducto" />
+  </message>
+  <message name="ubicarProductoResponse">
+    <part name="parameters" element="tns:ubicarProductoResponse" />
+  </message>
+  <message name="verificarUbicacionSolicitud">
+    <part name="parameters" element="tns:verificarUbicacionSolicitud" />
+  </message>
+  <message name="verificarUbicacionSolicitudResponse">
+    <part name="parameters" element="tns:verificarUbicacionSolicitudResponse" />
+  </message>
+  <message name="findUbicacionesBodegaProducto">
+    <part name="parameters" element="tns:findUbicacionesBodegaProducto" />
+  </message>
+  <message name="findUbicacionesBodegaProductoResponse">
+    <part name="parameters" element="tns:findUbicacionesBodegaProductoResponse" />
+  </message>
+  <message name="findProductosAreaRecepcion">
+    <part name="parameters" element="tns:findProductosAreaRecepcion" />
+  </message>
+  <message name="findProductosAreaRecepcionResponse">
+    <part name="parameters" element="tns:findProductosAreaRecepcionResponse" />
+  </message>
+  <message name="findProductosByNombre">
+    <part name="parameters" element="tns:findProductosByNombre" />
+  </message>
+  <message name="findProductosByNombreResponse">
+    <part name="parameters" element="tns:findProductosByNombreResponse" />
+  </message>
+  <message name="findUbicacionesByProducto">
+    <part name="parameters" element="tns:findUbicacionesByProducto" />
+  </message>
+  <message name="findUbicacionesByProductoResponse">
+    <part name="parameters" element="tns:findUbicacionesByProductoResponse" />
+  </message>
+  <message name="findUbicacionesBodegaSugeridasProducto">
+    <part name="parameters" element="tns:findUbicacionesBodegaSugeridasProducto" />
+  </message>
+  <message name="findUbicacionesBodegaSugeridasProductoResponse">
+    <part name="parameters" element="tns:findUbicacionesBodegaSugeridasProductoResponse" />
+  </message>
+  <message name="findUbicacionesBodegaSugeridasPorProducto">
+    <part name="parameters" element="tns:findUbicacionesBodegaSugeridasPorProducto" />
+  </message>
+  <message name="findUbicacionesBodegaSugeridasPorProductoResponse">
+    <part name="parameters" element="tns:findUbicacionesBodegaSugeridasPorProductoResponse" />
+  </message>
+  <message name="findAreaRecibirBodegaSolicitudRecepcion">
+    <part name="parameters" element="tns:findAreaRecibirBodegaSolicitudRecepcion" />
+  </message>
+  <message name="findAreaRecibirBodegaSolicitudRecepcionResponse">
+    <part name="parameters" element="tns:findAreaRecibirBodegaSolicitudRecepcionResponse" />
+  </message>
+  <message name="findAreaRecibirBodega">
+    <part name="parameters" element="tns:findAreaRecibirBodega" />
+  </message>
+  <message name="findAreaRecibirBodegaResponse">
+    <part name="parameters" element="tns:findAreaRecibirBodegaResponse" />
+  </message>
+  <message name="findUbicacionesDispoProductosSolicitudRecepcion">
+    <part name="parameters" element="tns:findUbicacionesDispoProductosSolicitudRecepcion" />
+  </message>
+  <message name="findUbicacionesDispoProductosSolicitudRecepcionResponse">
+    <part name="parameters" element="tns:findUbicacionesDispoProductosSolicitudRecepcionResponse" />
+  </message>
+  <message name="findUbicacionBodegaSolicitudRecepcion">
+    <part name="parameters" element="tns:findUbicacionBodegaSolicitudRecepcion" />
+  </message>
+  <message name="findUbicacionBodegaSolicitudRecepcionResponse">
+    <part name="parameters" element="tns:findUbicacionBodegaSolicitudRecepcionResponse" />
+  </message>
+  <message name="findUbicacionesDispoProductosSolicitudRecepcionTodos">
+    <part name="parameters" element="tns:findUbicacionesDispoProductosSolicitudRecepcionTodos" />
+  </message>
+  <message name="findUbicacionesDispoProductosSolicitudRecepcionTodosResponse">
+    <part name="parameters" element="tns:findUbicacionesDispoProductosSolicitudRecepcionTodosResponse" />
+  </message>
+  <message name="findProductosSolicitudRecepcionAreaRecibir">
+    <part name="parameters" element="tns:findProductosSolicitudRecepcionAreaRecibir" />
+  </message>
+  <message name="findProductosSolicitudRecepcionAreaRecibirResponse">
+    <part name="parameters" element="tns:findProductosSolicitudRecepcionAreaRecibirResponse" />
+  </message>
+  <message name="findProductoSolicitudRecepcionAreaRecibir">
+    <part name="parameters" element="tns:findProductoSolicitudRecepcionAreaRecibir" />
+  </message>
+  <message name="findProductoSolicitudRecepcionAreaRecibirResponse">
+    <part name="parameters" element="tns:findProductoSolicitudRecepcionAreaRecibirResponse" />
+  </message>
+  <message name="findUbicacionesBodegaSolicitudRecepcion">
+    <part name="parameters" element="tns:findUbicacionesBodegaSolicitudRecepcion" />
+  </message>
+  <message name="findUbicacionesBodegaSolicitudRecepcionResponse">
+    <part name="parameters" element="tns:findUbicacionesBodegaSolicitudRecepcionResponse" />
+  </message>
+  <message name="findOrdenCompraSolicitudRecepcion">
+    <part name="parameters" element="tns:findOrdenCompraSolicitudRecepcion" />
+  </message>
+  <message name="findOrdenCompraSolicitudRecepcionResponse">
+    <part name="parameters" element="tns:findOrdenCompraSolicitudRecepcionResponse" />
+  </message>
+  <message name="findAllBodegas">
+    <part name="parameters" element="tns:findAllBodegas" />
+  </message>
+  <message name="findAllBodegasResponse">
+    <part name="parameters" element="tns:findAllBodegasResponse" />
+  </message>
+  <message name="findOrdenesCompraPendientes">
+    <part name="parameters" element="tns:findOrdenesCompraPendientes" />
+  </message>
+  <message name="findOrdenesCompraPendientesResponse">
+    <part name="parameters" element="tns:findOrdenesCompraPendientesResponse" />
+  </message>
+  <message name="findProductosOrdenCompra">
+    <part name="parameters" element="tns:findProductosOrdenCompra" />
+  </message>
+  <message name="findProductosOrdenCompraResponse">
+    <part name="parameters" element="tns:findProductosOrdenCompraResponse" />
+  </message>
+  <message name="findUbicacionesDisponibles">
+    <part name="parameters" element="tns:findUbicacionesDisponibles" />
+  </message>
+  <message name="findUbicacionesDisponiblesResponse">
+    <part name="parameters" element="tns:findUbicacionesDisponiblesResponse" />
+  </message>
+  <message name="findSolicitudesRecepcionOrdenCompra">
+    <part name="parameters" element="tns:findSolicitudesRecepcionOrdenCompra" />
+  </message>
+  <message name="findSolicitudesRecepcionOrdenCompraResponse">
+    <part name="parameters" element="tns:findSolicitudesRecepcionOrdenCompraResponse" />
+  </message>
+  <message name="findProductosSolicitudRecepcion">
+    <part name="parameters" element="tns:findProductosSolicitudRecepcion" />
+  </message>
+  <message name="findProductosSolicitudRecepcionResponse">
+    <part name="parameters" element="tns:findProductosSolicitudRecepcionResponse" />
+  </message>
+  <message name="findSolicitudesRecepcionBodega">
+    <part name="parameters" element="tns:findSolicitudesRecepcionBodega" />
+  </message>
+  <message name="findSolicitudesRecepcionBodegaResponse">
+    <part name="parameters" element="tns:findSolicitudesRecepcionBodegaResponse" />
+  </message>
+  <message name="findUbicacionesDisponiblesBodega">
+    <part name="parameters" element="tns:findUbicacionesDisponiblesBodega" />
+  </message>
+  <message name="findUbicacionesDisponiblesBodegaResponse">
+    <part name="parameters" element="tns:findUbicacionesDisponiblesBodegaResponse" />
+  </message>
+  <message name="actualizarExistenciasBodega">
+    <part name="parameters" element="tns:actualizarExistenciasBodega" />
+  </message>
+  <message name="actualizarExistenciasBodegaResponse">
+    <part name="parameters" element="tns:actualizarExistenciasBodegaResponse" />
+  </message>
+  <message name="ubicarProductosAreaRecibir">
+    <part name="parameters" element="tns:ubicarProductosAreaRecibir" />
+  </message>
+  <message name="ubicarProductosAreaRecibirResponse">
+    <part name="parameters" element="tns:ubicarProductosAreaRecibirResponse" />
+  </message>
+  <message name="verificarActividadUbicacionProductos">
+    <part name="parameters" element="tns:verificarActividadUbicacionProductos" />
+  </message>
+  <message name="verificarActividadUbicacionProductosResponse">
+    <part name="parameters" element="tns:verificarActividadUbicacionProductosResponse" />
+  </message>
+  <portType name="VIDUCWebService">
+    <operation name="findUbicacionesProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesProductoRequest" message="tns:findUbicacionesProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesProductoResponse" message="tns:findUbicacionesProductoResponse" />
+    </operation>
+    <operation name="verificarEjecucionPlanificacionSolicitudRecepcion">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/verificarEjecucionPlanificacionSolicitudRecepcionRequest" message="tns:verificarEjecucionPlanificacionSolicitudRecepcion" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/verificarEjecucionPlanificacionSolicitudRecepcionResponse" message="tns:verificarEjecucionPlanificacionSolicitudRecepcionResponse" />
+    </operation>
+    <operation name="cambiarUbicacionPlanificada">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/cambiarUbicacionPlanificadaRequest" message="tns:cambiarUbicacionPlanificada" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/cambiarUbicacionPlanificadaResponse" message="tns:cambiarUbicacionPlanificadaResponse" />
+    </operation>
+    <operation name="agregarUbicacionProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/agregarUbicacionProductoRequest" message="tns:agregarUbicacionProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/agregarUbicacionProductoResponse" message="tns:agregarUbicacionProductoResponse" />
+    </operation>
+    <operation name="agregarComentarioProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/agregarComentarioProductoRequest" message="tns:agregarComentarioProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/agregarComentarioProductoResponse" message="tns:agregarComentarioProductoResponse" />
+    </operation>
+    <operation name="evaluarProductoOrdenCompra">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/evaluarProductoOrdenCompraRequest" message="tns:evaluarProductoOrdenCompra" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/evaluarProductoOrdenCompraResponse" message="tns:evaluarProductoOrdenCompraResponse" />
+    </operation>
+    <operation name="validarUsuario">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/validarUsuarioRequest" message="tns:validarUsuario" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/validarUsuarioResponse" message="tns:validarUsuarioResponse" />
+    </operation>
+    <operation name="findEstadosSolicitud">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findEstadosSolicitudRequest" message="tns:findEstadosSolicitud" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findEstadosSolicitudResponse" message="tns:findEstadosSolicitudResponse" />
+    </operation>
+    <operation name="findDetallesSolicitud">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findDetallesSolicitudRequest" message="tns:findDetallesSolicitud" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findDetallesSolicitudResponse" message="tns:findDetallesSolicitudResponse" />
+    </operation>
+    <operation name="findDetallesSolicitudRecibidos">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findDetallesSolicitudRecibidosRequest" message="tns:findDetallesSolicitudRecibidos" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findDetallesSolicitudRecibidosResponse" message="tns:findDetallesSolicitudRecibidosResponse" />
+    </operation>
+    <operation name="recibirProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/recibirProductoRequest" message="tns:recibirProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/recibirProductoResponse" message="tns:recibirProductoResponse" />
+    </operation>
+    <operation name="verificarRecepcionSolicitud">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/verificarRecepcionSolicitudRequest" message="tns:verificarRecepcionSolicitud" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/verificarRecepcionSolicitudResponse" message="tns:verificarRecepcionSolicitudResponse" />
+    </operation>
+    <operation name="ubicarProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/ubicarProductoRequest" message="tns:ubicarProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/ubicarProductoResponse" message="tns:ubicarProductoResponse" />
+    </operation>
+    <operation name="verificarUbicacionSolicitud">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/verificarUbicacionSolicitudRequest" message="tns:verificarUbicacionSolicitud" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/verificarUbicacionSolicitudResponse" message="tns:verificarUbicacionSolicitudResponse" />
+    </operation>
+    <operation name="findUbicacionesBodegaProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesBodegaProductoRequest" message="tns:findUbicacionesBodegaProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesBodegaProductoResponse" message="tns:findUbicacionesBodegaProductoResponse" />
+    </operation>
+    <operation name="findProductosAreaRecepcion">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosAreaRecepcionRequest" message="tns:findProductosAreaRecepcion" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosAreaRecepcionResponse" message="tns:findProductosAreaRecepcionResponse" />
+    </operation>
+    <operation name="findProductosByNombre">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosByNombreRequest" message="tns:findProductosByNombre" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosByNombreResponse" message="tns:findProductosByNombreResponse" />
+    </operation>
+    <operation name="findUbicacionesByProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesByProductoRequest" message="tns:findUbicacionesByProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesByProductoResponse" message="tns:findUbicacionesByProductoResponse" />
+    </operation>
+    <operation name="findUbicacionesBodegaSugeridasProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesBodegaSugeridasProductoRequest" message="tns:findUbicacionesBodegaSugeridasProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesBodegaSugeridasProductoResponse" message="tns:findUbicacionesBodegaSugeridasProductoResponse" />
+    </operation>
+    <operation name="findUbicacionesBodegaSugeridasPorProducto">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesBodegaSugeridasPorProductoRequest" message="tns:findUbicacionesBodegaSugeridasPorProducto" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesBodegaSugeridasPorProductoResponse" message="tns:findUbicacionesBodegaSugeridasPorProductoResponse" />
+    </operation>
+    <operation name="findAreaRecibirBodegaSolicitudRecepcion">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findAreaRecibirBodegaSolicitudRecepcionRequest" message="tns:findAreaRecibirBodegaSolicitudRecepcion" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findAreaRecibirBodegaSolicitudRecepcionResponse" message="tns:findAreaRecibirBodegaSolicitudRecepcionResponse" />
+    </operation>
+    <operation name="findAreaRecibirBodega">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findAreaRecibirBodegaRequest" message="tns:findAreaRecibirBodega" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findAreaRecibirBodegaResponse" message="tns:findAreaRecibirBodegaResponse" />
+    </operation>
+    <operation name="findUbicacionesDispoProductosSolicitudRecepcion">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesDispoProductosSolicitudRecepcionRequest" message="tns:findUbicacionesDispoProductosSolicitudRecepcion" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesDispoProductosSolicitudRecepcionResponse" message="tns:findUbicacionesDispoProductosSolicitudRecepcionResponse" />
+    </operation>
+    <operation name="findUbicacionBodegaSolicitudRecepcion">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionBodegaSolicitudRecepcionRequest" message="tns:findUbicacionBodegaSolicitudRecepcion" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionBodegaSolicitudRecepcionResponse" message="tns:findUbicacionBodegaSolicitudRecepcionResponse" />
+    </operation>
+    <operation name="findUbicacionesDispoProductosSolicitudRecepcionTodos">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesDispoProductosSolicitudRecepcionTodosRequest" message="tns:findUbicacionesDispoProductosSolicitudRecepcionTodos" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesDispoProductosSolicitudRecepcionTodosResponse" message="tns:findUbicacionesDispoProductosSolicitudRecepcionTodosResponse" />
+    </operation>
+    <operation name="findProductosSolicitudRecepcionAreaRecibir">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosSolicitudRecepcionAreaRecibirRequest" message="tns:findProductosSolicitudRecepcionAreaRecibir" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosSolicitudRecepcionAreaRecibirResponse" message="tns:findProductosSolicitudRecepcionAreaRecibirResponse" />
+    </operation>
+    <operation name="findProductoSolicitudRecepcionAreaRecibir">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductoSolicitudRecepcionAreaRecibirRequest" message="tns:findProductoSolicitudRecepcionAreaRecibir" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductoSolicitudRecepcionAreaRecibirResponse" message="tns:findProductoSolicitudRecepcionAreaRecibirResponse" />
+    </operation>
+    <operation name="findUbicacionesBodegaSolicitudRecepcion">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesBodegaSolicitudRecepcionRequest" message="tns:findUbicacionesBodegaSolicitudRecepcion" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesBodegaSolicitudRecepcionResponse" message="tns:findUbicacionesBodegaSolicitudRecepcionResponse" />
+    </operation>
+    <operation name="findOrdenCompraSolicitudRecepcion">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findOrdenCompraSolicitudRecepcionRequest" message="tns:findOrdenCompraSolicitudRecepcion" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findOrdenCompraSolicitudRecepcionResponse" message="tns:findOrdenCompraSolicitudRecepcionResponse" />
+    </operation>
+    <operation name="findAllBodegas">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findAllBodegasRequest" message="tns:findAllBodegas" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findAllBodegasResponse" message="tns:findAllBodegasResponse" />
+    </operation>
+    <operation name="findOrdenesCompraPendientes">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findOrdenesCompraPendientesRequest" message="tns:findOrdenesCompraPendientes" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findOrdenesCompraPendientesResponse" message="tns:findOrdenesCompraPendientesResponse" />
+    </operation>
+    <operation name="findProductosOrdenCompra">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosOrdenCompraRequest" message="tns:findProductosOrdenCompra" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosOrdenCompraResponse" message="tns:findProductosOrdenCompraResponse" />
+    </operation>
+    <operation name="findUbicacionesDisponibles">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesDisponiblesRequest" message="tns:findUbicacionesDisponibles" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesDisponiblesResponse" message="tns:findUbicacionesDisponiblesResponse" />
+    </operation>
+    <operation name="findSolicitudesRecepcionOrdenCompra">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findSolicitudesRecepcionOrdenCompraRequest" message="tns:findSolicitudesRecepcionOrdenCompra" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findSolicitudesRecepcionOrdenCompraResponse" message="tns:findSolicitudesRecepcionOrdenCompraResponse" />
+    </operation>
+    <operation name="findProductosSolicitudRecepcion">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosSolicitudRecepcionRequest" message="tns:findProductosSolicitudRecepcion" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findProductosSolicitudRecepcionResponse" message="tns:findProductosSolicitudRecepcionResponse" />
+    </operation>
+    <operation name="findSolicitudesRecepcionBodega">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findSolicitudesRecepcionBodegaRequest" message="tns:findSolicitudesRecepcionBodega" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findSolicitudesRecepcionBodegaResponse" message="tns:findSolicitudesRecepcionBodegaResponse" />
+    </operation>
+    <operation name="findUbicacionesDisponiblesBodega">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesDisponiblesBodegaRequest" message="tns:findUbicacionesDisponiblesBodega" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/findUbicacionesDisponiblesBodegaResponse" message="tns:findUbicacionesDisponiblesBodegaResponse" />
+    </operation>
+    <operation name="actualizarExistenciasBodega">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/actualizarExistenciasBodegaRequest" message="tns:actualizarExistenciasBodega" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/actualizarExistenciasBodegaResponse" message="tns:actualizarExistenciasBodegaResponse" />
+    </operation>
+    <operation name="ubicarProductosAreaRecibir">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/ubicarProductosAreaRecibirRequest" message="tns:ubicarProductosAreaRecibir" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/ubicarProductosAreaRecibirResponse" message="tns:ubicarProductosAreaRecibirResponse" />
+    </operation>
+    <operation name="verificarActividadUbicacionProductos">
+      <input wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/verificarActividadUbicacionProductosRequest" message="tns:verificarActividadUbicacionProductos" />
+      <output wsam:Action="http://webservice.model.prueba.infosgroup.com/VIDUCWebService/verificarActividadUbicacionProductosResponse" message="tns:verificarActividadUbicacionProductosResponse" />
+    </operation>
+  </portType>
+  <binding name="VIDUCWebServicePortBinding" type="tns:VIDUCWebService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="findUbicacionesProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="verificarEjecucionPlanificacionSolicitudRecepcion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="cambiarUbicacionPlanificada">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="agregarUbicacionProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="agregarComentarioProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="evaluarProductoOrdenCompra">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="validarUsuario">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findEstadosSolicitud">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findDetallesSolicitud">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findDetallesSolicitudRecibidos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="recibirProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="verificarRecepcionSolicitud">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ubicarProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="verificarUbicacionSolicitud">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesBodegaProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findProductosAreaRecepcion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findProductosByNombre">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesByProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesBodegaSugeridasProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesBodegaSugeridasPorProducto">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findAreaRecibirBodegaSolicitudRecepcion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findAreaRecibirBodega">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesDispoProductosSolicitudRecepcion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionBodegaSolicitudRecepcion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesDispoProductosSolicitudRecepcionTodos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findProductosSolicitudRecepcionAreaRecibir">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findProductoSolicitudRecepcionAreaRecibir">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesBodegaSolicitudRecepcion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findOrdenCompraSolicitudRecepcion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findAllBodegas">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findOrdenesCompraPendientes">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findProductosOrdenCompra">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesDisponibles">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findSolicitudesRecepcionOrdenCompra">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findProductosSolicitudRecepcion">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findSolicitudesRecepcionBodega">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="findUbicacionesDisponiblesBodega">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="actualizarExistenciasBodega">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ubicarProductosAreaRecibir">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="verificarActividadUbicacionProductos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="VIDUCWebService">
+    <port name="VIDUCWebServicePort" binding="tns:VIDUCWebServicePortBinding">
+      <soap:address location="http://192.168.20.150:9999/ViducWebApp/VIDUCWebService" />
+    </port>
+  </service>
+</definitions>

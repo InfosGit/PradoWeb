@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://webservice.model.prueba.infosgroup.com/" targetNamespace="http://webservice.model.prueba.infosgroup.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="compania" type="tns:compania" />
+  <xs:element name="empleado" type="tns:empleado" />
+  <xs:element name="findUbicacionesUsuario" type="tns:findUbicacionesUsuario" />
+  <xs:element name="findUbicacionesUsuarioResponse" type="tns:findUbicacionesUsuarioResponse" />
+  <xs:element name="invFisico" type="tns:invFisico" />
+  <xs:element name="invFisicoDet" type="tns:invFisicoDet" />
+  <xs:element name="registrarConteoFisico" type="tns:registrarConteoFisico" />
+  <xs:element name="registrarConteoFisicoResponse" type="tns:registrarConteoFisicoResponse" />
+  <xs:element name="rol" type="tns:rol" />
+  <xs:element name="usuario" type="tns:usuario" />
+  <xs:complexType name="findUbicacionesUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="usuario" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesUsuarioResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:invFisicoDet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="invFisicoDet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="anaquel" type="xs:long" />
+      <xs:element minOccurs="0" name="area" type="xs:string" />
+      <xs:element minOccurs="0" name="cantidad" type="xs:long" />
+      <xs:element minOccurs="0" name="cantidadSistema" type="xs:long" />
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+      <xs:element minOccurs="0" name="codigo" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="invFisico" type="tns:invFisico" />
+      <xs:element minOccurs="0" name="invFisicoDetPK" type="tns:invFisicoDetPK" />
+      <xs:element minOccurs="0" name="nivel" type="xs:long" />
+      <xs:element minOccurs="0" name="umedida" type="xs:string" />
+      <xs:element minOccurs="0" name="usuario" type="tns:usuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="invFisico">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="invFisicoPK" type="tns:invFisicoPK" />
+      <xs:element minOccurs="0" name="totConteo" type="xs:long" />
+      <xs:element minOccurs="0" name="usuario" type="tns:usuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="invFisicoPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="noInventario" type="xs:long" />
+      <xs:element minOccurs="0" name="noListado" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="usuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bodega" type="xs:long" />
+      <xs:element minOccurs="0" name="compania" type="tns:compania" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="empleado" type="tns:empleado" />
+      <xs:element minOccurs="0" name="fechaFin" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaInicio" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="rol" type="tns:rol" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="compania">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="empleado">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="apartadoEmail" type="xs:string" />
+      <xs:element minOccurs="0" name="apellidoCasada" type="xs:string" />
+      <xs:element minOccurs="0" name="celular" type="xs:string" />
+      <xs:element minOccurs="0" name="direccion" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element name="estado" type="xs:long" />
+      <xs:element name="estadoCivil" type="xs:long" />
+      <xs:element name="externo" type="xs:short" />
+      <xs:element minOccurs="0" name="fechaIngreso" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="jefe" type="tns:empleado" />
+      <xs:element minOccurs="0" name="nombreCompleto" type="xs:string" />
+      <xs:element minOccurs="0" name="primerApellido" type="xs:string" />
+      <xs:element minOccurs="0" name="primerNombre" type="xs:string" />
+      <xs:element minOccurs="0" name="segundoApellido" type="xs:string" />
+      <xs:element minOccurs="0" name="segundoNombre" type="xs:string" />
+      <xs:element name="sexo" type="xs:long" />
+      <xs:element minOccurs="0" name="telefono" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoSangre" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rol">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="invFisicoDetPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="correl" type="xs:long" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="noInventario" type="xs:long" />
+      <xs:element minOccurs="0" name="noListado" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registrarConteoFisico">
+    <xs:sequence>
+      <xs:element name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="fechaConteo" type="xs:dateTime" />
+      <xs:element name="bodega" type="xs:long" />
+      <xs:element name="secuencia" type="xs:long" />
+      <xs:element minOccurs="0" name="producto" type="xs:string" />
+      <xs:element name="anaquel" type="xs:long" />
+      <xs:element minOccurs="0" name="area" type="xs:string" />
+      <xs:element name="nivel" type="xs:long" />
+      <xs:element name="cantidadContada" type="xs:long" />
+      <xs:element name="no_inventario" type="xs:long" />
+      <xs:element name="no_listado" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="registrarConteoFisicoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

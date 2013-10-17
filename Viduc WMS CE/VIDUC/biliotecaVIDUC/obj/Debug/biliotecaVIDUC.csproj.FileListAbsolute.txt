@@ -1,0 +1,29 @@
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\biliotecaVIDUC\bin\Debug\biliotecaVIDUC.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\biliotecaVIDUC\bin\Debug\biliotecaVIDUC.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\biliotecaVIDUC\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\bin\Debug\biliotecaVIDUC.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\bin\Debug\biliotecaVIDUC.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\biliotecaVIDUC.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\biliotecaVIDUC.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\biliotecaVIDUC.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\biliotecaVIDUC.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\biliotecaVIDUC.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\VIDUC\biliotecaVIDUC\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\biliotecaVIDUC.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\VIDUC\biliotecaVIDUC\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\INFOS16\Desktop\Viduc WMS CE\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\VIDUC\biliotecaVIDUC\obj\Debug\biliotecaVIDUC.pdb

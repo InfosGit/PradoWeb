@@ -1,0 +1,5 @@
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\colorFilaGRID\colorFilaGRID\bin\Debug\colorFilaGRID.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\colorFilaGRID\colorFilaGRID\bin\Debug\colorFilaGRID.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\colorFilaGRID\colorFilaGRID\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\colorFilaGRID\colorFilaGRID\obj\Debug\colorFilaGRID.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\VIDUC\colorFilaGRID\colorFilaGRID\obj\Debug\colorFilaGRID.pdb

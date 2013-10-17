@@ -1,0 +1,373 @@
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\SmartDeviceProject1.exe
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\SmartDeviceProject1.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Barcode.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\HandHeldProducts.Embedded.Decoding.DecodeAssembly.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\HandHeldProducts.Embedded.Decoding.SymbologyConfiguratorUserControl.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Intermec.DataCollection.CF2.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Microsoft.Samples.Barcode.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Symbol.Barcode.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Symbol.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Symbol.StandardForms.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\System.Data.OracleClient.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\System.Transactions.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\System.EnterpriseServices.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\System.Web.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Symbol.StandardForms.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Barcode.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Symbol.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\Symbol.Barcode.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\bin\Debug\System.EnterpriseServices.Wrapper.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_TrasladoOrigenProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_TrasladoProductos.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_TrasladoOrigen.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_SubMenuTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_SolicitudTransaladoOrigen.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_BodegasReciben.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.Form1.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_UbicacionProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_UbicacionExtraTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_UbicacionesExtras.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_ComentariosProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_DatosProductoB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_DatosProductoCategoriaB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_DatosProductoUbicacionB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_SubMenu.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_BusquedaProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_ProductoCategoriaB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_ProductoUbicacionB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_DatosProductoCategoria.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_DatosProductoUbicacion.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_DatosProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_MenuConsulta.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_ProductoCategoria.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_ProductoUbicacion.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_SolicitudInventario.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_SolicitudTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.Properties.Resources.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_Inventarios.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_Login.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_Menu.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_RecepcionProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_Solicitudes.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_Traslado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_Ubicaciones.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.wf_UbicacionesTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\viducWMS.csproj.GenerateResource.Cache
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.exe
+C:\Users\Infosgroup\Documents\ProyectoMovil\SmartDeviceProject1\SmartDeviceProject1\obj\Debug\SmartDeviceProject1.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\viducWMS.exe
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\viducWMS.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Barcode.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\biliotecaVIDUC.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\HandHeldProducts.Embedded.Decoding.DecodeAssembly.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\HandHeldProducts.Embedded.Decoding.SymbologyConfiguratorUserControl.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Intermec.DataCollection.CF2.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Microsoft.Samples.Barcode.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Symbol.Barcode.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Symbol.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Symbol.StandardForms.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\System.Data.OracleClient.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\System.Transactions.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\System.EnterpriseServices.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\System.Web.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Symbol.StandardForms.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Barcode.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\biliotecaVIDUC.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Symbol.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\Symbol.Barcode.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\bin\Debug\System.EnterpriseServices.Wrapper.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_TrasladoOrigenProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_TrasladoProductos.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_TrasladoOrigen.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_SubMenuTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_SolicitudTransaladoOrigen.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_BodegasReciben.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.Form1.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_UbicacionProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_UbicacionExtraTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_UbicacionesExtras.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_ComentariosProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_DatosProductoB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_DatosProductoCategoriaB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_DatosProductoUbicacionB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_SubMenu.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_BusquedaProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_ProductoCategoriaB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_ProductoUbicacionB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_DatosProductoCategoria.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_DatosProductoUbicacion.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_DatosProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_MenuConsulta.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_ProductoCategoria.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_ProductoUbicacion.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_SolicitudInventario.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_SolicitudTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.Properties.Resources.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_Inventarios.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_Login.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_Menu.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_RecepcionProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_Solicitudes.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_Traslado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_Ubicaciones.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.wf_UbicacionesTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.csproj.GenerateResource.Cache
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.exe
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\SmartDeviceProject1\obj\Debug\viducWMS.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\viducWMS.exe
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\viducWMS.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Barcode.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\biliotecaVIDUC.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\HandHeldProducts.Embedded.Decoding.DecodeAssembly.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\HandHeldProducts.Embedded.Decoding.SymbologyConfiguratorUserControl.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Intermec.DataCollection.CF2.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Microsoft.Samples.Barcode.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.Barcode.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.StandardForms.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.Data.OracleClient.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.Transactions.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.EnterpriseServices.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.Web.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.StandardForms.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Barcode.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\biliotecaVIDUC.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.Barcode.xml
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.EnterpriseServices.Wrapper.dll
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Despacho.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DespachoProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_TrasladoOrigenProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_TrasladoProductos.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_TrasladoOrigen.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SubMenuTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SolicitudTransaladoOrigen.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_BodegasReciben.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionExtraTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionesExtras.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ComentariosProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoCategoriaB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoUbicacionB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SubMenu.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_BusquedaProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoCategoriaB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoUbicacionB.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoCategoria.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoUbicacion.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_MenuConsulta.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoCategoria.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoUbicacion.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SolicitudInventario.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SolicitudTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.Properties.Resources.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Inventarios.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Login.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Menu.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_RecepcionProducto.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Solicitudes.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Traslado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Ubicaciones.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionesTransalado.resources
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.csproj.GenerateResource.Cache
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.exe
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.pdb
+C:\Users\Infosgroup\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Recepcion.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\urlServiciosWeb.xml
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\viducWMS.exe
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\viducWMS.pdb
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Barcode.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\biliotecaVIDUC.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\colorFilaGrid.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\HandHeldProducts.Embedded.Decoding.DecodeAssembly.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\HandHeldProducts.Embedded.Decoding.SymbologyConfiguratorUserControl.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Intermec.DataCollection.CF2.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Microsoft.Samples.Barcode.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.Barcode.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.StandardForms.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.Data.OracleClient.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.Transactions.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.EnterpriseServices.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.Web.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.StandardForms.xml
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Barcode.xml
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\colorFilaGrid.pdb
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\colorFilaGrid.xml
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.xml
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\Symbol.Barcode.xml
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\bin\Debug\System.EnterpriseServices.Wrapper.dll
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Ajustes.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_AreasDespacho.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_AreasTrasladoDespacho.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DespachoProductoValidacion.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductosTrasladar.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Recepcion.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Despacho.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DespachoProducto.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_TrasladoOrigenProducto.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SubMenuTransalado.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionProducto.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionExtraTransalado.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionesExtras.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ComentariosProducto.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoB.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoCategoriaB.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SubMenu.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_BusquedaProducto.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoCategoriaB.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoUbicacionB.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoCategoria.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoUbicacion.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProducto.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_MenuConsulta.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoCategoria.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SolicitudTransalado.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.Properties.Resources.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Inventarios.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Login.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Menu.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_RecepcionProducto.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Solicitudes.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Ubicaciones.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionesTransalado.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.csproj.GenerateResource.Cache
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.exe
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.pdb
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_menuRecepcion.resources
+C:\Users\INFOS16\Documents\ProyectoMovil\viducWMS\viducWMS\obj\Debug\viducWMS.wf_BusquedaProductoDet.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\urlServiciosWeb.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\viducWMS.exe
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\viducWMS.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Barcode.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\biliotecaVIDUC.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\colorFilaGrid.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Intermec.DataCollection.CF2.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Microsoft.Samples.Barcode.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Symbol.Barcode.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Symbol.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Symbol.StandardForms.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\System.Data.OracleClient.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\System.Transactions.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\System.EnterpriseServices.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\System.Web.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Symbol.StandardForms.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Barcode.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\colorFilaGrid.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\colorFilaGrid.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Symbol.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\Symbol.Barcode.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\System.EnterpriseServices.Wrapper.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Ajustes.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_AreasDespacho.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_AreasTrasladoDespacho.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_BusquedaProductoDet.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DespachoProductoValidacion.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_menuRecepcion.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductosTrasladar.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Recepcion.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Despacho.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DespachoProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_TrasladoOrigenProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SubMenuTransalado.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionExtraTransalado.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionesExtras.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ComentariosProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoB.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoCategoriaB.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SubMenu.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_BusquedaProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoCategoriaB.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoUbicacionB.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoCategoria.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProductoUbicacion.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_DatosProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_MenuConsulta.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_ProductoCategoria.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_SolicitudTransalado.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.Properties.Resources.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Inventarios.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Login.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Menu.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_RecepcionProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Solicitudes.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_Ubicaciones.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_UbicacionesTransalado.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.csproj.GenerateResource.Cache
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.exe
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.prueba.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_TrasladoInterno.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\obj\Debug\viducWMS.wf_TrasladoInternoUbicacion.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\viducWMS.exe.config
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\HandHeldProducts.Embedded.Decoding.DecodeAssembly.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\HandHeldProducts.Embedded.Decoding.SymbologyConfiguratorUserControl.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\viducWMS\bin\Debug\HandHeldProducts.Embedded.SignatureUserControl.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\urlServiciosWeb.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\viducWMS.exe
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\viducWMS.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Barcode.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\biliotecaVIDUC.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\colorFilaGrid.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\HandHeldProducts.Embedded.Decoding.DecodeAssembly.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\HandHeldProducts.Embedded.Decoding.SymbologyConfiguratorUserControl.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\HandHeldProducts.Embedded.SignatureUserControl.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Intermec.DataCollection.CF2.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Microsoft.Samples.Barcode.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Symbol.Barcode.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Symbol.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Symbol.StandardForms.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\System.Data.OracleClient.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\System.Transactions.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\System.EnterpriseServices.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\System.Web.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Symbol.StandardForms.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Barcode.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\biliotecaVIDUC.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\colorFilaGrid.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\colorFilaGrid.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Symbol.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\Symbol.Barcode.xml
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\bin\Debug\System.EnterpriseServices.Wrapper.dll
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.prueba.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_Ajustes.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_AreasDespacho.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_BusquedaProductoDet.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_DespachoProductoValidacion.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_menuRecepcion.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_ProductosTrasladar.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_Recepcion.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_Despacho.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_DespachoProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_TrasladoInterno.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_SubMenuTransalado.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_UbicacionProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_SubMenu.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_BusquedaProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_DatosProductoUbicacion.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_DatosProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_MenuConsulta.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_ProductoCategoria.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_SolicitudTransalado.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.Properties.Resources.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_Login.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_Menu.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_RecepcionProducto.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_Solicitudes.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_Ubicaciones.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.wf_UbicacionesTransalado.resources
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.csproj.GenerateResource.Cache
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.exe
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.pdb
+C:\Users\INFOS16\Desktop\Viduc WMS CE\viducWMS\obj\Debug\viducWMS.MenuTrasladoInterno.resources

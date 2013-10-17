@@ -1,0 +1,1203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://webservice.model.prueba.infosgroup.com/" targetNamespace="http://webservice.model.prueba.infosgroup.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="actualizarExistenciasBodega" type="tns:actualizarExistenciasBodega" />
+  <xs:element name="actualizarExistenciasBodegaResponse" type="tns:actualizarExistenciasBodegaResponse" />
+  <xs:element name="agregarComentarioProducto" type="tns:agregarComentarioProducto" />
+  <xs:element name="agregarComentarioProductoResponse" type="tns:agregarComentarioProductoResponse" />
+  <xs:element name="agregarUbicacionProducto" type="tns:agregarUbicacionProducto" />
+  <xs:element name="agregarUbicacionProductoResponse" type="tns:agregarUbicacionProductoResponse" />
+  <xs:element name="areaDespacho" type="tns:areaDespacho" />
+  <xs:element name="bodegas" type="tns:bodegas" />
+  <xs:element name="cambiarUbicacionPlanificada" type="tns:cambiarUbicacionPlanificada" />
+  <xs:element name="cambiarUbicacionPlanificadaResponse" type="tns:cambiarUbicacionPlanificadaResponse" />
+  <xs:element name="categorias" type="tns:categorias" />
+  <xs:element name="compania" type="tns:compania" />
+  <xs:element name="detOrden" type="tns:detOrden" />
+  <xs:element name="detSolicitud" type="tns:detSolicitud" />
+  <xs:element name="detalleProducto" type="tns:detalleProducto" />
+  <xs:element name="doctosInv" type="tns:doctosInv" />
+  <xs:element name="empleado" type="tns:empleado" />
+  <xs:element name="estadoSolicitud" type="tns:estadoSolicitud" />
+  <xs:element name="evaluarProductoOrdenCompra" type="tns:evaluarProductoOrdenCompra" />
+  <xs:element name="evaluarProductoOrdenCompraResponse" type="tns:evaluarProductoOrdenCompraResponse" />
+  <xs:element name="findAllBodegas" type="tns:findAllBodegas" />
+  <xs:element name="findAllBodegasResponse" type="tns:findAllBodegasResponse" />
+  <xs:element name="findAreaRecibirBodega" type="tns:findAreaRecibirBodega" />
+  <xs:element name="findAreaRecibirBodegaResponse" type="tns:findAreaRecibirBodegaResponse" />
+  <xs:element name="findAreaRecibirBodegaSolicitudRecepcion" type="tns:findAreaRecibirBodegaSolicitudRecepcion" />
+  <xs:element name="findAreaRecibirBodegaSolicitudRecepcionResponse" type="tns:findAreaRecibirBodegaSolicitudRecepcionResponse" />
+  <xs:element name="findDetallesSolicitud" type="tns:findDetallesSolicitud" />
+  <xs:element name="findDetallesSolicitudRecibidos" type="tns:findDetallesSolicitudRecibidos" />
+  <xs:element name="findDetallesSolicitudRecibidosResponse" type="tns:findDetallesSolicitudRecibidosResponse" />
+  <xs:element name="findDetallesSolicitudResponse" type="tns:findDetallesSolicitudResponse" />
+  <xs:element name="findEstadosSolicitud" type="tns:findEstadosSolicitud" />
+  <xs:element name="findEstadosSolicitudResponse" type="tns:findEstadosSolicitudResponse" />
+  <xs:element name="findOrdenCompraSolicitudRecepcion" type="tns:findOrdenCompraSolicitudRecepcion" />
+  <xs:element name="findOrdenCompraSolicitudRecepcionResponse" type="tns:findOrdenCompraSolicitudRecepcionResponse" />
+  <xs:element name="findOrdenesCompraPendientes" type="tns:findOrdenesCompraPendientes" />
+  <xs:element name="findOrdenesCompraPendientesResponse" type="tns:findOrdenesCompraPendientesResponse" />
+  <xs:element name="findProductoSolicitudRecepcionAreaRecibir" type="tns:findProductoSolicitudRecepcionAreaRecibir" />
+  <xs:element name="findProductoSolicitudRecepcionAreaRecibirResponse" type="tns:findProductoSolicitudRecepcionAreaRecibirResponse" />
+  <xs:element name="findProductosAreaRecepcion" type="tns:findProductosAreaRecepcion" />
+  <xs:element name="findProductosAreaRecepcionResponse" type="tns:findProductosAreaRecepcionResponse" />
+  <xs:element name="findProductosByNombre" type="tns:findProductosByNombre" />
+  <xs:element name="findProductosByNombreResponse" type="tns:findProductosByNombreResponse" />
+  <xs:element name="findProductosOrdenCompra" type="tns:findProductosOrdenCompra" />
+  <xs:element name="findProductosOrdenCompraResponse" type="tns:findProductosOrdenCompraResponse" />
+  <xs:element name="findProductosSolicitudRecepcion" type="tns:findProductosSolicitudRecepcion" />
+  <xs:element name="findProductosSolicitudRecepcionAreaRecibir" type="tns:findProductosSolicitudRecepcionAreaRecibir" />
+  <xs:element name="findProductosSolicitudRecepcionAreaRecibirResponse" type="tns:findProductosSolicitudRecepcionAreaRecibirResponse" />
+  <xs:element name="findProductosSolicitudRecepcionResponse" type="tns:findProductosSolicitudRecepcionResponse" />
+  <xs:element name="findSolicitudesRecepcionBodega" type="tns:findSolicitudesRecepcionBodega" />
+  <xs:element name="findSolicitudesRecepcionBodegaResponse" type="tns:findSolicitudesRecepcionBodegaResponse" />
+  <xs:element name="findSolicitudesRecepcionOrdenCompra" type="tns:findSolicitudesRecepcionOrdenCompra" />
+  <xs:element name="findSolicitudesRecepcionOrdenCompraResponse" type="tns:findSolicitudesRecepcionOrdenCompraResponse" />
+  <xs:element name="findUbicacionBodegaSolicitudRecepcion" type="tns:findUbicacionBodegaSolicitudRecepcion" />
+  <xs:element name="findUbicacionBodegaSolicitudRecepcionResponse" type="tns:findUbicacionBodegaSolicitudRecepcionResponse" />
+  <xs:element name="findUbicacionesBodegaProducto" type="tns:findUbicacionesBodegaProducto" />
+  <xs:element name="findUbicacionesBodegaProductoResponse" type="tns:findUbicacionesBodegaProductoResponse" />
+  <xs:element name="findUbicacionesBodegaSolicitudRecepcion" type="tns:findUbicacionesBodegaSolicitudRecepcion" />
+  <xs:element name="findUbicacionesBodegaSolicitudRecepcionResponse" type="tns:findUbicacionesBodegaSolicitudRecepcionResponse" />
+  <xs:element name="findUbicacionesBodegaSugeridasPorProducto" type="tns:findUbicacionesBodegaSugeridasPorProducto" />
+  <xs:element name="findUbicacionesBodegaSugeridasPorProductoResponse" type="tns:findUbicacionesBodegaSugeridasPorProductoResponse" />
+  <xs:element name="findUbicacionesBodegaSugeridasProducto" type="tns:findUbicacionesBodegaSugeridasProducto" />
+  <xs:element name="findUbicacionesBodegaSugeridasProductoResponse" type="tns:findUbicacionesBodegaSugeridasProductoResponse" />
+  <xs:element name="findUbicacionesByProducto" type="tns:findUbicacionesByProducto" />
+  <xs:element name="findUbicacionesByProductoResponse" type="tns:findUbicacionesByProductoResponse" />
+  <xs:element name="findUbicacionesDispoProductosSolicitudRecepcion" type="tns:findUbicacionesDispoProductosSolicitudRecepcion" />
+  <xs:element name="findUbicacionesDispoProductosSolicitudRecepcionResponse" type="tns:findUbicacionesDispoProductosSolicitudRecepcionResponse" />
+  <xs:element name="findUbicacionesDispoProductosSolicitudRecepcionTodos" type="tns:findUbicacionesDispoProductosSolicitudRecepcionTodos" />
+  <xs:element name="findUbicacionesDispoProductosSolicitudRecepcionTodosResponse" type="tns:findUbicacionesDispoProductosSolicitudRecepcionTodosResponse" />
+  <xs:element name="findUbicacionesDisponibles" type="tns:findUbicacionesDisponibles" />
+  <xs:element name="findUbicacionesDisponiblesBodega" type="tns:findUbicacionesDisponiblesBodega" />
+  <xs:element name="findUbicacionesDisponiblesBodegaResponse" type="tns:findUbicacionesDisponiblesBodegaResponse" />
+  <xs:element name="findUbicacionesDisponiblesResponse" type="tns:findUbicacionesDisponiblesResponse" />
+  <xs:element name="findUbicacionesProducto" type="tns:findUbicacionesProducto" />
+  <xs:element name="findUbicacionesProductoResponse" type="tns:findUbicacionesProductoResponse" />
+  <xs:element name="marcas" type="tns:marcas" />
+  <xs:element name="ordenCompra" type="tns:ordenCompra" />
+  <xs:element name="prioridadSolicitud" type="tns:prioridadSolicitud" />
+  <xs:element name="productos" type="tns:productos" />
+  <xs:element name="proveedores" type="tns:proveedores" />
+  <xs:element name="recibirProducto" type="tns:recibirProducto" />
+  <xs:element name="recibirProductoResponse" type="tns:recibirProductoResponse" />
+  <xs:element name="rol" type="tns:rol" />
+  <xs:element name="solicitud" type="tns:solicitud" />
+  <xs:element name="subcategorias" type="tns:subcategorias" />
+  <xs:element name="ubicacion" type="tns:ubicacion" />
+  <xs:element name="ubicacionProducto" type="tns:ubicacionProducto" />
+  <xs:element name="ubicarProducto" type="tns:ubicarProducto" />
+  <xs:element name="ubicarProductoResponse" type="tns:ubicarProductoResponse" />
+  <xs:element name="ubicarProductosAreaRecibir" type="tns:ubicarProductosAreaRecibir" />
+  <xs:element name="ubicarProductosAreaRecibirResponse" type="tns:ubicarProductosAreaRecibirResponse" />
+  <xs:element name="usuario" type="tns:usuario" />
+  <xs:element name="validarUsuario" type="tns:validarUsuario" />
+  <xs:element name="validarUsuarioResponse" type="tns:validarUsuarioResponse" />
+  <xs:element name="verificarActividadUbicacionProductos" type="tns:verificarActividadUbicacionProductos" />
+  <xs:element name="verificarActividadUbicacionProductosResponse" type="tns:verificarActividadUbicacionProductosResponse" />
+  <xs:element name="verificarEjecucionPlanificacionSolicitudRecepcion" type="tns:verificarEjecucionPlanificacionSolicitudRecepcion" />
+  <xs:element name="verificarEjecucionPlanificacionSolicitudRecepcionResponse" type="tns:verificarEjecucionPlanificacionSolicitudRecepcionResponse" />
+  <xs:element name="verificarRecepcionSolicitud" type="tns:verificarRecepcionSolicitud" />
+  <xs:element name="verificarRecepcionSolicitudResponse" type="tns:verificarRecepcionSolicitudResponse" />
+  <xs:element name="verificarUbicacionSolicitud" type="tns:verificarUbicacionSolicitud" />
+  <xs:element name="verificarUbicacionSolicitudResponse" type="tns:verificarUbicacionSolicitudResponse" />
+  <xs:element name="vtaMovPforma" type="tns:vtaMovPforma" />
+  <xs:complexType name="findUbicacionesDisponibles">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesDisponiblesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ubicacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ubicacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="alto" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ancho" type="xs:decimal" />
+      <xs:element minOccurs="0" name="bodegas" type="tns:bodegas" />
+      <xs:element minOccurs="0" name="disponible" type="xs:string" />
+      <xs:element minOccurs="0" name="distancia" type="xs:decimal" />
+      <xs:element minOccurs="0" name="maxUnidades" type="xs:long" />
+      <xs:element minOccurs="0" name="tipoUbicacion" type="xs:string" />
+      <xs:element minOccurs="0" name="ubicacionPK" type="tns:ubicacionPK" />
+      <xs:element minOccurs="0" name="unidades" type="xs:long" />
+      <xs:element minOccurs="0" name="usuarios" type="tns:usuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bodegas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bodegasPK" type="tns:bodegasPK" />
+      <xs:element minOccurs="0" name="codBodegaWms" type="xs:string" />
+      <xs:element minOccurs="0" name="codSucursal" type="xs:string" />
+      <xs:element minOccurs="0" name="consignacion" type="xs:string" />
+      <xs:element minOccurs="0" name="cta1" type="xs:string" />
+      <xs:element minOccurs="0" name="cta2" type="xs:string" />
+      <xs:element minOccurs="0" name="cta3" type="xs:string" />
+      <xs:element minOccurs="0" name="cta4" type="xs:string" />
+      <xs:element minOccurs="0" name="cta5" type="xs:string" />
+      <xs:element minOccurs="0" name="cta6" type="xs:string" />
+      <xs:element minOccurs="0" name="cta7" type="xs:string" />
+      <xs:element minOccurs="0" name="cta8" type="xs:string" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="bodegasPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ubicacionPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="anaquel" type="xs:long" />
+      <xs:element minOccurs="0" name="area" type="xs:string" />
+      <xs:element minOccurs="0" name="bodega" type="xs:long" />
+      <xs:element minOccurs="0" name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="nivel" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="usuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bodega" type="xs:long" />
+      <xs:element minOccurs="0" name="compania" type="tns:compania" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="empleado" type="tns:empleado" />
+      <xs:element minOccurs="0" name="fechaFin" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaInicio" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="rol" type="tns:rol" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="compania">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="empleado">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="apartadoEmail" type="xs:string" />
+      <xs:element minOccurs="0" name="apellidoCasada" type="xs:string" />
+      <xs:element minOccurs="0" name="celular" type="xs:string" />
+      <xs:element minOccurs="0" name="direccion" type="xs:string" />
+      <xs:element minOccurs="0" name="email" type="xs:string" />
+      <xs:element name="estado" type="xs:long" />
+      <xs:element name="estadoCivil" type="xs:long" />
+      <xs:element name="externo" type="xs:short" />
+      <xs:element minOccurs="0" name="fechaIngreso" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="jefe" type="tns:empleado" />
+      <xs:element minOccurs="0" name="nombreCompleto" type="xs:string" />
+      <xs:element minOccurs="0" name="primerApellido" type="xs:string" />
+      <xs:element minOccurs="0" name="primerNombre" type="xs:string" />
+      <xs:element minOccurs="0" name="segundoApellido" type="xs:string" />
+      <xs:element minOccurs="0" name="segundoNombre" type="xs:string" />
+      <xs:element name="sexo" type="xs:long" />
+      <xs:element minOccurs="0" name="telefono" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoSangre" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="rol">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findAllBodegas">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="findAllBodegasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:bodegas" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesBodegaSugeridasProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+      <xs:element minOccurs="0" name="codProducto" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesBodegaSugeridasProductoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="datosProductoSolicitudRecepcion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cantidad" type="xs:long" />
+      <xs:element minOccurs="0" name="codAreaRecibir" type="xs:string" />
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codDetSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="codOrdenCompra" type="xs:long" />
+      <xs:element minOccurs="0" name="codProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="codProveedor" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="estProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="maxUnidUbicacion" type="xs:long" />
+      <xs:element minOccurs="0" name="nomAreaRecibir" type="xs:string" />
+      <xs:element minOccurs="0" name="nomProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="ubicacion" type="xs:string" />
+      <xs:element minOccurs="0" name="unidUbicacion" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findEstadosSolicitud">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="findEstadosSolicitudResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:estadoSolicitud" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="estadoSolicitud">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codProducto" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesProductoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:detalleProducto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="detalleProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="anaquel" type="xs:int" />
+      <xs:element minOccurs="0" name="area" type="xs:string" />
+      <xs:element minOccurs="0" name="codBodega" type="xs:string" />
+      <xs:element minOccurs="0" name="codProducto" type="xs:long" />
+      <xs:element minOccurs="0" name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="existencia" type="xs:long" />
+      <xs:element minOccurs="0" name="nivel" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesBodegaSugeridasPorProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+      <xs:element minOccurs="0" name="codProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="ubicacion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesBodegaSugeridasPorProductoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="evaluarProductoOrdenCompra">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long" />
+      <xs:element minOccurs="0" name="arg1" type="xs:long" />
+      <xs:element minOccurs="0" name="arg2" type="xs:string" />
+      <xs:element minOccurs="0" name="arg3" type="xs:long" />
+      <xs:element minOccurs="0" name="arg4" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="evaluarProductoOrdenCompraResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificarActividadUbicacionProductos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long" />
+      <xs:element minOccurs="0" name="arg1" type="xs:long" />
+      <xs:element minOccurs="0" name="arg2" type="xs:long" />
+      <xs:element minOccurs="0" name="arg3" type="xs:long" />
+      <xs:element minOccurs="0" name="arg4" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificarActividadUbicacionProductosResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesDispoProductosSolicitudRecepcion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesDispoProductosSolicitudRecepcionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesDispoProductosSolicitudRecepcionTodos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesDispoProductosSolicitudRecepcionTodosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ubicarProductosAreaRecibir">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long" />
+      <xs:element minOccurs="0" name="arg1" type="xs:long" />
+      <xs:element minOccurs="0" name="arg2" type="xs:string" />
+      <xs:element minOccurs="0" name="arg3" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ubicarProductosAreaRecibirResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findAreaRecibirBodegaSolicitudRecepcion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findAreaRecibirBodegaSolicitudRecepcionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findAreaRecibirBodega">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="codAreaReciben" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findAreaRecibirBodegaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesBodegaSolicitudRecepcion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesBodegaSolicitudRecepcionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ubicarProducto">
+    <xs:sequence>
+      <xs:element name="compania" type="xs:int" />
+      <xs:element minOccurs="0" name="producto" type="xs:string" />
+      <xs:element name="bodega" type="xs:int" />
+      <xs:element name="anaquel" type="xs:int" />
+      <xs:element minOccurs="0" name="area" type="xs:string" />
+      <xs:element name="nivel" type="xs:int" />
+      <xs:element name="cantidad" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ubicarProductoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validarUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="usuario" type="xs:string" />
+      <xs:element minOccurs="0" name="pass" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="validarUsuarioResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosUsuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="datosUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+      <xs:element minOccurs="0" name="codCompania" type="xs:long" />
+      <xs:element minOccurs="0" name="codEmpleado" type="xs:string" />
+      <xs:element minOccurs="0" name="logeado" type="xs:boolean" />
+      <xs:element minOccurs="0" name="nomEmpleado" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificarUbicacionSolicitud">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="solicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificarUbicacionSolicitudResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionBodegaSolicitudRecepcion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="ubicacion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionBodegaSolicitudRecepcionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findDetallesSolicitud">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findDetallesSolicitudResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:detSolicitud" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="detSolicitud">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="areaDespacho" type="tns:areaDespacho" />
+      <xs:element minOccurs="0" name="backOrder" type="xs:boolean" />
+      <xs:element minOccurs="0" name="bodega" type="tns:bodegas" />
+      <xs:element minOccurs="0" name="bodegaDestino" type="tns:bodegas" />
+      <xs:element minOccurs="0" name="bodegaOrigen" type="tns:bodegas" />
+      <xs:element minOccurs="0" name="cantidadDespachada" type="xs:long" />
+      <xs:element minOccurs="0" name="cantidadRecibida" type="xs:long" />
+      <xs:element minOccurs="0" name="cantidadSolicitada" type="xs:long" />
+      <xs:element minOccurs="0" name="cantidadUbicada" type="xs:long" />
+      <xs:element minOccurs="0" name="comentario" type="xs:string" />
+      <xs:element minOccurs="0" name="costoUnitario" type="xs:decimal" />
+      <xs:element minOccurs="0" name="detSolicitudPK" type="tns:detSolicitudPK" />
+      <xs:element minOccurs="0" name="diferenciaDespachada" type="xs:long" />
+      <xs:element minOccurs="0" name="diferenciaRecibida" type="xs:long" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+      <xs:element minOccurs="0" name="factura" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaEgreso" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaIngreso" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="incompleta" type="xs:long" />
+      <xs:element minOccurs="0" name="orden" type="xs:long" />
+      <xs:element minOccurs="0" name="productos" type="tns:productos" />
+      <xs:element minOccurs="0" name="solicitud" type="tns:solicitud" />
+      <xs:element minOccurs="0" name="ubicacion" type="tns:ubicacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="areaDespacho">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="areaDespachoPK" type="tns:areaDespachoPK" />
+      <xs:element minOccurs="0" name="bodegas" type="tns:bodegas" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="areaDespachoPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bodega" type="xs:long" />
+      <xs:element name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="id" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="detSolicitudPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codDetSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="productos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="afecto" type="xs:string" />
+      <xs:element minOccurs="0" name="cantidad" type="xs:decimal" />
+      <xs:element minOccurs="0" name="claseProd" type="xs:string" />
+      <xs:element minOccurs="0" name="codAuto" type="xs:string" />
+      <xs:element minOccurs="0" name="codDoctoiIng" type="xs:short" />
+      <xs:element minOccurs="0" name="codProv2" type="xs:string" />
+      <xs:element minOccurs="0" name="codProv3" type="xs:string" />
+      <xs:element minOccurs="0" name="codfab" type="xs:string" />
+      <xs:element minOccurs="0" name="consignacion" type="xs:string" />
+      <xs:element minOccurs="0" name="costo" type="xs:decimal" />
+      <xs:element minOccurs="0" name="costoFobU" type="xs:decimal" />
+      <xs:element minOccurs="0" name="costoTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="costoTotalAnt" type="xs:decimal" />
+      <xs:element minOccurs="0" name="destino" type="xs:string" />
+      <xs:element minOccurs="0" name="estilo" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaAct" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaAprobPrecio" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaCierre" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idUnidad" type="xs:short" />
+      <xs:element minOccurs="0" name="impuestos" type="xs:int" />
+      <xs:element minOccurs="0" name="informa" type="xs:string" />
+      <xs:element minOccurs="0" name="marcas" type="tns:marcas" />
+      <xs:element minOccurs="0" name="maximo" type="xs:decimal" />
+      <xs:element minOccurs="0" name="medida" type="xs:string" />
+      <xs:element minOccurs="0" name="minimo" type="xs:decimal" />
+      <xs:element minOccurs="0" name="modelo" type="xs:string" />
+      <xs:element minOccurs="0" name="noParte" type="xs:decimal" />
+      <xs:element minOccurs="0" name="nomTecnico" type="xs:string" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element minOccurs="0" name="numDoctoIng" type="xs:int" />
+      <xs:element minOccurs="0" name="PUtilidad" type="xs:decimal" />
+      <xs:element minOccurs="0" name="precioV1" type="xs:decimal" />
+      <xs:element minOccurs="0" name="precioV2" type="xs:decimal" />
+      <xs:element minOccurs="0" name="productosPK" type="tns:productosPK" />
+      <xs:element minOccurs="0" name="promVenta1" type="xs:decimal" />
+      <xs:element minOccurs="0" name="promVenta2" type="xs:decimal" />
+      <xs:element minOccurs="0" name="proveedores" type="tns:proveedores" />
+      <xs:element minOccurs="0" name="qtyAnterior" type="xs:decimal" />
+      <xs:element minOccurs="0" name="qtySugerida" type="xs:decimal" />
+      <xs:element minOccurs="0" name="qtyTransito" type="xs:decimal" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+      <xs:element minOccurs="0" name="subcategorias" type="tns:subcategorias" />
+      <xs:element minOccurs="0" name="unidadMedida" type="xs:string" />
+      <xs:element minOccurs="0" name="unidadV" type="xs:decimal" />
+      <xs:element minOccurs="0" name="usuario" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioAutPrecio" type="xs:string" />
+      <xs:element minOccurs="0" name="usuarioCreacion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="marcas">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codOrigen" type="xs:string" />
+      <xs:element minOccurs="0" name="desMarca" type="xs:string" />
+      <xs:element minOccurs="0" name="fecStatus" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="marcasPK" type="tns:marcasPK" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="marcasPK">
+    <xs:sequence>
+      <xs:element name="codCia" type="xs:short" />
+      <xs:element minOccurs="0" name="codMarca" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="productosPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codProd" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="proveedores">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCliente" type="xs:string" />
+      <xs:element minOccurs="0" name="codPais" type="xs:short" />
+      <xs:element minOccurs="0" name="contabilizaDescuento" type="xs:string" />
+      <xs:element minOccurs="0" name="contacto" type="xs:string" />
+      <xs:element minOccurs="0" name="contexto" type="xs:string" />
+      <xs:element minOccurs="0" name="cta1" type="xs:string" />
+      <xs:element minOccurs="0" name="cta2" type="xs:string" />
+      <xs:element minOccurs="0" name="cta3" type="xs:string" />
+      <xs:element minOccurs="0" name="cta4" type="xs:string" />
+      <xs:element minOccurs="0" name="cta5" type="xs:string" />
+      <xs:element minOccurs="0" name="cta6" type="xs:string" />
+      <xs:element minOccurs="0" name="cta7" type="xs:string" />
+      <xs:element minOccurs="0" name="cta8" type="xs:string" />
+      <xs:element minOccurs="0" name="descProntoPago" type="xs:string" />
+      <xs:element minOccurs="0" name="diasCredito" type="xs:int" />
+      <xs:element minOccurs="0" name="diasDescuento" type="xs:short" />
+      <xs:element minOccurs="0" name="direccion" type="xs:string" />
+      <xs:element minOccurs="0" name="fax" type="xs:string" />
+      <xs:element minOccurs="0" name="limiteCredito" type="xs:decimal" />
+      <xs:element minOccurs="0" name="nit" type="xs:string" />
+      <xs:element minOccurs="0" name="noRegistro" type="xs:string" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreCheque" type="xs:string" />
+      <xs:element minOccurs="0" name="numCuentaBanc" type="xs:string" />
+      <xs:element minOccurs="0" name="porcentajeDescuento" type="xs:decimal" />
+      <xs:element minOccurs="0" name="porcentajeRetencion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="proveedoresPK" type="tns:proveedoresPK" />
+      <xs:element minOccurs="0" name="saldo" type="xs:decimal" />
+      <xs:element minOccurs="0" name="shipTo" type="xs:string" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+      <xs:element minOccurs="0" name="telefono" type="xs:string" />
+      <xs:element minOccurs="0" name="telefono1" type="xs:string" />
+      <xs:element minOccurs="0" name="tipPro" type="xs:string" />
+      <xs:element minOccurs="0" name="tipo" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoCuenta" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="proveedoresPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codProv" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="subcategorias">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="categorias" type="tns:categorias" />
+      <xs:element minOccurs="0" name="fecfindes" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fecinides" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="nomTecnico" type="xs:string" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+      <xs:element minOccurs="0" name="PUtilidad" type="xs:decimal" />
+      <xs:element minOccurs="0" name="porcdesc" type="xs:decimal" />
+      <xs:element minOccurs="0" name="porcdescmay" type="xs:decimal" />
+      <xs:element minOccurs="0" name="subcategoriasPK" type="tns:subcategoriasPK" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="categorias">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="categoriasPK" type="tns:categoriasPK" />
+      <xs:element minOccurs="0" name="cta1" type="xs:string" />
+      <xs:element minOccurs="0" name="cta2" type="xs:string" />
+      <xs:element minOccurs="0" name="cta3" type="xs:string" />
+      <xs:element minOccurs="0" name="cta4" type="xs:string" />
+      <xs:element minOccurs="0" name="cta5" type="xs:string" />
+      <xs:element minOccurs="0" name="cta6" type="xs:string" />
+      <xs:element minOccurs="0" name="cta7" type="xs:string" />
+      <xs:element minOccurs="0" name="cta8" type="xs:string" />
+      <xs:element minOccurs="0" name="ent1" type="xs:string" />
+      <xs:element minOccurs="0" name="ent2" type="xs:string" />
+      <xs:element minOccurs="0" name="ent3" type="xs:string" />
+      <xs:element minOccurs="0" name="ent4" type="xs:string" />
+      <xs:element minOccurs="0" name="ent5" type="xs:string" />
+      <xs:element minOccurs="0" name="ent6" type="xs:string" />
+      <xs:element minOccurs="0" name="ent7" type="xs:string" />
+      <xs:element minOccurs="0" name="ent8" type="xs:string" />
+      <xs:element minOccurs="0" name="fecfindes" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fecinides" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="inv1" type="xs:string" />
+      <xs:element minOccurs="0" name="inv2" type="xs:string" />
+      <xs:element minOccurs="0" name="inv3" type="xs:string" />
+      <xs:element minOccurs="0" name="inv4" type="xs:string" />
+      <xs:element minOccurs="0" name="inv5" type="xs:string" />
+      <xs:element minOccurs="0" name="inv6" type="xs:string" />
+      <xs:element minOccurs="0" name="inv7" type="xs:string" />
+      <xs:element minOccurs="0" name="inv8" type="xs:string" />
+      <xs:element minOccurs="0" name="nomCat" type="xs:string" />
+      <xs:element minOccurs="0" name="nomTecnico" type="xs:string" />
+      <xs:element minOccurs="0" name="porcdesc" type="xs:decimal" />
+      <xs:element minOccurs="0" name="sal1" type="xs:string" />
+      <xs:element minOccurs="0" name="sal2" type="xs:string" />
+      <xs:element minOccurs="0" name="sal3" type="xs:string" />
+      <xs:element minOccurs="0" name="sal4" type="xs:string" />
+      <xs:element minOccurs="0" name="sal5" type="xs:string" />
+      <xs:element minOccurs="0" name="sal6" type="xs:string" />
+      <xs:element minOccurs="0" name="sal7" type="xs:string" />
+      <xs:element minOccurs="0" name="sal8" type="xs:string" />
+      <xs:element minOccurs="0" name="servicio" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoCat" type="xs:string" />
+      <xs:element minOccurs="0" name="vta1" type="xs:string" />
+      <xs:element minOccurs="0" name="vta2" type="xs:string" />
+      <xs:element minOccurs="0" name="vta3" type="xs:string" />
+      <xs:element minOccurs="0" name="vta4" type="xs:string" />
+      <xs:element minOccurs="0" name="vta5" type="xs:string" />
+      <xs:element minOccurs="0" name="vta6" type="xs:string" />
+      <xs:element minOccurs="0" name="vta7" type="xs:string" />
+      <xs:element minOccurs="0" name="vta8" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="categoriasPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCat" type="xs:string" />
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="subcategoriasPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCat" type="xs:string" />
+      <xs:element name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSubcat" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="solicitud">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bodegas" type="tns:bodegas" />
+      <xs:element minOccurs="0" name="comentario" type="xs:string" />
+      <xs:element minOccurs="0" name="compania" type="tns:compania" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="doctosInv" type="tns:doctosInv" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+      <xs:element minOccurs="0" name="estadoRecepcion" type="tns:estadoSolicitud" />
+      <xs:element minOccurs="0" name="fechaHoraCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaHoraDespacho" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaHoraRecepcion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="incompleta" type="xs:long" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="listaDetalleSolicitudRecepcion" nillable="true" type="tns:detOrden" />
+      <xs:element minOccurs="0" name="ordenCompra" type="tns:ordenCompra" />
+      <xs:element minOccurs="0" name="prioridad" type="tns:prioridadSolicitud" />
+      <xs:element minOccurs="0" name="solicitudPK" type="tns:solicitudPK" />
+      <xs:element minOccurs="0" name="vtaMovPforma" type="tns:vtaMovPforma" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="doctosInv">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="afectaInventario" type="xs:string" />
+      <xs:element minOccurs="0" name="doctosInvPK" type="tns:doctosInvPK" />
+      <xs:element minOccurs="0" name="ingresoEgreso" type="xs:string" />
+      <xs:element minOccurs="0" name="nomDocto" type="xs:string" />
+      <xs:element minOccurs="0" name="nomcDocto" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoDocto" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="doctosInvPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codDoctoi" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="detOrden">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cantidad" type="xs:long" />
+      <xs:element minOccurs="0" name="codGasto" type="xs:short" />
+      <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+      <xs:element minOccurs="0" name="detOrdenPK" type="tns:detOrdenPK" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+      <xs:element minOccurs="0" name="ordenCompra" type="tns:ordenCompra" />
+      <xs:element minOccurs="0" name="precioUnit" type="xs:decimal" />
+      <xs:element minOccurs="0" name="productos" type="tns:productos" />
+      <xs:element minOccurs="0" name="unidadMedida" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="detOrdenPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codProd" type="xs:string" />
+      <xs:element minOccurs="0" name="numero" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ordenCompra">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="anio" type="xs:short" />
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+      <xs:element minOccurs="0" name="codDepto" type="xs:short" />
+      <xs:element minOccurs="0" name="codObra" type="xs:short" />
+      <xs:element minOccurs="0" name="codProv" type="xs:string" />
+      <xs:element minOccurs="0" name="codRenglon" type="xs:short" />
+      <xs:element minOccurs="0" name="compania" type="tns:compania" />
+      <xs:element minOccurs="0" name="descuentos" type="xs:decimal" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+      <xs:element minOccurs="0" name="fecha" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaVence" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="iva" type="xs:decimal" />
+      <xs:element minOccurs="0" name="obra" type="xs:string" />
+      <xs:element minOccurs="0" name="observaciones" type="xs:string" />
+      <xs:element minOccurs="0" name="ordenCompraPK" type="tns:ordenCompraPK" />
+      <xs:element minOccurs="0" name="refPago" type="xs:string" />
+      <xs:element minOccurs="0" name="requerido" type="xs:string" />
+      <xs:element minOccurs="0" name="saldo" type="xs:decimal" />
+      <xs:element minOccurs="0" name="status" type="xs:string" />
+      <xs:element minOccurs="0" name="subProy" type="xs:int" />
+      <xs:element minOccurs="0" name="subTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="tipoObra" type="xs:string" />
+      <xs:element minOccurs="0" name="total" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ordenCompraPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="numero" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="prioridadSolicitud">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="solicitudPK">
+    <xs:sequence>
+      <xs:element name="codCia" type="xs:long" />
+      <xs:element name="codSolicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="vtaMovPforma">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="afecto" type="xs:short" />
+      <xs:element minOccurs="0" name="anio" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="anio1" type="xs:short" />
+      <xs:element minOccurs="0" name="anioIng" type="xs:short" />
+      <xs:element minOccurs="0" name="cambio" type="xs:decimal" />
+      <xs:element minOccurs="0" name="cheque" type="xs:string" />
+      <xs:element minOccurs="0" name="cobro" type="xs:short" />
+      <xs:element minOccurs="0" name="codAgencia" type="xs:short" />
+      <xs:element minOccurs="0" name="codBanco" type="xs:string" />
+      <xs:element minOccurs="0" name="codBodega" type="xs:short" />
+      <xs:element minOccurs="0" name="codCliente" type="xs:string" />
+      <xs:element name="codDoctoc" type="xs:short" />
+      <xs:element minOccurs="0" name="codObra" type="xs:int" />
+      <xs:element minOccurs="0" name="codPromocion" type="xs:short" />
+      <xs:element minOccurs="0" name="codRenglon" type="xs:int" />
+      <xs:element minOccurs="0" name="codTurno" type="xs:string" />
+      <xs:element minOccurs="0" name="codVendedor" type="xs:string" />
+      <xs:element minOccurs="0" name="codVendedor1" type="xs:string" />
+      <xs:element minOccurs="0" name="codVendedor2" type="xs:string" />
+      <xs:element minOccurs="0" name="comision" type="xs:decimal" />
+      <xs:element minOccurs="0" name="compania" type="tns:compania" />
+      <xs:element minOccurs="0" name="count" type="xs:int" />
+      <xs:element minOccurs="0" name="descDev" type="xs:decimal" />
+      <xs:element minOccurs="0" name="descGlobal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="despacho" type="xs:string" />
+      <xs:element minOccurs="0" name="dirCobro" type="xs:string" />
+      <xs:element minOccurs="0" name="docStat" type="xs:string" />
+      <xs:element minOccurs="0" name="estado" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaConta" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaDocto" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaPago" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaTras" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaVencimiento" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fovial" type="xs:decimal" />
+      <xs:element minOccurs="0" name="idPforma" type="xs:string" />
+      <xs:element minOccurs="0" name="imprimir" type="xs:string" />
+      <xs:element minOccurs="0" name="ingreso" type="xs:int" />
+      <xs:element minOccurs="0" name="iva" type="xs:decimal" />
+      <xs:element minOccurs="0" name="mes1" type="xs:short" />
+      <xs:element minOccurs="0" name="mesPedido" type="xs:int" />
+      <xs:element minOccurs="0" name="NCaja" type="xs:short" />
+      <xs:element minOccurs="0" name="NRegistro" type="xs:string" />
+      <xs:element minOccurs="0" name="nit" type="xs:string" />
+      <xs:element minOccurs="0" name="nomCliente" type="xs:string" />
+      <xs:element minOccurs="0" name="numDocIden" type="xs:string" />
+      <xs:element name="numDocto" type="xs:int" />
+      <xs:element minOccurs="0" name="numPoliza" type="xs:int" />
+      <xs:element minOccurs="0" name="numeroPedido" type="xs:int" />
+      <xs:element minOccurs="0" name="observacion" type="xs:string" />
+      <xs:element minOccurs="0" name="ordenCliente" type="xs:string" />
+      <xs:element minOccurs="0" name="percepcion" type="xs:decimal" />
+      <xs:element minOccurs="0" name="porcDescuento" type="xs:decimal" />
+      <xs:element minOccurs="0" name="saldo" type="xs:decimal" />
+      <xs:element minOccurs="0" name="subTotal" type="xs:decimal" />
+      <xs:element minOccurs="0" name="tipServicio" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoCta" type="xs:short" />
+      <xs:element minOccurs="0" name="tipoDocIden" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoDocto" type="xs:string" />
+      <xs:element minOccurs="0" name="tipoObra" type="xs:string" />
+      <xs:element minOccurs="0" name="totalAfecto" type="xs:decimal" />
+      <xs:element minOccurs="0" name="totalExento" type="xs:decimal" />
+      <xs:element minOccurs="0" name="totalOtros" type="xs:decimal" />
+      <xs:element minOccurs="0" name="txtEnvios" type="xs:string" />
+      <xs:element minOccurs="0" name="vtaMovPformaPK" type="tns:vtaMovPformaPK" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="vtaMovPformaPK">
+    <xs:sequence>
+      <xs:element name="codCia" type="xs:short" />
+      <xs:element name="codSucursal" type="xs:short" />
+      <xs:element name="correlativo" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findSolicitudesRecepcionBodega">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="bodega" type="xs:long" />
+      <xs:element minOccurs="0" name="estado" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findSolicitudesRecepcionBodegaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="datosSolicitudRecepcion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="estado" type="xs:long" />
+      <xs:element minOccurs="0" name="estadoActividadSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="fechaHoraCreacion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="fechaHoraRecepcion" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="idActividadSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="nomBodega" type="xs:string" />
+      <xs:element minOccurs="0" name="nombreProveedor" type="xs:string" />
+      <xs:element minOccurs="0" name="ordenCompra" type="xs:long" />
+      <xs:element minOccurs="0" name="prioridad" type="xs:long" />
+      <xs:element minOccurs="0" name="strEstado" type="xs:string" />
+      <xs:element minOccurs="0" name="strPrioridad" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesByProducto">
+    <xs:sequence>
+      <xs:element name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="producto" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesByProductoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ubicacionProducto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ubicacionProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cantidad" type="xs:long" />
+      <xs:element minOccurs="0" name="enTransito" type="xs:string" />
+      <xs:element minOccurs="0" name="fechaIngreso" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="prodAbierto" type="xs:int" />
+      <xs:element minOccurs="0" name="prodCerrado" type="xs:int" />
+      <xs:element minOccurs="0" name="productos" type="tns:productos" />
+      <xs:element minOccurs="0" name="ubicAbierto" type="xs:int" />
+      <xs:element minOccurs="0" name="ubicCerrado" type="xs:int" />
+      <xs:element minOccurs="0" name="ubicacion" type="tns:ubicacion" />
+      <xs:element minOccurs="0" name="ubicacionProductoPK" type="tns:ubicacionProductoPK" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ubicacionProductoPK">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="anaquel" type="xs:long" />
+      <xs:element minOccurs="0" name="area" type="xs:string" />
+      <xs:element minOccurs="0" name="bodega" type="xs:long" />
+      <xs:element minOccurs="0" name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="nivel" type="xs:long" />
+      <xs:element minOccurs="0" name="producto" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosOrdenCompra">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codOrdenCompra" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosOrdenCompraResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:productos" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findSolicitudesRecepcionOrdenCompra">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codOrdenCompra" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findSolicitudesRecepcionOrdenCompraResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:solicitud" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findDetallesSolicitudRecibidos">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findDetallesSolicitudRecibidosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:detSolicitud" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesDisponiblesBodega">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesDisponiblesBodegaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ubicacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findOrdenesCompraPendientes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findOrdenesCompraPendientesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenCompra" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cambiarUbicacionPlanificada">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long" />
+      <xs:element minOccurs="0" name="arg1" type="xs:long" />
+      <xs:element minOccurs="0" name="arg2" type="xs:string" />
+      <xs:element minOccurs="0" name="arg3" type="xs:long" />
+      <xs:element minOccurs="0" name="arg4" type="xs:long" />
+      <xs:element minOccurs="0" name="arg5" type="xs:string" />
+      <xs:element minOccurs="0" name="arg6" type="xs:long" />
+      <xs:element minOccurs="0" name="arg7" type="xs:long" />
+      <xs:element minOccurs="0" name="arg8" type="xs:string" />
+      <xs:element minOccurs="0" name="arg9" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="cambiarUbicacionPlanificadaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosSolicitudRecepcion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitudRecepcion" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosSolicitudRecepcionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitud" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="datosProductoSolicitud">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="bodega" type="xs:string" />
+      <xs:element minOccurs="0" name="cantidad" type="xs:long" />
+      <xs:element minOccurs="0" name="cantidadMalas" type="xs:long" />
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codOrdenCompra" type="xs:long" />
+      <xs:element minOccurs="0" name="codProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="codProveedor" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="estadoProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="nomProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="ubicacion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="recibirProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="codDetSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="cantidadRecibida" type="xs:long" />
+      <xs:element minOccurs="0" name="factura" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="recibirProductoResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosByNombre">
+    <xs:sequence>
+      <xs:element name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="nombre" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosByNombreResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:productos" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductoSolicitudRecepcionAreaRecibir">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="codProducto" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductoSolicitudRecepcionAreaRecibirResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:detSolicitud" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosSolicitudRecepcionAreaRecibir">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosSolicitudRecepcionAreaRecibirResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:datosProductoSolicitudRecepcion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesBodegaProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="bodega" type="xs:string" />
+      <xs:element minOccurs="0" name="producto" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findUbicacionesBodegaProductoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:existenciaUbicacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="existenciaUbicacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="cantidad" type="xs:decimal" />
+      <xs:element minOccurs="0" name="codProducto" type="xs:decimal" />
+      <xs:element minOccurs="0" name="nomProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="ubicacion" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarExistenciasBodega">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+      <xs:element minOccurs="0" name="cant" type="xs:long" />
+      <xs:element minOccurs="0" name="codProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="codBodega" type="xs:long" />
+      <xs:element minOccurs="0" name="anaquel" type="xs:long" />
+      <xs:element minOccurs="0" name="area" type="xs:string" />
+      <xs:element minOccurs="0" name="nivel" type="xs:long" />
+      <xs:element minOccurs="0" name="estProducto" type="xs:string" />
+      <xs:element minOccurs="0" name="usuario" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="actualizarExistenciasBodegaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="agregarUbicacionProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long" />
+      <xs:element minOccurs="0" name="arg1" type="xs:long" />
+      <xs:element minOccurs="0" name="arg2" type="xs:string" />
+      <xs:element minOccurs="0" name="arg3" type="xs:long" />
+      <xs:element minOccurs="0" name="arg4" type="xs:long" />
+      <xs:element minOccurs="0" name="arg5" type="xs:string" />
+      <xs:element minOccurs="0" name="arg6" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="agregarUbicacionProductoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificarRecepcionSolicitud">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="compania" type="xs:long" />
+      <xs:element minOccurs="0" name="solicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificarRecepcionSolicitudResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosAreaRecepcion">
+    <xs:sequence>
+      <xs:element name="compania" type="xs:int" />
+      <xs:element name="bodega" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findProductosAreaRecepcionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ubicacionProducto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="agregarComentarioProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long" />
+      <xs:element minOccurs="0" name="arg1" type="xs:long" />
+      <xs:element minOccurs="0" name="arg2" type="xs:string" />
+      <xs:element minOccurs="0" name="arg3" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="agregarComentarioProductoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificarEjecucionPlanificacionSolicitudRecepcion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:long" />
+      <xs:element minOccurs="0" name="arg1" type="xs:long" />
+      <xs:element minOccurs="0" name="arg2" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="verificarEjecucionPlanificacionSolicitudRecepcionResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="findOrdenCompraSolicitudRecepcion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="codCia" type="xs:long" />
+      <xs:element minOccurs="0" name="codSolicitud" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="findOrdenCompraSolicitudRecepcionResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

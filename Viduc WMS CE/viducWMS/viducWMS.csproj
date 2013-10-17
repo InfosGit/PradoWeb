@@ -1,0 +1,544 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{31591D50-CC9A-4F43-B37F-67B47D6EA695}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>viducWMS</RootNamespace>
+    <AssemblyName>viducWMS</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>4118C335-430C-497f-BE48-11C3316B135E</PlatformID>
+    <OSVersion>5.01</OSVersion>
+    <DeployDirSuffix>
+    </DeployDirSuffix>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <NativePlatformName>Windows Mobile 5.0 Pocket PC SDK</NativePlatformName>
+    <FormFactorID>
+    </FormFactorID>
+    <ApplicationIcon>Green-Boxes.ico</ApplicationIcon>
+    <DeployDirPrefix>%25CSIDL_PROGRAM_FILES%25</DeployDirPrefix>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Barcode, Version=2.0.0.20, Culture=neutral, PublicKeyToken=6dc438ab78a525b3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="biliotecaVIDUC, Version=1.0.4804.27251, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\biliotecaVIDUC.dll</HintPath>
+    </Reference>
+    <Reference Include="colorFilaGrid, Version=1.0.4814.16642, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\colorFilaGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="HandHeldProducts.Embedded.Decoding.DecodeAssembly, Version=2.209.30001.0, Culture=neutral, PublicKeyToken=61006b9cbe4bb3df, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\HandHeldProducts.Embedded.Decoding.DecodeAssembly.dll</HintPath>
+    </Reference>
+    <Reference Include="HandHeldProducts.Embedded.Decoding.SymbologyConfiguratorUserControl, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\HandHeldProducts.Embedded.Decoding.SymbologyConfiguratorUserControl.dll</HintPath>
+    </Reference>
+    <Reference Include="HandHeldProducts.Embedded.SignatureUserControl, Version=3.601.30001.0, Culture=neutral, PublicKeyToken=f20d6e658fef9348, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\HandHeldProducts.Embedded.SignatureUserControl.dll</HintPath>
+    </Reference>
+    <Reference Include="Intermec.DataCollection.CF2, Version=3.2.0.1217, Culture=neutral, PublicKeyToken=acd169b56b6148ba, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Intermec.DataCollection.CF2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Samples.Barcode, Version=1.0.4455.16535, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Microsoft.Samples.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsCE.Forms" />
+    <Reference Include="mscorlib" />
+    <Reference Include="Symbol, Version=1.6.1.4, Culture=neutral, PublicKeyToken=68ec8db391f150ca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Symbol.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.Barcode, Version=1.6.1.18, Culture=neutral, PublicKeyToken=68ec8db391f150ca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Symbol.Barcode.dll</HintPath>
+    </Reference>
+    <Reference Include="Symbol.StandardForms, Version=1.6.1.5, Culture=neutral, PublicKeyToken=68ec8db391f150ca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Symbol.StandardForms.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="clsLeerXML.cs" />
+    <Compile Include="MenuTrasladoInterno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuTrasladoInterno.Designer.cs">
+      <DependentUpon>MenuTrasladoInterno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="prueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="prueba.Designer.cs">
+      <DependentUpon>prueba.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_Ajustes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_Ajustes.Designer.cs">
+      <DependentUpon>wf_Ajustes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_AreasDespacho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_AreasDespacho.Designer.cs">
+      <DependentUpon>wf_AreasDespacho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_BusquedaProductoDet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_BusquedaProductoDet.Designer.cs">
+      <DependentUpon>wf_BusquedaProductoDet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_DespachoProductoValidacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_DespachoProductoValidacion.Designer.cs">
+      <DependentUpon>wf_DespachoProductoValidacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_menuRecepcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_menuRecepcion.Designer.cs">
+      <DependentUpon>wf_menuRecepcion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_ProductosTrasladar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_ProductosTrasladar.Designer.cs">
+      <DependentUpon>wf_ProductosTrasladar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_Recepciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_Recepciones.Designer.cs">
+      <DependentUpon>wf_Recepciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_Despacho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_Despacho.Designer.cs">
+      <DependentUpon>wf_Despacho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_DespachoProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_DespachoProducto.Designer.cs">
+      <DependentUpon>wf_DespachoProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_TrasladoInterno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_TrasladoInterno.Designer.cs">
+      <DependentUpon>wf_TrasladoInterno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_SubMenuTransalado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_SubMenuTransalado.Designer.cs">
+      <DependentUpon>wf_SubMenuTransalado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_UbicacionProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_UbicacionProducto.Designer.cs">
+      <DependentUpon>wf_UbicacionProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_SubMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_SubMenu.Designer.cs">
+      <DependentUpon>wf_SubMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_BusquedaProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_BusquedaProducto.Designer.cs">
+      <DependentUpon>wf_BusquedaProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_DatosProductoUbicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_DatosProductoUbicacion.Designer.cs">
+      <DependentUpon>wf_DatosProductoUbicacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_DatosProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_DatosProducto.Designer.cs">
+      <DependentUpon>wf_DatosProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_MenuConsulta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_MenuConsulta.Designer.cs">
+      <DependentUpon>wf_MenuConsulta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_ProductoCategoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_ProductoCategoria.Designer.cs">
+      <DependentUpon>wf_ProductoCategoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_SolicitudTransalado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_SolicitudTransalado.Designer.cs">
+      <DependentUpon>wf_SolicitudTransalado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="MenuTrasladoInterno.resx">
+      <DependentUpon>MenuTrasladoInterno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="prueba.resx">
+      <DependentUpon>prueba.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_Ajustes.resx">
+      <DependentUpon>wf_Ajustes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_AreasDespacho.resx">
+      <DependentUpon>wf_AreasDespacho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_BusquedaProductoDet.resx">
+      <DependentUpon>wf_BusquedaProductoDet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_DespachoProductoValidacion.resx">
+      <DependentUpon>wf_DespachoProductoValidacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_menuRecepcion.resx">
+      <DependentUpon>wf_menuRecepcion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_ProductosTrasladar.resx">
+      <DependentUpon>wf_ProductosTrasladar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_Recepciones.resx">
+      <DependentUpon>wf_Recepciones.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_Despacho.resx">
+      <DependentUpon>wf_Despacho.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_DespachoProducto.resx">
+      <DependentUpon>wf_DespachoProducto.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_TrasladoInterno.resx">
+      <DependentUpon>wf_TrasladoInterno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_SubMenuTransalado.resx">
+      <DependentUpon>wf_SubMenuTransalado.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_UbicacionProducto.resx">
+      <DependentUpon>wf_UbicacionProducto.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_SubMenu.resx">
+      <DependentUpon>wf_SubMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_BusquedaProducto.resx">
+      <DependentUpon>wf_BusquedaProducto.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_DatosProductoUbicacion.resx">
+      <DependentUpon>wf_DatosProductoUbicacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_DatosProducto.resx">
+      <DependentUpon>wf_DatosProducto.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_MenuConsulta.resx">
+      <DependentUpon>wf_MenuConsulta.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_ProductoCategoria.resx">
+      <DependentUpon>wf_ProductoCategoria.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_SolicitudTransalado.resx">
+      <DependentUpon>wf_SolicitudTransalado.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_Login.resx">
+      <DependentUpon>wf_Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_Menu.resx">
+      <DependentUpon>wf_Menu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_RecepcionProducto.resx">
+      <DependentUpon>wf_RecepcionProducto.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_Solicitudes.resx">
+      <DependentUpon>wf_Solicitudes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_Ubicaciones.resx">
+      <DependentUpon>wf_Ubicaciones.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wf_UbicacionesTransalado.resx">
+      <DependentUpon>wf_UbicacionesTransalado.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="wf_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_Login.Designer.cs">
+      <DependentUpon>wf_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_Menu.Designer.cs">
+      <DependentUpon>wf_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_RecepcionProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_RecepcionProducto.Designer.cs">
+      <DependentUpon>wf_RecepcionProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_Solicitudes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_Solicitudes.Designer.cs">
+      <DependentUpon>wf_Solicitudes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_Ubicaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_Ubicaciones.Designer.cs">
+      <DependentUpon>wf_Ubicaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="wf_UbicacionesTransalado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="wf_UbicacionesTransalado.Designer.cs">
+      <DependentUpon>wf_UbicacionesTransalado.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ws_Servicios\wsTraslado\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="ws_Servicios\ws_Conteo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="ws_Servicios\ws_Servicios\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="ws_Servicios\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Green-Boxes.ico" />
+    <Content Include="urlServiciosWeb.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="IMAGENES\logoVIDUC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://192.168.20.150:9999/ViducWebApp/ConteoWebService%3fWSDL">
+      <UrlBehavior>Static</UrlBehavior>
+      <RelPath>ws_Servicios\ws_Conteo\</RelPath>
+      <UpdateFromURL>http://192.168.20.150:9999/ViducWebApp/ConteoWebService%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>
+      </CachedAppSettingsObjectName>
+      <CachedSettingsPropName>
+      </CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://192.168.20.150:9999/ViducWebApp/VIDUCWebService%3fWSDL">
+      <UrlBehavior>Static</UrlBehavior>
+      <RelPath>ws_Servicios\ws_Servicios\</RelPath>
+      <UpdateFromURL>http://192.168.20.150:9999/ViducWebApp/VIDUCWebService%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>
+      </CachedAppSettingsObjectName>
+      <CachedSettingsPropName>
+      </CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://192.168.20.150:9999/ViducWebApp/wsTrasladoBodegaBodega%3fWSDL">
+      <UrlBehavior>Static</UrlBehavior>
+      <RelPath>ws_Servicios\wsTraslado\</RelPath>
+      <UpdateFromURL>http://192.168.20.150:9999/ViducWebApp/wsTrasladoBodegaBodega%3fWSDL</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>
+      </CachedAppSettingsObjectName>
+      <CachedSettingsPropName>
+      </CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ws_Servicios\wsTraslado\areaDespacho.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\wsTraslado\detSolicitud.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\wsTraslado\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="ws_Servicios\wsTraslado\solicitud.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\wsTraslado\ubicacionProducto.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\wsTraslado\wsTrasladoBodegaBodega.wsdl" />
+    <None Include="ws_Servicios\wsTraslado\wsTrasladoBodegaBodega.xsd" />
+    <None Include="ws_Servicios\ws_Conteo\ConteoWebService.wsdl" />
+    <None Include="ws_Servicios\ws_Conteo\ConteoWebService.xsd" />
+    <None Include="ws_Servicios\ws_Conteo\invFisicoDet.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Conteo\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\bodegas.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\datosProductoSolicitud.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\datosProductoSolicitudRecepcion.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\datosSolicitudRecepcion.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\datosUsuario.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\detalleProducto.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\detSolicitud.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\estadoSolicitud.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\existenciaUbicacion.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\ordenCompra.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\productos.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\solicitud.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\ubicacion.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\ubicacionProducto.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="ws_Servicios\ws_Servicios\VIDUCWebService.wsdl" />
+    <None Include="ws_Servicios\ws_Servicios\VIDUCWebService.xsd" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
